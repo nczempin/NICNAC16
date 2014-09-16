@@ -27,17 +27,27 @@ assign spi_miso = 1'bz;
 assign avr_rx = 1'bz;
 assign spi_channel = 4'bzzzz;
 */
+wire EXECUTE;
+assign EXECUTE = 1;
+wire I_STA;
+wire SETWRITE;
+wire T0;
 
-assign led = 8'b10101010; 
+assign T0 = 1;
+
+assign led[5:0] = 6'b101010; 
+assign led[7] = I_STA;
+assign led[6] = SETWRITE;
 dunc16 myDunc16 (
 	.CLK(clk),
-	.I_STA(    ), 
-	.EXECUTE(    ), 
-	.T0(    ), 
-	.SETWRITE(    ), 
-	.CLRWRITE(    ), 
-	.T1(    ), 
-	.MD_OUT(    ),
+	.I_STA( I_STA   ), 
+	.EXECUTE(  EXECUTE  ), 
+	.T0(  T0  ), 
+	.SETWRITE( SETWRITE   ), 
+	.CLRWRITE(  CLRWRITE  ), 
+	.T1(  T1  ), 
+	.MD_OUT( MD_OUT   ),
+	.AC_OUT( AC_OUT   ),
 	.RESET(rst)
 	
    );
