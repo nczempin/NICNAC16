@@ -31,13 +31,19 @@ wire EXECUTE;
 assign EXECUTE = 1;
 wire I_STA;
 wire SETWRITE;
+wire CLRWRITE;
 wire T0;
+wire T1;
+wire [15:0] MD_OUT;
+wire [15:0] AC_OUT;
 
 assign T0 = 1;
+assign T1 = 0;
 
-assign led[5:0] = 6'b101010; 
+assign led[4:0] = 5'b01010; 
 assign led[7] = I_STA;
 assign led[6] = SETWRITE;
+assign led[5] = CLRWRITE;
 dunc16 myDunc16 (
 	.CLK(clk),
 	.I_STA( I_STA   ), 
