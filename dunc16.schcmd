@@ -1,0 +1,4 @@
+select figure at 4109 1974 8 -wires -sn=1
+select figure at 4043 2036 8 -wires -sn=1
+select figure at 4043 2036 8 -wires -all -sn=1
+select figure at 4125 1966 8 -wires -sn=1

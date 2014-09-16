@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="REG4CE">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2014-9-16T21:20:18</timestamp>
+    <attr value="REG4CE" name="VeriModel" />
+    <pin polarity="Input" x="0" y="-208" name="CE" />
+    <pin polarity="Output" x="384" y="-272" name="Q(3:0)" />
+    <pin polarity="Input" x="0" y="-272" name="D(3:0)" />
+    <pin polarity="Input" x="0" y="-80" name="C" />
+    <pin polarity="Input" x="0" y="-16" name="CLR" />
+    <graph>
+        <rect width="256" x="64" y="-304" height="244" />
+        <line x2="0" y1="-208" y2="-208" x1="64" />
+        <rect width="64" x="320" y="-284" height="24" />
+        <line x2="384" y1="-272" y2="-272" x1="320" />
+        <rect width="64" x="0" y="-284" height="24" />
+        <line x2="0" y1="-272" y2="-272" x1="64" />
+        <line x2="192" y1="-64" y2="-12" x1="192" />
+        <text style="alignment:CENTER;fontsize:24;fontname:Arial" x="192" y="-80">CLR</text>
+        <line x2="64" y1="-80" y2="-80" x1="0" />
+        <line x2="64" y1="-80" y2="-96" x1="80" />
+        <line x2="80" y1="-64" y2="-80" x1="64" />
+        <text style="alignment:CENTER;fontsize:24;fontname:Arial" x="96" y="-80">C</text>
+        <line x2="64" y1="-16" y2="-16" x1="0" />
+        <line x2="64" y1="-16" y2="-16" x1="192" />
+        <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="192" y="-312" type="symbol" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-208" type="pin CE" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="-272" type="pin Q(3:0)" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-272" type="pin D(3:0)" />
+    </graph>
+</symbol>
