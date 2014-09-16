@@ -40,22 +40,6 @@ module dunc16_dunc16_sch_tb();
 		.RESET(RESET)
    );
 
-initial begin
-T0 = 0;
-T1 = 0;
-	//start reset
-	RESET = 1'b1;
-	repeat(4)
-		#10
-		CLK = ~CLK;
-	RESET = 1'b0;
-	// end reset
-	
-	forever
-		#10
-		CLK = ~CLK; // generate a clock
-end
-
 task bigCycle;
 begin
 	FETCH = 1;
@@ -93,10 +77,28 @@ begin
 	@(posedge CLK);
 	T3 = 0;
 
-	T0 = 1;
 	end
 endtask
 
+
+initial begin
+T0 = 0;
+T1 = 0;
+T2 = 0;
+T3 = 0;
+CLK = 0;
+	//start reset
+	RESET = 1'b1;
+	repeat(4)
+		#10
+		CLK = ~CLK;
+	RESET = 1'b0;
+	// end reset
+	
+	forever
+		#10
+		CLK = ~CLK; // generate a clock
+end
 
 initial begin
 	@(negedge RESET); // wait for reset
