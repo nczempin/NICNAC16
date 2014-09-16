@@ -13,8 +13,11 @@ module dunc16_dunc16_sch_tb();
    wire SETWRITE;
    wire CLRWRITE;
    wire WRITE;
+  wire DO_WRITE;
    wire [15:0] AC_OUT;
    wire [15:0] MD_OUT;
+   wire [15:0] MMO;
+  wire [15:0] ADDRESS;
 
 // Bidirs
 
@@ -24,8 +27,11 @@ module dunc16_dunc16_sch_tb();
 		.SETWRITE(SETWRITE), 
 		.CLRWRITE(CLRWRITE), 
 		.WRITE(WRITE), 
+		.DO_WRITE(DO_WRITE), 
 		.AC_OUT(AC_OUT), 
 		.MD_OUT(MD_OUT), 
+		.MMO(MMO), 
+		.ADDRESS(ADDRESS), 
 		.CLK(CLK), 
 		.RESET(RESET)
    );
