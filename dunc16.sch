@@ -56,7 +56,6 @@
         <signal name="PC_OUT(15:0)" />
         <signal name="XLXN_116(15:0)" />
         <signal name="XLXN_120(15:0)" />
-        <signal name="XLXN_127" />
         <signal name="ADDR_FROM_PC" />
         <signal name="FETCH" />
         <signal name="XLXN_138" />
@@ -345,7 +344,7 @@
             <blockpin signalname="XLXN_20" name="O" />
         </block>
         <block symbolname="REG4CE" name="IR">
-            <blockpin signalname="XLXN_127" name="CE" />
+            <blockpin signalname="XLXN_138" name="CE" />
             <blockpin signalname="XLXN_23(3:0)" name="Q(3:0)" />
             <blockpin signalname="MD_OUT(15:12)" name="D(3:0)" />
             <blockpin signalname="CLK" name="C" />
@@ -466,14 +465,6 @@
                 <trait valuetype="BitVector 32 Hexadecimal" />
             </attr>
             <blockpin signalname="XLXN_120(15:0)" name="O" />
-        </block>
-        <block symbolname="constant" name="XLXI_50">
-            <attr value="1" name="CValue">
-                <trait delete="all:1 sym:0" />
-                <trait editname="all:1 sch:0" />
-                <trait valuetype="BitVector 32 Hexadecimal" />
-            </attr>
-            <blockpin signalname="XLXN_127" name="O" />
         </block>
         <block symbolname="and2" name="XLXI_51">
             <blockpin signalname="T0" name="I0" />
@@ -900,11 +891,6 @@
         </branch>
         <instance x="1776" y="1200" name="XLXI_46" orien="R0">
         </instance>
-        <branch name="XLXN_127">
-            <wire x2="4096" y1="1936" y2="1936" x1="4064" />
-        </branch>
-        <instance x="3920" y="1904" name="XLXI_50" orien="R0">
-        </instance>
         <iomarker fontsize="28" x="5136" y="2256" name="I_ADD" orien="R0" />
         <instance x="1728" y="3872" name="XLXI_51" orien="R0" />
         <instance x="2976" y="2704" name="XLXI_52" orien="R0" />
@@ -912,6 +898,9 @@
             <wire x2="2960" y1="1808" y2="1808" x1="2560" />
             <wire x2="2960" y1="1808" y2="2048" x1="2960" />
             <wire x2="3136" y1="2048" y2="2048" x1="2960" />
+            <wire x2="3872" y1="1808" y2="1808" x1="2960" />
+            <wire x2="3872" y1="1808" y2="1936" x1="3872" />
+            <wire x2="4096" y1="1936" y2="1936" x1="3872" />
             <wire x2="2960" y1="1552" y2="1808" x1="2960" />
             <wire x2="3184" y1="1552" y2="1552" x1="2960" />
         </branch>

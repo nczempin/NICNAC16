@@ -38,7 +38,7 @@ module dunc16_dunc16_sch_tb();
    );
 	
 initial begin  
-	$monitor("%b%b%b%b PC=%h, %b%b, %b. %h %h",UUT.T0,UUT.T1,UUT.T2,UUT.T3,UUT.PC.Q,UUT.FETCH, UUT.EXECUTE, I_STA, UUT.MD.Q, UUT.AC.Q);  
+	$monitor("%b%b%b%b PC=%h, f%be%b, s%bl%b. %h %h",UUT.T0,UUT.T1,UUT.T2,UUT.T3,UUT.PC.Q,UUT.FETCH, UUT.EXECUTE, I_STA, UUT.I_LDA, UUT.MD.Q, UUT.AC.Q);  
 end
 
 initial begin
