@@ -36,9 +36,13 @@ module dunc16_dunc16_sch_tb();
 		.CLK(CLK), 
 		.RESET(RESET)
    );
+	
+initial begin  
+	$monitor("PC=%h, ALU=%h",UUT.PC.Q,UUT.ALU.S);  
+end
 
 initial begin
-CLK = 0;
+	CLK = 0;
 	//start reset
 	RESET = 1'b1;
 	repeat(4)
