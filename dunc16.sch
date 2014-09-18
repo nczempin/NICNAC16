@@ -13,7 +13,6 @@
         <signal name="XLXN_11(15:0)" />
         <signal name="AC_OUT(15:0)" />
         <signal name="MD_OUT(15:0)" />
-        <signal name="XLXN_18(15:0)" />
         <signal name="XLXN_20" />
         <signal name="XLXN_23(3:0)" />
         <signal name="CLK" />
@@ -72,6 +71,7 @@
         <signal name="XLXN_152" />
         <signal name="XLXN_153(15:0)" />
         <signal name="XLXN_155" />
+        <signal name="XLXN_156(15:0)" />
         <port polarity="Output" name="I_STA" />
         <port polarity="Output" name="SETWRITE" />
         <port polarity="Output" name="CLRWRITE" />
@@ -327,14 +327,14 @@
             <blockpin signalname="CLK" name="C" />
             <blockpin signalname="XLXN_41" name="CE" />
             <blockpin signalname="RESET" name="CLR" />
-            <blockpin signalname="XLXN_18(15:0)" name="D(15:0)" />
+            <blockpin signalname="XLXN_156(15:0)" name="D(15:0)" />
             <blockpin signalname="AC_OUT(15:0)" name="Q(15:0)" />
         </block>
         <block symbolname="mux16_2" name="XLXI_14">
             <blockpin signalname="XLXN_30(15:0)" name="B(15:0)" />
             <blockpin signalname="MD_OUT(15:0)" name="A(15:0)" />
             <blockpin signalname="XLXN_20" name="SEL" />
-            <blockpin signalname="XLXN_18(15:0)" name="OUT(15:0)" />
+            <blockpin name="OUT(15:0)" />
         </block>
         <block symbolname="constant" name="XLXI_16">
             <attr value="0" name="CValue">
@@ -540,6 +540,14 @@
             </attr>
             <blockpin signalname="XLXN_155" name="O" />
         </block>
+        <block symbolname="constant" name="XLXI_63">
+            <attr value="beef" name="CValue">
+                <trait delete="all:1 sym:0" />
+                <trait editname="all:1 sch:0" />
+                <trait valuetype="BitVector 32 Hexadecimal" />
+            </attr>
+            <blockpin signalname="XLXN_156(15:0)" name="O" />
+        </block>
     </netlist>
     <sheet sheetnum="1" width="7609" height="5382">
         <attr value="CM" name="LengthUnitName" />
@@ -582,9 +590,6 @@
             <wire x2="5152" y1="3136" y2="3456" x1="5152" />
             <wire x2="6336" y1="2928" y2="2928" x1="5152" />
             <wire x2="5152" y1="2928" y2="3136" x1="5152" />
-        </branch>
-        <branch name="XLXN_18(15:0)">
-            <wire x2="4688" y1="3136" y2="3136" x1="4352" />
         </branch>
         <instance x="4096" y="2144" name="IR" orien="R0">
             <attrtext style="fontsize:28;fontname:Arial" attrname="InstName" x="0" y="-12" type="instance" />
@@ -677,16 +682,18 @@
             <wire x2="480" y1="3536" y2="3536" x1="448" />
         </branch>
         <branch name="RESET">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="3261" y="3184" type="branch" />
-            <wire x2="3280" y1="3184" y2="3184" x1="3248" />
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="3184" y="3184" type="branch" />
+            <wire x2="3184" y1="3184" y2="3184" x1="3152" />
+            <wire x2="3280" y1="3184" y2="3184" x1="3184" />
         </branch>
         <branch name="CLK">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4563" y="3264" type="branch" />
             <wire x2="4688" y1="3264" y2="3264" x1="4400" />
         </branch>
         <branch name="RESET">
-            <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="4618" y="3360" type="branch" />
-            <wire x2="4688" y1="3360" y2="3360" x1="4560" />
+            <attrtext style="alignment:SOFT-BCENTER;fontsize:28;fontname:Arial" attrname="Name" x="4544" y="3360" type="branch" />
+            <wire x2="4544" y1="3360" y2="3360" x1="4400" />
+            <wire x2="4688" y1="3360" y2="3360" x1="4544" />
         </branch>
         <branch name="RESET">
             <wire x2="1376" y1="4384" y2="4384" x1="1088" />
@@ -995,6 +1002,13 @@
         </branch>
         <instance x="5280" y="4336" name="XLXI_62" orien="R0">
         </instance>
+        <instance x="4432" y="3024" name="XLXI_63" orien="R0">
+        </instance>
+        <branch name="XLXN_156(15:0)">
+            <wire x2="4624" y1="3056" y2="3056" x1="4576" />
+            <wire x2="4624" y1="3056" y2="3136" x1="4624" />
+            <wire x2="4688" y1="3136" y2="3136" x1="4624" />
+        </branch>
     </sheet>
     <sheet sheetnum="2" width="7609" height="5382">
         <attr value="CM" name="LengthUnitName" />
