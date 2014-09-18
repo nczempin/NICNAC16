@@ -23,7 +23,8 @@ module dunc16_dunc16_sch_tb();
 
 // Instantiate the UUT
    dunc16 UUT (
-		.I_STA(I_STA), 
+		.I_STA(I_STA),
+		
 		.SETWRITE(SETWRITE), 
 		.CLRWRITE(CLRWRITE), 
 		.WRITE(WRITE), 
