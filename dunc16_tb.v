@@ -10,6 +10,10 @@ module dunc16_dunc16_sch_tb();
 
 // Output
    wire I_STA;
+   wire I_LDA;
+	
+	wire EN_MD;
+	
    wire SETWRITE;
    wire CLRWRITE;
    wire WRITE;
@@ -24,6 +28,8 @@ module dunc16_dunc16_sch_tb();
 // Instantiate the UUT
    dunc16 UUT (
 		.I_STA(I_STA),
+		.I_LDA(I_LDA),
+		.EN_MD(EN_MD),
 		
 		.SETWRITE(SETWRITE), 
 		.CLRWRITE(CLRWRITE), 
