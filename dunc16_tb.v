@@ -17,11 +17,18 @@ module dunc16_dunc16_sch_tb();
    wire SETWRITE;
    wire CLRWRITE;
    wire WRITE;
+  wire FETCH_T1;
   wire DO_WRITE;
    wire [15:0] AC_OUT;
    wire [15:0] MD_OUT;
+  wire [15:0] PC_OUT;
+  wire [15:0] PC_IN;
+  wire [3:0] IR_OUT;
    wire [15:0] MMO;
-  wire [15:0] ADDRESS;
+  wire [15:0] MA_OUT;
+  wire [15:0] MA_IN;
+ wire [15:0] MD_IN;
+ wire [15:0] MEMORY_READ;
 
 // Bidirs
 
@@ -29,16 +36,27 @@ module dunc16_dunc16_sch_tb();
    dunc16 UUT (
 		.I_STA(I_STA),
 		.I_LDA(I_LDA),
+		.FETCH_T1(FETCH_T1),
+		.T0(T0),
+		.T1(T1),
+		.T2(T2),
+		.T3(T3),
 		.EN_MD(EN_MD),
-		
+		.EN_MA(EN_MA),
+		.MEMORY_READ(MEMORY_READ),
 		.SETWRITE(SETWRITE), 
 		.CLRWRITE(CLRWRITE), 
 		.WRITE(WRITE), 
 		.DO_WRITE(DO_WRITE), 
 		.AC_OUT(AC_OUT), 
 		.MD_OUT(MD_OUT), 
+		.IR_OUT(IR_OUT),
+		.PC_OUT(PC_OUT),
+		.PC_IN(PC_IN),
+		.MA_IN (MA_IN),
+		.MD_IN (MD_IN),
 		.MMO(MMO), 
-		.ADDRESS(ADDRESS), 
+		.MA_OUT(MA_OUT), 
 		.CLK(CLK), 
 		.RESET(RESET)
    );
