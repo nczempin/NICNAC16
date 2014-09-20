@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="hurz">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2014-9-20T14:35:50</timestamp>
+    <attr value="hurz" name="VeriModel" />
+    <pin polarity="Output" x="320" y="63" name="VALUE(15:0)" />
+    <pin polarity="Input" x="64" y="15" name="ADDRESS(7:0)" />
+    <graph>
+        <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="192" y="-8" type="symbol" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="312" y="63" type="pin VALUE(15:0)" />
+        <rect width="0" x="320" y="51" height="24" />
+        <line x2="320" y1="63" y2="63" x1="320" />
+        <rect width="256" x="64" y="-100" height="164" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="15" type="pin ADDRESS(7:0)" />
+        <rect width="0" x="64" y="3" height="24" />
+        <line x2="64" y1="15" y2="15" x1="64" />
+    </graph>
+</symbol>
