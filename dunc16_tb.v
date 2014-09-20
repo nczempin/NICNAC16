@@ -11,10 +11,12 @@ module dunc16_dunc16_sch_tb();
 // Output
    wire I_STA;
    wire I_LDA;
+   wire I_JMP;
 	
 	wire EN_MD;
 	wire EN_MA;
 	wire EN_AC;
+	wire EN_PC;
 	
    wire SETWRITE;
    wire CLRWRITE;
@@ -39,6 +41,7 @@ module dunc16_dunc16_sch_tb();
    dunc16 UUT (
 		.I_STA(I_STA),
 		.I_LDA(I_LDA),
+		.I_JMP(I_JMP),
 		.FETCH_T1(FETCH_T1),
 		.T0(T0),
 		.T1(T1),
@@ -47,6 +50,7 @@ module dunc16_dunc16_sch_tb();
 		.EN_MD(EN_MD),
 		.EN_MA(EN_MA),
 		.EN_AC(EN_AC),
+		.EN_PC(EN_PC),
 		.MEMORY_READ(MEMORY_READ),
 		.SETWRITE(SETWRITE), 
 		.CLRWRITE(CLRWRITE), 
