@@ -18,6 +18,9 @@ module dunc16_dunc16_sch_tb();
 	wire EN_AC;
 	wire EN_PC;
 	
+	wire AZ;
+	wire AN;
+	
    wire SETWRITE;
    wire CLRWRITE;
    wire WRITE;
@@ -42,6 +45,9 @@ module dunc16_dunc16_sch_tb();
 		.I_STA(I_STA),
 		.I_LDA(I_LDA),
 		.I_JMP(I_JMP),
+		
+		.AN(AN),
+		.AZ(AZ),
 		.FETCH_T1(FETCH_T1),
 		.T0(T0),
 		.T1(T1),

@@ -85,6 +85,9 @@
         <signal name="XLXN_290(7:0)" />
         <signal name="XLXN_62" />
         <signal name="AZ" />
+        <signal name="XLXN_303" />
+        <signal name="AN" />
+        <signal name="XLXN_305(15:0)" />
         <port polarity="Output" name="I_STA" />
         <port polarity="Output" name="SETWRITE" />
         <port polarity="Output" name="CLRWRITE" />
@@ -128,6 +131,7 @@
         <port polarity="Output" name="EN_PC" />
         <port polarity="Output" name="MA_IN(15:0)" />
         <port polarity="Output" name="AZ" />
+        <port polarity="Output" name="AN" />
         <blockdef name="fd16ce">
             <timestamp>2000-1-1T10:10:10</timestamp>
             <line x2="64" y1="-128" y2="-128" x1="0" />
@@ -351,6 +355,13 @@
         </blockdef>
         <blockdef name="bus_nor16">
             <timestamp>2014-9-21T8:22:15</timestamp>
+            <rect width="256" x="64" y="-64" height="64" />
+            <rect width="64" x="0" y="-44" height="24" />
+            <line x2="0" y1="-32" y2="-32" x1="64" />
+            <line x2="384" y1="-32" y2="-32" x1="320" />
+        </blockdef>
+        <blockdef name="ISNEG16">
+            <timestamp>2014-9-21T8:29:11</timestamp>
             <rect width="256" x="64" y="-64" height="64" />
             <rect width="64" x="0" y="-44" height="24" />
             <line x2="0" y1="-32" y2="-32" x1="64" />
@@ -679,6 +690,10 @@
             <blockpin signalname="AC_OUT(15:0)" name="I(15:0)" />
             <blockpin signalname="AZ" name="O" />
         </block>
+        <block symbolname="ISNEG16" name="XLXI_108">
+            <blockpin signalname="AC_OUT(15:0)" name="I(15:0)" />
+            <blockpin signalname="AN" name="O" />
+        </block>
     </netlist>
     <sheet sheetnum="1" width="3801" height="2688">
         <attr value="CM" name="LengthUnitName" />
@@ -757,7 +772,10 @@
             <wire x2="5152" y1="3456" y2="3456" x1="2688" />
             <wire x2="5152" y1="3136" y2="3136" x1="5072" />
             <wire x2="5152" y1="3136" y2="3456" x1="5152" />
-            <wire x2="5424" y1="3136" y2="3136" x1="5152" />
+            <wire x2="5248" y1="3136" y2="3136" x1="5152" />
+            <wire x2="5424" y1="3136" y2="3136" x1="5248" />
+            <wire x2="5248" y1="3136" y2="3312" x1="5248" />
+            <wire x2="5424" y1="3312" y2="3312" x1="5248" />
             <wire x2="6336" y1="2928" y2="2928" x1="5152" />
             <wire x2="5152" y1="2928" y2="3136" x1="5152" />
         </branch>
@@ -1282,6 +1300,13 @@
             <wire x2="6352" y1="3136" y2="3136" x1="5824" />
         </branch>
         <iomarker fontsize="28" x="6352" y="3136" name="AZ" orien="R0" />
+        <branch name="AN">
+            <wire x2="5824" y1="3312" y2="3312" x1="5808" />
+            <wire x2="6224" y1="3312" y2="3312" x1="5824" />
+        </branch>
+        <instance x="5424" y="3344" name="XLXI_108" orien="R0">
+        </instance>
+        <iomarker fontsize="28" x="6224" y="3312" name="AN" orien="R0" />
     </sheet>
     <sheet sheetnum="3" width="7609" height="5382">
         <attr value="CM" name="LengthUnitName" />
