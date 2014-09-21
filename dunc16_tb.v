@@ -21,11 +21,7 @@ module dunc16_dunc16_sch_tb();
 	wire AZ;
 	wire AN;
 	
-   wire SETWRITE;
-   wire CLRWRITE;
-   wire WRITE;
   wire FETCH_T1;
-  wire DO_WRITE;
    wire [15:0] AC_OUT;
    wire [15:0] AC_IN;
    wire [15:0] MD_OUT;
