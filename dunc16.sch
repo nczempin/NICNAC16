@@ -63,12 +63,11 @@
         <signal name="XLXN_155" />
         <signal name="EN_IR" />
         <signal name="ADDR_FROM_MD" />
-        <signal name="FETCH_T2" />
+        <signal name="FETCH_T3" />
         <signal name="LDA_T1" />
         <signal name="EN_AC" />
         <signal name="AC_IN(15:0)" />
         <signal name="STA_T0" />
-        <signal name="FETCH_T1" />
         <signal name="XLXN_220(7:0)" />
         <signal name="XLXN_232" />
         <signal name="EN_PC" />
@@ -91,6 +90,7 @@
         <signal name="XLXN_306" />
         <signal name="XLXN_307" />
         <signal name="DO_BRANCH" />
+        <signal name="FETCH_T2" />
         <port polarity="Output" name="I_STA" />
         <port polarity="Output" name="SETWRITE" />
         <port polarity="Output" name="CLRWRITE" />
@@ -128,13 +128,14 @@
         <port polarity="Output" name="PC_OUT(15:0)" />
         <port polarity="Output" name="PC_IN(15:0)" />
         <port polarity="Output" name="EN_MA" />
+        <port polarity="Output" name="FETCH_T3" />
         <port polarity="Output" name="EN_AC" />
         <port polarity="Output" name="AC_IN(15:0)" />
-        <port polarity="Output" name="FETCH_T1" />
         <port polarity="Output" name="EN_PC" />
         <port polarity="Output" name="MA_IN(15:0)" />
         <port polarity="Output" name="AZ" />
         <port polarity="Output" name="AN" />
+        <port polarity="Output" name="FETCH_T2" />
         <blockdef name="fd16ce">
             <timestamp>2000-1-1T10:10:10</timestamp>
             <line x2="64" y1="-128" y2="-128" x1="0" />
@@ -527,7 +528,7 @@
         <block symbolname="and2" name="XLXI_54">
             <blockpin signalname="FETCH" name="I0" />
             <blockpin signalname="T3" name="I1" />
-            <blockpin signalname="FETCH_T2" name="O" />
+            <blockpin signalname="FETCH_T3" name="O" />
         </block>
         <block symbolname="or2" name="XLXI_55">
             <blockpin signalname="ADDR_FROM_PC" name="I0" />
@@ -580,11 +581,11 @@
             <blockpin signalname="XLXN_155" name="O" />
         </block>
         <block symbolname="buf" name="XLXI_64">
-            <blockpin signalname="FETCH_T2" name="I" />
+            <blockpin signalname="FETCH_T3" name="I" />
             <blockpin signalname="EN_IR" name="O" />
         </block>
         <block symbolname="buf" name="XLXI_65">
-            <blockpin signalname="FETCH_T2" name="I" />
+            <blockpin signalname="FETCH_T3" name="I" />
             <blockpin signalname="ADDR_FROM_MD" name="O" />
         </block>
         <block symbolname="and3" name="XLXI_69">
@@ -611,14 +612,14 @@
         <block symbolname="or4" name="XLXI_77">
             <blockpin signalname="ADDR_FROM_PC" name="I0" />
             <blockpin signalname="STA_T0" name="I1" />
-            <blockpin signalname="FETCH_T1" name="I2" />
+            <blockpin signalname="FETCH_T2" name="I2" />
             <blockpin signalname="LDA_T1" name="I3" />
             <blockpin signalname="EN_MD" name="O" />
         </block>
         <block symbolname="and2" name="XLXI_78">
             <blockpin signalname="FETCH" name="I0" />
             <blockpin signalname="T2" name="I1" />
-            <blockpin signalname="FETCH_T1" name="O" />
+            <blockpin signalname="FETCH_T2" name="O" />
         </block>
         <block symbolname="constant" name="XLXI_80">
             <blockpin signalname="XLXN_232" name="O" />
@@ -1054,7 +1055,7 @@
             <wire x2="3184" y1="1552" y2="1552" x1="3104" />
             <wire x2="3104" y1="1552" y2="1760" x1="3104" />
         </branch>
-        <branch name="FETCH_T2">
+        <branch name="FETCH_T3">
             <wire x2="2672" y1="1808" y2="1808" x1="2560" />
             <wire x2="2672" y1="1808" y2="1936" x1="2672" />
             <wire x2="2720" y1="1936" y2="1936" x1="2672" />
@@ -1139,7 +1140,7 @@
         <instance x="2512" y="2640" name="XLXI_76" orien="R0" />
         <instance x="3232" y="2576" name="XLXI_77" orien="R0" />
         <instance x="2480" y="3664" name="XLXI_78" orien="R0" />
-        <branch name="FETCH_T1">
+        <branch name="FETCH_T2">
             <wire x2="3168" y1="3568" y2="3568" x1="2736" />
             <wire x2="3264" y1="3568" y2="3568" x1="3168" />
             <wire x2="3168" y1="2384" y2="3568" x1="3168" />
@@ -1156,7 +1157,7 @@
             <wire x2="1600" y1="3808" y2="3808" x1="1488" />
             <wire x2="1728" y1="3808" y2="3808" x1="1600" />
         </branch>
-        <iomarker fontsize="28" x="3264" y="3568" name="FETCH_T1" orien="R0" />
+        <iomarker fontsize="28" x="3264" y="3568" name="FETCH_T2" orien="R0" />
         <iomarker fontsize="28" x="3792" y="1712" name="EN_MA" orien="R0" />
         <iomarker fontsize="28" x="2672" y="848" name="PC_IN(15:0)" orien="R0" />
         <iomarker fontsize="28" x="3344" y="3392" name="MD_IN(15:0)" orien="R0" />
