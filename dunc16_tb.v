@@ -78,19 +78,19 @@ initial begin
 	//start reset
 	RESET = 1'b1;
 	repeat(4)
-		#10
+		#1
 		CLK = ~CLK;
 	RESET = 1'b0;
 	// end reset
 	
 	forever
-		#10
+		#1
 		CLK = ~CLK; // generate a clock
 end
 
 initial begin
 	@(negedge RESET); // wait for reset
-	repeat (96)
+	repeat (960)
 	@(posedge CLK);
 
 
