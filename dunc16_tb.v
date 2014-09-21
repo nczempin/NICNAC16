@@ -12,6 +12,7 @@ module dunc16_dunc16_sch_tb();
    wire I_STA;
    wire I_LDA;
    wire I_JMP;
+   wire I_ADD;
 	
 	wire EN_MD;
 	wire EN_MA;
@@ -21,8 +22,7 @@ module dunc16_dunc16_sch_tb();
 	wire AZ;
 	wire AN;
 	
-  wire FETCH_T1;
-   wire [15:0] AC_OUT;
+    wire [15:0] AC_OUT;
    wire [15:0] AC_IN;
    wire [15:0] MD_OUT;
   wire [15:0] PC_OUT;
@@ -42,10 +42,10 @@ module dunc16_dunc16_sch_tb();
 		.I_LDA(I_LDA),
 		.I_JMP(I_JMP),
 		.I_BAN(I_BAN),
+		.I_ADD(I_ADD),
 		
 		.AN(AN),
 		.AZ(AZ),
-		.FETCH_T1(FETCH_T1),
 		.T0(T0),
 		.T1(T1),
 		.T2(T2),
