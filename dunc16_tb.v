@@ -45,6 +45,7 @@ module dunc16_dunc16_sch_tb();
 		.I_STA(I_STA),
 		.I_LDA(I_LDA),
 		.I_JMP(I_JMP),
+		.I_BAN(I_BAN),
 		
 		.AN(AN),
 		.AZ(AZ),
@@ -58,10 +59,6 @@ module dunc16_dunc16_sch_tb();
 		.EN_AC(EN_AC),
 		.EN_PC(EN_PC),
 		.MEMORY_READ(MEMORY_READ),
-		.SETWRITE(SETWRITE), 
-		.CLRWRITE(CLRWRITE), 
-		.WRITE(WRITE), 
-		.DO_WRITE(DO_WRITE), 
 		.AC_OUT(AC_OUT), 
 		.AC_IN(AC_IN), 
 		.MD_OUT(MD_OUT), 
@@ -97,7 +94,7 @@ end
 
 initial begin
 	@(negedge RESET); // wait for reset
-	repeat (40)
+	repeat (96)
 	@(posedge CLK);
 
 
