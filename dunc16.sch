@@ -38,7 +38,7 @@
         <signal name="XLXN_85" />
         <signal name="I_ADD" />
         <signal name="XLXN_87" />
-        <signal name="BAN" />
+        <signal name="I_BAN" />
         <signal name="XLXN_89" />
         <signal name="XLXN_90" />
         <signal name="XLXN_91" />
@@ -90,7 +90,7 @@
         <signal name="XLXN_305(15:0)" />
         <signal name="XLXN_306" />
         <signal name="XLXN_307" />
-        <signal name="XLXN_308" />
+        <signal name="DO_BRANCH" />
         <port polarity="Output" name="I_STA" />
         <port polarity="Output" name="SETWRITE" />
         <port polarity="Output" name="CLRWRITE" />
@@ -114,7 +114,7 @@
         <port polarity="Output" name="XLXN_85" />
         <port polarity="Output" name="I_ADD" />
         <port polarity="Output" name="XLXN_87" />
-        <port polarity="Output" name="BAN" />
+        <port polarity="Output" name="I_BAN" />
         <port polarity="Output" name="XLXN_89" />
         <port polarity="Output" name="XLXN_90" />
         <port polarity="Output" name="XLXN_91" />
@@ -407,7 +407,7 @@
             <blockpin signalname="I_STA" name="D5" />
             <blockpin signalname="I_ADD" name="D6" />
             <blockpin signalname="XLXN_87" name="D7" />
-            <blockpin signalname="BAN" name="D8" />
+            <blockpin signalname="I_BAN" name="D8" />
             <blockpin signalname="XLXN_89" name="D9" />
             <blockpin signalname="XLXN_90" name="D10" />
             <blockpin signalname="XLXN_91" name="D11" />
@@ -490,7 +490,7 @@
             <blockpin signalname="MMO(15:0)" name="Q(15:0)" />
         </block>
         <block symbolname="or2" name="XLXI_40">
-            <blockpin signalname="XLXN_308" name="I0" />
+            <blockpin signalname="DO_BRANCH" name="I0" />
             <blockpin signalname="I_JMP" name="I1" />
             <blockpin signalname="INSTR_JUMP" name="O" />
         </block>
@@ -697,10 +697,10 @@
             <blockpin signalname="AC_OUT(15:0)" name="I(15:0)" />
             <blockpin signalname="AN" name="O" />
         </block>
-        <block symbolname="or2" name="XLXI_109">
+        <block symbolname="and2" name="XLXI_110">
             <blockpin signalname="AN" name="I0" />
-            <blockpin signalname="BAN" name="I1" />
-            <blockpin signalname="XLXN_308" name="O" />
+            <blockpin signalname="I_BAN" name="I1" />
+            <blockpin signalname="DO_BRANCH" name="O" />
         </block>
     </netlist>
     <sheet sheetnum="1" width="3801" height="2688">
@@ -940,7 +940,7 @@
         <branch name="DIO">
             <wire x2="5552" y1="2832" y2="2832" x1="4928" />
         </branch>
-        <iomarker fontsize="28" x="5536" y="2384" name="BAN" orien="R0" />
+        <iomarker fontsize="28" x="5536" y="2384" name="I_BAN" orien="R0" />
         <iomarker fontsize="28" x="5552" y="2832" name="DIO" orien="R0" />
         <branch name="MD_OUT(15:12)">
             <attrtext style="alignment:SOFT-LEFT;fontsize:28;fontname:Arial" attrname="Name" x="3992" y="1776" type="branch" />
@@ -1309,19 +1309,19 @@
         <instance x="5424" y="3344" name="XLXI_108" orien="R0">
         </instance>
         <iomarker fontsize="28" x="6224" y="3312" name="AN" orien="R0" />
-        <branch name="BAN">
+        <branch name="I_BAN">
             <wire x2="5424" y1="2384" y2="2384" x1="4928" />
             <wire x2="5536" y1="2384" y2="2384" x1="5424" />
             <wire x2="5424" y1="2384" y2="2528" x1="5424" />
             <wire x2="5568" y1="2528" y2="2528" x1="5424" />
         </branch>
         <instance x="6304" y="2080" name="XLXI_40" orien="R0" />
-        <instance x="5568" y="2656" name="XLXI_109" orien="R0" />
-        <branch name="XLXN_308">
+        <branch name="DO_BRANCH">
             <wire x2="6064" y1="2560" y2="2560" x1="5824" />
             <wire x2="6064" y1="2016" y2="2560" x1="6064" />
             <wire x2="6304" y1="2016" y2="2016" x1="6064" />
         </branch>
+        <instance x="5568" y="2656" name="XLXI_110" orien="R0" />
     </sheet>
     <sheet sheetnum="3" width="7609" height="5382">
         <attr value="CM" name="LengthUnitName" />
