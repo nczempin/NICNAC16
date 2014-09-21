@@ -1,4 +1,0 @@
-; 16-bit wide by 256 deep ROM
-memory_initialization_radix = 16;
-memory_initialization_vector = 
-1003, ffff, ffff, 4001, 5200, 1003;
