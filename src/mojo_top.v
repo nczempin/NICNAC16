@@ -3,8 +3,10 @@ module mojo_top(
     input clk,
     // Input from reset button (active low)
     input rst_n,   
+	 input inin,
 	 // Outputs to the 8 onboard LEDs
-    output[7:0]led
+    output[7:0]data,
+	 output[7:0]led
 // cclk input from AVR, high when AVR is ready
 	/*input cclk,
      // AVR SPI connections
@@ -40,6 +42,7 @@ wire [15:0] MMO;
 assign led = MMO[7:0];
 dunc16 myDunc16 (
 	.CLK(clk),
+	.ININ(inin),
 	.I_STA( I_STA   ), 
 	.SETWRITE( SETWRITE   ), 
 	.CLRWRITE(  CLRWRITE  ), 

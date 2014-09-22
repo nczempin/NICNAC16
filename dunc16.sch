@@ -77,7 +77,7 @@
         <signal name="XLXN_271(15:0)" />
         <signal name="XLXN_279(15:0)" />
         <signal name="XLXN_283(15:0)" />
-        <signal name="XLXN_286" />
+        <signal name="ININ" />
         <signal name="XLXN_290(7:0)" />
         <signal name="XLXN_62" />
         <signal name="AZ" />
@@ -161,6 +161,7 @@
         <port polarity="Output" name="AC_IN(15:0)" />
         <port polarity="Output" name="EN_PC" />
         <port polarity="Output" name="MA_IN(15:0)" />
+        <port polarity="Input" name="ININ" />
         <port polarity="Output" name="AZ" />
         <port polarity="Output" name="AN" />
         <port polarity="Output" name="FETCH_T2" />
@@ -671,16 +672,8 @@
         <block symbolname="mux16_2" name="XLXI_98">
             <blockpin signalname="XLXN_279(15:0)" name="B(15:0)" />
             <blockpin signalname="MD_OUT(15:0)" name="A(15:0)" />
-            <blockpin signalname="XLXN_286" name="SEL" />
+            <blockpin signalname="ININ" name="SEL" />
             <blockpin signalname="XLXN_283(15:0)" name="OUT(15:0)" />
-        </block>
-        <block symbolname="constant" name="DEBUG_SWITCH">
-            <attr value="0" name="CValue">
-                <trait delete="all:1 sym:0" />
-                <trait editname="all:1 sch:0" />
-                <trait valuetype="BitVector 32 Hexadecimal" />
-            </attr>
-            <blockpin signalname="XLXN_286" name="O" />
         </block>
         <block symbolname="ROM" name="XLXI_102">
             <blockpin signalname="XLXN_220(7:0)" name="ADDRESS(7:0)" />
@@ -1516,10 +1509,7 @@
         </branch>
         <instance x="3552" y="2176" name="XLXI_97" orien="R0">
         </instance>
-        <instance x="3632" y="2688" name="DEBUG_SWITCH" orien="R0">
-            <attrtext style="fontsize:28;fontname:Arial" attrname="InstName" x="0" y="64" type="instance" />
-        </instance>
-        <branch name="XLXN_286">
+        <branch name="ININ">
             <wire x2="4192" y1="2720" y2="2720" x1="3776" />
             <wire x2="4192" y1="2304" y2="2720" x1="4192" />
         </branch>
@@ -1586,5 +1576,6 @@
             <wire x2="2368" y1="1824" y2="1936" x1="2368" />
             <wire x2="2720" y1="1936" y2="1936" x1="2368" />
         </branch>
+        <iomarker fontsize="28" x="3776" y="2720" name="ININ" orien="R180" />
     </sheet>
 </drawing>
