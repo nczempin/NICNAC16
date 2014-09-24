@@ -13,11 +13,13 @@ module dunc16_dunc16_sch_tb();
    wire I_LDA;
    wire I_JMP;
    wire I_ADD;
+  wire I_BL;
 	
 	wire EN_MD;
 	wire EN_MA;
 	wire EN_AC;
 	wire EN_PC;
+	wire DO_BL;
 	
 	wire AZ;
 	wire AN;
@@ -28,11 +30,13 @@ module dunc16_dunc16_sch_tb();
   wire [15:0] PC_OUT;
   wire [15:0] PC_IN;
   wire [3:0] IR_OUT;
+  wire [15:0] LINK_OUT;
    wire [15:0] MMO;
   wire [15:0] MA_OUT;
   wire [15:0] MA_IN;
  wire [15:0] MD_IN;
  wire [15:0] MEMORY_READ;
+ reg ININ;
 
 // Bidirs
 
@@ -43,9 +47,11 @@ module dunc16_dunc16_sch_tb();
 		.I_JMP(I_JMP),
 		.I_BAN(I_BAN),
 		.I_ADD(I_ADD),
+		.I_BL(I_BL),
 		
 		.AN(AN),
 		.AZ(AZ),
+		.DO_BL(DO_BL),
 		.T0(T0),
 		.T1(T1),
 		.T2(T2),
@@ -59,12 +65,14 @@ module dunc16_dunc16_sch_tb();
 		.AC_IN(AC_IN), 
 		.MD_OUT(MD_OUT), 
 		.IR_OUT(IR_OUT),
+		.LINK_OUT(LINK_OUT),
 		.PC_OUT(PC_OUT),
 		.PC_IN(PC_IN),
 		.MA_IN (MA_IN),
 		.MD_IN (MD_IN),
 		.MMO(MMO), 
 		.MA_OUT(MA_OUT), 
+		.ININ(ININ),
 		.CLK(CLK), 
 		.RESET(RESET)
    );

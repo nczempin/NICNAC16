@@ -1,2 +1,0 @@
-select figure at 4199 2593 8 -wires -sn=3
-move wire at 4192 2304 4192 2720 to 4080 2304 4080 2720 -keepConn -sn=3

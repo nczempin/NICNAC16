@@ -1,4 +1,3 @@
-select figure at 4109 1974 8 -wires -sn=1
-select figure at 4043 2036 8 -wires -sn=1
-select figure at 4043 2036 8 -wires -all -sn=1
-select figure at 4125 1966 8 -wires -sn=1
+add autowire 3024 464 3344 464 8 -sn=2
+add iomarker 3344 464 0 Unknown Unknown -sn=2
+select figure at 3025 750 8 -branches -sn=2
