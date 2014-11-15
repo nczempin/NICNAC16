@@ -97,6 +97,7 @@
         <signal name="XLXN_440(15:0)" />
         <signal name="DO_JUMP" />
         <signal name="DO_RET" />
+        <signal name="MD_OUT(11:0)" />
         <port polarity="Output" name="I_STA" />
         <port polarity="Output" name="SETWRITE" />
         <port polarity="Output" name="CLRWRITE" />
@@ -1768,5 +1769,17 @@
             <wire x2="2720" y1="1936" y2="1936" x1="2368" />
         </branch>
         <iomarker fontsize="28" x="3776" y="2720" name="ININ" orien="R180" />
+    </sheet>
+    <sheet sheetnum="4" width="7609" height="5382">
+        <attr value="CM" name="LengthUnitName" />
+        <attr value="4" name="GridsPerUnit" />
+        <branch name="I_OPCODE7">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="544" y="1840" type="branch" />
+            <wire x2="864" y1="1840" y2="1840" x1="544" />
+        </branch>
+        <branch name="MD_OUT(11:0)">
+            <attrtext style="alignment:SOFT-RIGHT;fontsize:28;fontname:Arial" attrname="Name" x="464" y="2064" type="branch" />
+            <wire x2="864" y1="2064" y2="2064" x1="464" />
+        </branch>
     </sheet>
 </drawing>
