@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:03:12 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Mon Aug 27 12:43:43 2018
+# Process ID: 19104
+# Current directory: D:/Github/ase-git-project-util
+# Command line: vivado.exe -mode batch -source D:/Github/ase-git-project-util/release_project.tcl -notrace -tclargs D:/Github/projects-releases/Basys-3-GPIO/proj/Basys-3-GPIO.xpr D:/Github/projects-releases/Basys-3-GPIO/releases/Basys-3-GPIO-2018.2-X.zip D:/Github/projects-releases/Basys-3-GPIO/temp
+# Log file: D:/Github/ase-git-project-util/vivado.log
+# Journal file: D:/Github/ase-git-project-util\vivado.jou
+#-----------------------------------------------------------
+source D:/Github/ase-git-project-util/release_project.tcl -notrace
