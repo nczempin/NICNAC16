@@ -12,12 +12,11 @@ icynext = 0;
 
 
 	//start reset
+
 	reset = 1'b1;
-	#4
-	reset = 1'b0;
 	
 		#4
-	reset = 1'b1;
+	reset = 1'b0;
 	// end reset
 	
 

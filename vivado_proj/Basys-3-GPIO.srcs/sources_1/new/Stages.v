@@ -31,14 +31,14 @@ module Stages(CLK, RESET, NEW_CYCLE, FETCH, EXECUTE);
     FDSE ex (
        .D(FETCH),
        .C( CLK),
-       .S(~RESET),
+       .S(RESET),
        .CE(NEW_CYCLE),
        .Q(EXECUTE)
        );
    FDCE ft(
       .D(EXECUTE),      // 1-bit Data output
       .C(CLK),      // 1-bit Clock input
-      .CLR(~RESET), 
+      .CLR(RESET), 
       .CE(NEW_CYCLE),    // 1-bit Clock enable input
        // 1-bit Asynchronous clear input
       .Q(FETCH)       // 1-bit Data input
