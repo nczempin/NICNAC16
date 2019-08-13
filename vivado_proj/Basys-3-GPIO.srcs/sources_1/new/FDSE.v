@@ -20,17 +20,19 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module FDSE(
-    input D,
-    input CE,
-    input C,
-    input S,
-    output reg Q
-    );
+module FDSE(D,CE,C,S,Q);
+    input D;
+    input CE;
+    input C;
+    input S;
+    output Q;
+    reg Q;
     
-    always @ ( posedge C  )
+    always @ ( posedge C or posedge S )
+    begin
 	if (S)
 		Q <= 1;
 	else if (CE)
 		Q <= D;
+	end
 endmodule

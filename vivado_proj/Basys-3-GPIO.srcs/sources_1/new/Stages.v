@@ -20,29 +20,27 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Stages(
-    input CLK,
-    input RESET,
-    input NEW_CYCLE,
-    output FETCH,
-    output EXECUTE
-    );
-    wire FETCH_INT;
-    wire EXECUTE_INT;
-    assign FETCH = FETCH_INT;
-    assign EXECUTE = EXECUTE_INT;
+module Stages(CLK, RESET, NEW_CYCLE, FETCH, EXECUTE);
+    input CLK;
+    input RESET;
+    input NEW_CYCLE;
+    output FETCH;
+    output EXECUTE;
+    
+    
     FDSE ex (
-       .D(FETCH_INT),
+       .D(FETCH),
        .C( CLK),
-       .S( RESET),
+       .S(~ RESET),
        .CE(NEW_CYCLE),
-       .Q(EXECUTE_INT)
+       .Q(EXECUTE)
        );
-    FDCE ft (
-       .D(EXECUTE_INT),
-       .C( CLK),
-       .CLR( RESET),
-       .CE(NEW_CYCLE),
-       .Q(FETCH_INT)
-       );
+   FDCE ft(
+      .Q(EXECUTE),      // 1-bit Data output
+      .C(CLK),      // 1-bit Clock input
+      .CE(NEW_CYCLE),    // 1-bit Clock enable input
+      .CLR(~RESET),  // 1-bit Asynchronous clear input
+      .D(FETCH)       // 1-bit Data input
+   );
+ 
 endmodule
