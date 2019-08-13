@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module system_timing(reset, clk, icynext, t0, t1, t2, t3, fetch, execute);
+module system_timing(reset, clk, icynext, t0, t1, t2, t3, fetch, execute, new_cycle);
     input reset;
     input clk;
     input icynext;
@@ -31,10 +31,20 @@ module system_timing(reset, clk, icynext, t0, t1, t2, t3, fetch, execute);
     output fetch;
     output execute;
     
+    output new_cycle;
+    timing_ring_counter trc(
+    .clk(clk),
+    .icynext(icynext),
+    .t0(t0),
+    .t1(t1),
+    .t2(t2),
+    .t3(t3),
+    .new_cycle(new_cycle)
+    );
     Stages stages (
     .RESET(reset),
     .CLK(clk),
-    .NEW_CYCLE(icynext), //TODO
+    .NEW_CYCLE(new_cycle),
     .FETCH(fetch),
     .EXECUTE(execute)
     );
