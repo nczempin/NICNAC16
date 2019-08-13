@@ -1,7 +1,0 @@
-Running: xsim.dir/GPIO_demo_behav/xsimk.exe -simmode gui -wdb GPIO_demo_behav.wdb -simrunnum 0 -socket 3665
-Design successfully loaded
-Design Loading Memory Usage: 5424 KB (Peak: 5424 KB)
-Design Loading CPU Usage: 15 ms
-Simulation completed
-Simulation Memory Usage: 6060 KB (Peak: 6060 KB)
-Simulation CPU Usage: 15 ms
