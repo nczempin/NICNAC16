@@ -1,0 +1,10 @@
+0.6
+2019.1
+May 24 2019
+15:06:07
+C:/Users/nczempin/git/fpga/Basys-3-GPIO-2018.2-3/vivado_proj/Basys-3-GPIO.sim/sim_1/behav/xsim/glbl.v,1558713910,verilog,,,,glbl,,,,,,,,
+C:/Users/nczempin/git/fpga/Basys-3-GPIO-2018.2-3/vivado_proj/Basys-3-GPIO.srcs/sim_1/new/fd_tb.v,1565704924,verilog,,,,testbench_d,,,,,,,,
+C:/Users/nczempin/git/fpga/Basys-3-GPIO-2018.2-3/vivado_proj/Basys-3-GPIO.srcs/sim_1/new/tb1.v,1565706478,verilog,,,,testbench_system_timing,,,,,,,,
+C:/Users/nczempin/git/fpga/Basys-3-GPIO-2018.2-3/vivado_proj/Basys-3-GPIO.srcs/sources_1/new/FD.v,1565703391,verilog,,C:/Users/nczempin/git/fpga/Basys-3-GPIO-2018.2-3/vivado_proj/Basys-3-GPIO.srcs/sources_1/new/delay.v,,FD,,,,,,,,
+C:/Users/nczempin/git/fpga/Basys-3-GPIO-2018.2-3/vivado_proj/Basys-3-GPIO.srcs/sources_1/new/delay.v,1565705005,verilog,,C:/Users/nczempin/git/fpga/Basys-3-GPIO-2018.2-3/vivado_proj/Basys-3-GPIO.srcs/sim_1/new/fd_tb.v,,delay,,,,,,,,
+C:/Users/nczempin/git/fpga/Basys-3-GPIO-2018.2-3/vivado_proj/Basys-3-GPIO.srcs/sources_1/new/system_timing.v,1565705819,verilog,,C:/Users/nczempin/git/fpga/Basys-3-GPIO-2018.2-3/vivado_proj/Basys-3-GPIO.srcs/sim_1/new/tb1.v,,system_timing,,,,,,,,

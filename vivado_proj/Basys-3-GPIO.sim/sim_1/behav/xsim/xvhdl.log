@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/nczempin/git/verilog/Basys-3-GPIO-2018.2-3/vivado_proj/Basys-3-GPIO.srcs/sources_1/imports/hdl/debouncer.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'debouncer'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/nczempin/git/verilog/Basys-3-GPIO-2018.2-3/vivado_proj/Basys-3-GPIO.srcs/sources_1/imports/hdl/GPIO_Demo.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'GPIO_demo'

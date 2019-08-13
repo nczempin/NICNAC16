@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Basys-3-GPIO.srcs/sources_1/imports/hdl/debouncer.vhd" \
+"../../../../Basys-3-GPIO.srcs/sources_1/imports/hdl/GPIO_Demo.vhd" \
+
+# Do not sort compile order
+nosort
