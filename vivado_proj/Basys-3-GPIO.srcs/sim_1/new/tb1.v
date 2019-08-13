@@ -8,7 +8,7 @@ wire fetch, execute;
 initial begin
 clk=0;
 enable = 0;
-icynext = 0;
+icynext = 1;
 
 
 	//start reset
@@ -25,8 +25,9 @@ icynext = 0;
 
 end
 
-always #50 icynext=~icynext;
-always #500 enable =~ enable; 
+always #10 icynext=~icynext;
+always #700 enable =~ enable; 
 
-system_timing st (reset, clk, icynext, t0,t1,t2,t3, fetch, execute); 
+//system_timing st (reset, clk, icynext, t0,t1,t2,t3, fetch, execute);
+Stages s (clk, reset, icynext, fetch, execute); 
 endmodule

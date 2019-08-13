@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 08/13/2019 04:15:57 PM
+// Create Date: 08/13/2019 04:33:44 PM
 // Design Name: 
-// Module Name: system_timing
+// Module Name: FDCE
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,24 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module system_timing(
-    input reset,
-    input clk,
-    input icynext,
-    output t0,
-    output t1,
-    output t2,
-    output t3,
-    output t4,
-    output fetch,
-    output execute
+module FDCE(
+    input D,
+    input CE,
+    input C,
+    input CLR,
+    output reg Q
     );
     
-    Stages stages (
-    .RESET(reset),
-    .CLK(clk),
-    .NEW_CYCLE(icynext), //TODO
-    .FETCH(fetch),
-    .EXECUTE(execute)
-    );
+    always @ ( posedge C )
+	if (CLR)
+		Q <= 0;
+	else if (CE)
+		Q <= D;
 endmodule
