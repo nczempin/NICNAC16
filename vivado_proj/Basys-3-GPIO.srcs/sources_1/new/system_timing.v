@@ -20,18 +20,16 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module system_timing(
-    input reset,
-    input clk,
-    input icynext,
-    output t0,
-    output t1,
-    output t2,
-    output t3,
-    output t4,
-    output fetch,
-    output execute
-    );
+module system_timing(reset, clk, icynext, t0, t1, t2, t3, fetch, execute);
+    input reset;
+    input clk;
+    input icynext;
+    output t0;
+    output t1;
+    output t2;
+    output t3;
+    output fetch;
+    output execute;
     
     Stages stages (
     .RESET(reset),
