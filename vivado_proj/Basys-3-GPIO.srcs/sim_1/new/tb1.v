@@ -10,6 +10,9 @@ reg [15:0] md_out;
 wire[15:0] ac_out;
 wire[3:0] ir_out;
 wire incr_pc;
+
+wire I_NOP, I_JMP;
+
 initial begin
 clk=1;
 enable = 0;
@@ -34,10 +37,10 @@ always #700 enable =~ enable;
 always @(pc_out)
 begin
   if (pc_out == 7)
-     md_out = 16'b0001000000000000;
+     md_out = 16'b0001_0000_0000_0000;
 end
 system_timing st (reset, clk, icynext, t0,t1,t2,t3, fetch, execute,new_cycle);
-datapath dp (clk, reset, fetch, execute, t0, t1, t2, t3, incr_pc, pc_out, ir_out, ma_out, md_out, ac_out);
+datapath dp (clk, reset, fetch, execute, t0, t1, t2, t3, incr_pc, pc_out, ir_out, ma_out, md_out, ac_out, I_NOP, I_JMP);
 control_unit cu( fetch, execute, incr_pc);
     
 endmodule
