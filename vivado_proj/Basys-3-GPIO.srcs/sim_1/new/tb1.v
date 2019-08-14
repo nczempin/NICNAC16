@@ -11,8 +11,10 @@ wire[15:0] ac_out;
 wire[3:0] ir_out;
 wire incr_pc;
 
+reg [15:0] PC_IN;
+
 wire I_NOP, I_JMP;
-wire EN_IR;
+wire EN_IR, EN_PC;
 
 wire do_jump;
 
@@ -21,7 +23,7 @@ clk=1;
 enable = 0;
 icynext = 1;
 md_out = 0;
-
+PC_IN =0;
 
 	//start reset
 
@@ -43,7 +45,7 @@ begin
      md_out = 16'b0001_0000_0000_0000;
 end
 system_timing st (reset, clk, icynext, t0,t1,t2,t3, fetch, execute,new_cycle);
-datapath dp (clk, reset, fetch, execute, t0, t1, t2, t3, incr_pc, pc_out, ir_out, ma_out, md_out, ac_out, I_NOP, I_JMP);
-control_unit cu( fetch, execute, t0, t1, t2, t3, I_JMP, incr_pc, do_jump, EN_IR);
+datapath dp (clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_out, ir_out, ma_out, md_out, ac_out, I_NOP, I_JMP, EN_IR, EN_PC, PC_IN);
+control_unit cu( fetch, execute, t0, t1, t2, t3, I_JMP, incr_pc, do_jump, EN_IR, EN_PC);
     
 endmodule

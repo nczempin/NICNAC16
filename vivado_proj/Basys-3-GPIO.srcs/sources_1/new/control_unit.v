@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module control_unit(fetch, execute, t0, t1, t2, t3, i_jmp, incr_pc, do_jump, EN_IR);
+module control_unit(fetch, execute, t0, t1, t2, t3, i_jmp, incr_pc, do_jump, EN_IR, EN_PC);
     input fetch;
     input execute;
     
@@ -31,12 +31,13 @@ module control_unit(fetch, execute, t0, t1, t2, t3, i_jmp, incr_pc, do_jump, EN_
     output incr_pc;
     output do_jump;
     output EN_IR;
+    output EN_PC;
     
     wire instr_jump;
     
     assign instr_jump = i_jmp; // TODO or BL or taken branches
     assign EN_IR = t3 & fetch;
-    
+    assign EN_PC = incr_pc |do_jump; 
     assign do_jump = execute & t0 & instr_jump;
     assign incr_pc =1;
 endmodule
