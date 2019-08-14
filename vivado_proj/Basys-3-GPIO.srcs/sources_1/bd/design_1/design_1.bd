@@ -1,0 +1,59 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "device": "xc7a35tcpg236-1",
+      "name": "design_1",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2019.1"
+    },
+    "design_tree": {
+      "system_timing_0": ""
+    },
+    "components": {
+      "system_timing_0": {
+        "vlnv": "xilinx.com:module_ref:system_timing:1.0",
+        "xci_name": "design_1_system_timing_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "system_timing",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "clk": {
+            "type": "clk",
+            "direction": "I"
+          },
+          "icynext": {
+            "direction": "I"
+          },
+          "t0": {
+            "direction": "O"
+          },
+          "t1": {
+            "direction": "O"
+          },
+          "t2": {
+            "direction": "O"
+          },
+          "t3": {
+            "direction": "O"
+          },
+          "fetch": {
+            "direction": "O"
+          },
+          "execute": {
+            "direction": "O"
+          },
+          "new_cycle": {
+            "direction": "O"
+          }
+        }
+      }
+    }
+  }
+}
