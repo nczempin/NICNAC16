@@ -30,7 +30,7 @@ always #1 clk =~clk;
 always #700 enable =~ enable; 
 
 system_timing st (reset, clk, icynext, t0,t1,t2,t3, fetch, execute,new_cycle);
-//datapath dp (clk, reset, fetch, execute, incr_pc, pc_out, ir_out, ma_out, md_out, ac_out);
-//control_unit cu( fetch, execute, incr_pc);
+datapath dp (clk, reset, fetch, execute, incr_pc, pc_out, ir_out, ma_out, md_out, ac_out);
+control_unit cu( fetch, execute, incr_pc);
     
 endmodule
