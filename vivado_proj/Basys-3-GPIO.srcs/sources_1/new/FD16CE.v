@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 100 ps / 10 ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -20,16 +20,16 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module FD16CE(D,CE,C,CLR,Q    );
+module FD16CE_hurz(D,CE,C,CLR,Q);
     
-     input [15:0] D;
+    input [15:0] D;
     input CE;
     input C;
     input CLR;
     output reg [15:0] Q;
     
     
-    always @ ( posedge C or posedge CLR)
+    always @ ( posedge C, posedge CLR)
     begin
         if (CLR)
 		Q = 0;

@@ -45,7 +45,29 @@ begin
      md_out = 16'b0001_0000_0000_0000;
 end
 system_timing st (reset, clk, icynext, t0,t1,t2,t3, fetch, execute,new_cycle);
-datapath dp (clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_out, ir_out, ma_out, md_out, ac_out, I_NOP, I_JMP, EN_IR, EN_PC, PC_IN);
+datapath dp (
+   .clk(clk),
+   .reset(reset),
+   .fetch(fetch),
+   .execute(execute),
+   .incr_pc(incr_pc),
+   .hurz(PC_IN),
+   .t0(t0),
+   .t1(t1),
+   .t2(t2),
+   .t3(t3),
+   .pc_out(pc_out),
+   .ir_out(ir_out),
+   .ma_out(ma_out),
+   .md_out(md_out),
+   .ac_out(ac_out),
+   .I_NOP(I_NOP),
+   .I_JMP(I_JMP),
+   .EN_IR(EN_IR),
+   .EN_PC(EN_PC)
+);
+ 
+
 control_unit cu( fetch, execute, t0, t1, t2, t3, I_JMP, incr_pc, do_jump, EN_IR, EN_PC);
     
 endmodule

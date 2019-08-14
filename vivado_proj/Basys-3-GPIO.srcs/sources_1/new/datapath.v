@@ -20,13 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_out, ir_out, ma_out, md_out, ac_out, I_NOP, I_JMP, EN_IR, EN_PC, PC_IN);
+module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_out, ir_out, ma_out, md_out, ac_out, I_NOP, I_JMP, EN_IR, EN_PC);
      input clk;
     input reset;
     input fetch;
     input execute;
     input incr_pc;
-    input PC_IN;
+    input[15:0] PC_IN;
     input t0, t1, t2, t3;
     input EN_IR;
     input EN_PC;
@@ -39,9 +39,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
     
     output I_NOP;
     output I_JMP;
-    
-    
-
+   
     
     
     REG4CE IR(ir_out, clk, EN_IR, reset, md_out[15:12]);
@@ -53,7 +51,14 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
     Decoder4_16 instruction_decoder(D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, D15, ir_out, ~reset);
     
     
-    FD16CE PC(PC_IN,EN_PC,clk,reset,pc_out);
+    FD16CE_hurz PC(
+       .Data(PC_IN),
+       .CE(EN_PC),
+       .C(clk),
+       .CLR(reset),
+       .Q(pc_out)
+    );
+    
     always @(posedge clk or posedge reset)
     
     if (reset) begin
