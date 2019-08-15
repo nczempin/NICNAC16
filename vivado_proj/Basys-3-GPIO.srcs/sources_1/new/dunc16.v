@@ -40,6 +40,9 @@ wire I_NOP, I_JMP;
 wire EN_IR, EN_PC, EN_MA;
 
 wire do_jump;        
+
+wire [15:0] MEMORY_READ;
+
     datapath dp (
        .clk(clk),
        .reset(reset),
