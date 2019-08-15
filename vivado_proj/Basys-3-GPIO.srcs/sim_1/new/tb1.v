@@ -21,7 +21,7 @@ wire EN_IR, EN_PC, EN_MA, EN_MD, EN_AC;
 
 wire do_jump;
 
-reg [15:0] MEMORY_READ;
+wire [15:0] MEMORY_READ;
 
 initial begin
 clk=1;
@@ -44,17 +44,21 @@ always #1 clk =~clk;
 //always #700 enable =~ enable; 
 
 
-always @(ma_out)
-begin
-  if (ma_out == 4)
-     MEMORY_READ = 16'b0001_0000_0000_0010; //JMP 2
-  else if (ma_out == 2)
-     MEMORY_READ = 16'b0100_0000_0000_1001; //LDA 9
- else if (ma_out == 9)
-     MEMORY_READ = 16'b0010_0011_0100_0101; //data: 0x2345
-  else  
-     MEMORY_READ =ma_out+'h100;
-end
+//always @(ma_out)
+//begin
+//  if (ma_out == 4)
+//     MEMORY_READ = 16'b0001_0000_0000_0010; //JMP 2
+//  else if (ma_out == 2)
+//     MEMORY_READ = 16'b0100_0000_0000_1001; //LDA 9
+// else if (ma_out == 9)
+//     MEMORY_READ = 16'b0010_0011_0100_0101; //data: 0x2345
+//  else  
+//     MEMORY_READ =ma_out+'h100;
+//end
+
+wire [7:0] address;
+wire [15:0] value;
+ROM_from_file rff(ma_out[7:0], MEMORY_READ);
 
 datapath dp (
    .clk(clk),
