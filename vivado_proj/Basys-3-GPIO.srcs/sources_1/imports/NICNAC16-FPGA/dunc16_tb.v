@@ -1,6 +1,6 @@
 // Verilog test fixture created from schematic B:\NICNAC16\dunc16.sch - Wed Sep 17 00:13:28 2014
 
-`timescale 1ns / 1ps
+`timescale 10us / 10ns
 
 module dunc16_dunc16_sch_tb();
 
@@ -71,10 +71,10 @@ module dunc16_dunc16_sch_tb();
 //		.DO_LDA(DO_LDA),
 		
 //		.INCR_PC(INCR_PC),
-		.T0(T0),
-		.T1(T1),
-		.T2(T2),
-		.T3(T3),
+//		.T0(T0),
+//		.T1(T1),
+//		.T2(T2),
+//		.T3(T3),
 //		.EN_MD(EN_MD),
 //		.EN_MA(EN_MA),
 //		.EN_AC(EN_AC),
@@ -86,21 +86,21 @@ module dunc16_dunc16_sch_tb();
 //		.MD_OUT(MD_OUT), 
 //		.IR_OUT(IR_OUT),
 //		.LINK_OUT(LINK_OUT),
-		.PC_OUT(PC_OUT),
+		.pc_out(PC_OUT),
 //		.PC_IN(PC_IN),
 //		.MA_IN (MA_IN),
 //		.MD_IN (MD_IN),
 //		.MMO(MMO), 
 //		.MA_OUT(MA_OUT), 
-		.ININ(ININ),
-		.CLK(CLK), 
-		.RESET(RESET)
+		//.ININ(ININ),
+		.clk(CLK), 
+		.reset(RESET)
    );
 	
-initial begin  
-	//$monitor("%b%b%b%b PC=%h, f%be%b, s%bl%b. %h %h",UUT.T0,UUT.T1,UUT.T2,UUT.T3,UUT.PC.Q,UUT.FETCH, UUT.EXECUTE, I_STA, UUT.I_LDA, UUT.MD.Q, UUT.AC.Q);  
-    $monitor("%b%b%b%b PC=%h,",UUT.T0,UUT.T1,UUT.T2,UUT.T3,UUT.PC_OUT);  
-end
+//initial begin  
+//	//$monitor("%b%b%b%b PC=%h, f%be%b, s%bl%b. %h %h",UUT.T0,UUT.T1,UUT.T2,UUT.T3,UUT.PC.Q,UUT.FETCH, UUT.EXECUTE, I_STA, UUT.I_LDA, UUT.MD.Q, UUT.AC.Q);  
+//    $monitor("%b%b PC=%h,",CLK, RESET,PC_OUT);  
+//end
 
 initial begin
 	ININ = 0;
@@ -120,7 +120,7 @@ end
 
 initial begin
 	@(negedge RESET); // wait for reset
-	repeat (960)
+	repeat (96)
 	@(posedge CLK);
 
 

@@ -72,7 +72,27 @@ Port(
 		);
 end component;
 
-
+--COMPONENT control_unit PORT (
+--   clk: in STD_ULOGIC;
+--   reset: in STD_ULOGIC;
+--   fetch: in STD_ULOGIC;
+--   execute: in STD_ULOGIC;
+    
+--    t0 : in STD_ULOGIC, t1, t2, t3;
+--    input I_JMP;
+--    input I_NOP;
+    
+    
+--    output incr_pc;
+--    output do_jump;
+    
+--    output EN_IR;
+--    output EN_PC;
+--    output EN_MA;
+--Q : out  STD_ULOGIC;
+--D : in   STD_ULOGIC;
+--C : in   STD_ULOGIC );
+--END COMPONENT;
 
 constant TMR_CNTR_MAX : std_logic_vector(26 downto 0) := "101111101011110000100000000"; --100,000,000 = clk cycles per second
 constant TMR_VAL_MAX : std_logic_vector(3 downto 0) := "1001"; --9
