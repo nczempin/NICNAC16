@@ -14,7 +14,7 @@ wire incr_pc;
 wire [15:0] PC_IN;
 
 wire I_NOP, I_JMP;
-wire EN_IR, EN_PC;
+wire EN_IR, EN_PC, EN_MA;
 
 wire do_jump;
 
@@ -65,6 +65,7 @@ datapath dp (
    .I_JMP(I_JMP),
    .EN_IR(EN_IR),
    .EN_PC(EN_PC),
+   .EN_MA(EN_MA),
    .DO_JUMP(do_jump)
 );
  
@@ -83,7 +84,8 @@ control_unit cu(
     .incr_pc(incr_pc),
     .do_jump(do_jump),
     .EN_IR(EN_IR),
-    .EN_PC(EN_PC)
+    .EN_PC(EN_PC),
+    .EN_MA(EN_MA)
 );
     
 endmodule

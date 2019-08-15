@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_out, ir_out, ma_out, md_out, ac_out, I_NOP, I_JMP, EN_IR, EN_PC, DO_JUMP);
+module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_out, ir_out, ma_out, md_out, ac_out, I_NOP, I_JMP, EN_IR, EN_PC, EN_MA, DO_JUMP);
      input clk;
     input reset;
     input fetch;
@@ -30,11 +30,12 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
     input t0, t1, t2, t3;
     input EN_IR;
     input EN_PC;
+    input EN_MA;
     input DO_JUMP;
     
     output [15:0] pc_out;
     output [3:0] ir_out;
-    output reg [15:0] ma_out;
+    output [15:0] ma_out;
     input  [15:0] md_out;
     output reg [15:0] ac_out;
     
@@ -42,7 +43,12 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
     output I_JMP;
    
     wire [15:0] ALU_OUT;
-    //assign ALU_OUT = 1; //TODO actually add 1 to PC;
+    wire [15:0] MA_IN;
+    
+    wire [15:0] MA_MUX_OUT;
+    assign MA_MUX_OUT = 'h1234;
+    
+    assign MA_IN= MA_MUX_OUT[11:0];
     
     REG4CE IR(ir_out, clk, EN_IR, reset, md_out[15:12]);
     
@@ -63,6 +69,13 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
        .CLR(reset),
        .Q(pc_out)
     );
+    FD16CE MA(
+       .D(MA_IN),
+       .CE(EN_MA),
+       .C(clk),
+       .CLR(reset),
+       .Q(ma_out)
+    );
     
     ADSU16 ALU(pc_out, 1, CO, ALU_OUT);
     
@@ -70,7 +83,6 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
     
     if (reset) begin
        ac_out<=0;
-       ma_out<=0;
-       //md_out <=0;
+ 
     end 
 endmodule
