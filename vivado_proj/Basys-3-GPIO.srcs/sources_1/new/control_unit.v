@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module control_unit(clk, reset, fetch, execute, t0, t1, t2, t3, I_JMP, incr_pc, do_jump, EN_IR, EN_PC);
+module control_unit(clk, reset, fetch, execute, t0, t1, t2, t3, I_JMP, I_NOP, incr_pc, do_jump, EN_IR, EN_PC);
     input clk;
      input reset;
     input fetch;
@@ -28,6 +28,7 @@ module control_unit(clk, reset, fetch, execute, t0, t1, t2, t3, I_JMP, incr_pc, 
     
     output t0, t1, t2, t3;
     input I_JMP;
+    input I_NOP;
     
     
     output incr_pc;
@@ -38,7 +39,11 @@ module control_unit(clk, reset, fetch, execute, t0, t1, t2, t3, I_JMP, incr_pc, 
     wire instr_jump;
     
     wire icynext;
-    assign	icynext =reset | (execute & I_JMP&t0);
+    assign	icynext =
+       reset 
+       |(execute & I_JMP&t0)
+       |(execute & I_NOP & t0)
+       ;
 
     wire new_cycle;
     

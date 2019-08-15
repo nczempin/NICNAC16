@@ -40,7 +40,7 @@ always #700 enable =~ enable;
 always @(pc_out)
 begin
   if (pc_out == 7)
-     md_out = 16'b0001_0000_0000_0000;
+     md_out = 16'b0001_0000_0000_0010;
   else
      md_out =0;
 end
@@ -79,6 +79,7 @@ control_unit cu(
     .t2(t2),
     .t3(t3),
     .I_JMP(I_JMP),
+    .I_NOP(I_NOP),
     .incr_pc(incr_pc),
     .do_jump(do_jump),
     .EN_IR(EN_IR),
