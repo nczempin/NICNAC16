@@ -1,10 +1,10 @@
 `timescale 10ns / 10ps
 
 module testbench_system_timing ();
-reg clk, reset, enable, icynext;
+reg clk, reset, enable;
 wire t0, t1, t2, t3;
 wire fetch, execute;
-wire new_cycle;
+
 wire[15:0] pc_out, ma_out; 
 reg [15:0] md_out;
 wire[15:0] ac_out;
@@ -21,7 +21,6 @@ wire do_jump;
 initial begin
 clk=1;
 enable = 0;
-icynext = 1;
 md_out = 0;
 PC_IN =0;
 
@@ -31,7 +30,6 @@ PC_IN =0;
 	
 		#4
 	reset = 1'b0;
-	icynext =0;
 	// end reset
 	
 
@@ -44,14 +42,14 @@ begin
   if (pc_out == 7)
      md_out = 16'b0001_0000_0000_0000;
 end
-system_timing st (reset, clk, icynext, t0,t1,t2,t3, fetch, execute,new_cycle);
+
 datapath dp (
    .clk(clk),
    .reset(reset),
    .fetch(fetch),
    .execute(execute),
    .incr_pc(incr_pc),
-   .hurz(PC_IN),
+   .PC_IN(PC_IN),
    .t0(t0),
    .t1(t1),
    .t2(t2),
@@ -68,6 +66,20 @@ datapath dp (
 );
  
 
-control_unit cu( fetch, execute, t0, t1, t2, t3, I_JMP, incr_pc, do_jump, EN_IR, EN_PC);
+control_unit cu( 
+    .clk(clk),
+    .reset(reset),
+    .fetch(fetch),
+    .execute(execute),
+    .t0(t0),
+    .t1(t1),
+    .t2(t2),
+    .t3(t3),
+    .I_JMP(I_JMP),
+    .incr_pc(incr_pc),
+    .do_jump(do_jump),
+    .EN_IR(EN_IR),
+    .EN_PC(EN_PC)
+);
     
 endmodule

@@ -51,8 +51,8 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
     Decoder4_16 instruction_decoder(D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, D15, ir_out, ~reset);
     
     
-    FD16CE_hurz PC(
-       .Data(PC_IN),
+    FD16CE PC(
+       .D(PC_IN),
        .CE(EN_PC),
        .C(clk),
        .CLR(reset),

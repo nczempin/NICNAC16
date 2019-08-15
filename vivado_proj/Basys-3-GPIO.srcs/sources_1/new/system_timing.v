@@ -20,9 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module system_timing(reset, clk, icynext, t0, t1, t2, t3, fetch, execute, new_cycle);
-    input reset;
+module system_timing(clk, reset, icynext, t0, t1, t2, t3, fetch, execute, new_cycle);
     input clk;
+    input reset;
     input icynext;
     output t0;
     output t1;
