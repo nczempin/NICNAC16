@@ -2,52 +2,76 @@
 
 `timescale 10us / 10ns
 
-module dunc16_dunc16_sch_tb();
+module dunc16_tb();
 
 // Inputs
-    reg CLK;
-   reg RESET;
+    reg clk;
+   reg reset;
 
-wire [15:0] PC_OUT;
+wire [15:0] pc_out;
+wire [15:0] ac_out;
+wire [15:0] ma_out;
+wire [15:0] MEMORY_READ;
 
 
 // Bidirs
 
 // Instantiate the UUT
    dunc16 UUT (
-
-		.pc_out(PC_OUT),
-		.clk(CLK), 
-		.reset(RESET)
+		.clk(clk), 
+		.reset(reset),
+		.pc_out(pc_out),
+		.ac_out(ac_out),
+		.ma_out(ma_out),
+		.MEMORY_READ(MEMORY_READ)
    );
 	
+ROM_from_file rff(ma_out[7:0], MEMORY_READ);
+
 //initial begin  
 //	//$monitor("%b%b%b%b PC=%h, f%be%b, s%bl%b. %h %h",UUT.T0,UUT.T1,UUT.T2,UUT.T3,UUT.PC.Q,UUT.FETCH, UUT.EXECUTE, I_STA, UUT.I_LDA, UUT.MD.Q, UUT.AC.Q);  
 //    $monitor("%b%b PC=%h,",CLK, RESET,PC_OUT);  
 //end
-
 initial begin
-//	ININ = 0;
-	CLK = 0;
+clk=1;
+//enable = 0;
+//md_out = 0;
+
+
 	//start reset
-	RESET = 1'b1;
-	repeat(4)
-		#1
-		CLK = ~CLK;
-	RESET = 1'b0;
+
+	reset = 1'b1;
+	
+		#4
+	reset = 1'b0;
 	// end reset
 	
-	forever
-		#1
-		CLK = ~CLK; // generate a clock
+
 end
+always #1 clk =~clk;
 
-initial begin
-	@(negedge RESET); // wait for reset
-	repeat (96)
-	@(posedge CLK);
+//initial begin
+////	ININ = 0;
+//	CLK = 0;
+//	//start reset
+//	RESET = 1'b1;
+//	repeat(4)
+//		#1
+//		CLK = ~CLK;
+//	RESET = 1'b0;
+//	// end reset
+	
+//	forever
+//		#1
+//		CLK = ~CLK; // generate a clock
+//end
+
+//initial begin
+//	@(negedge RESET); // wait for reset
+//	repeat (96)
+//	@(posedge CLK);
 
 
-	//$finish;
-end
+//	//$finish;
+//end
 endmodule

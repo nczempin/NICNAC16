@@ -24,7 +24,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
          t0, t1, t2, t3,
          pc_out, ir_out, ma_out, md_out, ac_out, alu_out,
          MEMORY_READ,
-         I_NOP, I_JMP, I_LDA, , I_STA, I_ADD,
+         I_NOP, I_JMP, I_LDA, I_STA, I_ADD,
          EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
          DO_JUMP);
          
@@ -49,7 +49,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     output [15:0] pc_out;
     output [3:0] ir_out;
     output [15:0] ma_out;
-    input  [15:0] md_out;
+    output  [15:0] md_out;
     output [15:0] ac_out;
     output [15:0] alu_out;
     
@@ -68,12 +68,14 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     wire [15:0] AC_IN;
     
     wire [15:0] MA_MUX_OUT;
+    wire [15:0] AC_MUX_OUT;
     
     wire [15:0] mma; //M[MA]
     
     assign MA_IN= MA_MUX_OUT[11:0];
     assign MD_IN = MEMORY_READ; // TODO mux
-    assign AC_IN = md_out; // TODO: mux with alu_out
+    
+    assign AC_IN = AC_MUX_OUT;//md_out; // TODO: mux with alu_out
     
     REG4CE IR(ir_out, clk, EN_IR, reset, md_out[15:12]);
     
@@ -87,8 +89,9 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     wire [15:0]JUMP_ADR;
     assign JUMP_ADR = md_out[11:0];
     Decoder4_16 instruction_decoder(D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, D15, ir_out, ~reset);
-    
-    select1of4_16 pc_in_priority(JUMP_ADR, alu_out, 0, D, DO_JUMP, incr_pc, 0, DO_RET, PC_IN);
+    wire[15:0] D;
+    wire DO_RET;
+    select1of4_16 pc_in_priority(JUMP_ADR, alu_out, 16'h0, D, DO_JUMP, incr_pc, 1'b0, DO_RET, PC_IN);
 
     FD16CE PC(
        .D(PC_IN),
@@ -97,16 +100,21 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
        .CLR(reset),
        .Q(pc_out)
     );
-    
+    //TODO these need to move to the CU
     wire MA_MUX_SEL;
     assign MA_MUX_SEL = fetch & t3; //TODO document as to why
+    wire AC_MUX_SEL;
+    assign AC_MUX_SEL = execute & I_ADD & t2; //TODO document as to why
+    
+    
+    
     mux16_2 mamux( pc_out, md_out, MA_MUX_SEL, MA_MUX_OUT);
     
     FD16CE MA(
        .D(MA_IN),
        .CE(EN_MA),
        .C(clk),
-       .CLR(0),
+       .CLR(1'b0),
        .Q(ma_out)
     );
       // mux16_2 mdmux( pc_out, md_out, MA_MUX_SEL, MA_MUX_OUT);
@@ -119,15 +127,26 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
        .Q(md_out)
     );
     
-      FD16CE AC(
+     mux16_2 acmux( md_out, alu_out, AC_MUX_SEL, AC_MUX_OUT);
+    FD16CE AC(
        .D(AC_IN),
        .CE(EN_AC),
        .C(clk),
        .CLR(reset),
        .Q(ac_out)
     );
+    wire [15:0] ALU_IN_A;
+    wire [15:0] ALU_IN_B;
+    wire ALU_MUX_A_SEL;
+    wire ALU_MUX_B_SEL;
+    //TODO: CU
+    assign ALU_MUX_A_SEL =incr_pc;
+    assign ALU_MUX_B_SEL =incr_pc;
     
-    ADSU16 ALU(pc_out, 1, CO, alu_out);
+    mux16_2 alumux_a( ac_out, pc_out, ALU_MUX_A_SEL, ALU_IN_A);
+    mux16_2 alumux_b ( md_out, 16'b1, ALU_MUX_B_SEL, ALU_IN_B);
+    
+  ADSU16 ALU(ALU_IN_A, ALU_IN_B, CO, alu_out);
     
   
 endmodule
