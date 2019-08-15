@@ -46,8 +46,9 @@ module control_unit(clk, reset, fetch, execute, t0, t1, t2, t3, I_JMP, I_NOP, I_
     wire icynext;
     assign	icynext =
        reset 
-       |(execute & I_JMP&t0)
-       |(execute & I_NOP & t0)
+       |execute & I_JMP&t0
+       |execute & I_NOP & t0
+       |execute & I_LDA & t2
        ;
 
     wire new_cycle;
@@ -57,7 +58,9 @@ module control_unit(clk, reset, fetch, execute, t0, t1, t2, t3, I_JMP, I_NOP, I_
     assign EN_PC = incr_pc |do_jump; 
     assign EN_MA = (t3 & fetch )|
                    (t0&fetch);
-    assign EN_MD = fetch & (t0 |t2);
+    assign EN_MD = fetch & (t0 |t2)
+                    |execute & I_LDA&t1
+                    ;
     
     assign EN_AC = execute & I_LDA & t2; // TODO ADD
     assign do_jump = execute & t0 & instr_jump;

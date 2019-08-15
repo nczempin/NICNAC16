@@ -44,12 +44,14 @@ always #1 clk =~clk;
 //always #700 enable =~ enable; 
 
 
-always @(pc_out)
+always @(ma_out)
 begin
   if (ma_out == 4)
      MEMORY_READ = 16'b0001_0000_0000_0010; //JMP 2
   else if (ma_out == 2)
      MEMORY_READ = 16'b0100_0000_0000_1001; //LDA 9
+ else if (ma_out == 9)
+     MEMORY_READ = 16'b0010_0011_0100_0101; //data: 0x2345
   else  
      MEMORY_READ =ma_out+'h100;
 end

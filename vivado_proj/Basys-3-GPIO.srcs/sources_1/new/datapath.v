@@ -66,6 +66,8 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     
     wire [15:0] MA_MUX_OUT;
     
+    wire [15:0] mma; //M[MA]
+    
     assign MA_IN= MA_MUX_OUT[11:0];
     assign MD_IN = MEMORY_READ; // TODO mux
     assign AC_IN = md_out; // TODO: mux with alu_out
