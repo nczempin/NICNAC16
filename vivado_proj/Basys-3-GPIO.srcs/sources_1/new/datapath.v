@@ -46,7 +46,6 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
     wire [15:0] MA_IN;
     
     wire [15:0] MA_MUX_OUT;
-    assign MA_MUX_OUT = 'h1234;
     
     assign MA_IN= MA_MUX_OUT[11:0];
     
@@ -69,6 +68,11 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
        .CLR(reset),
        .Q(pc_out)
     );
+    
+    wire MA_MUX_SEL;
+    assign MA_MUX_SEL = fetch & t3; //TODO document as to why
+    mux16_2 mamux( pc_out, md_out, MA_MUX_SEL, MA_MUX_OUT);
+    
     FD16CE MA(
        .D(MA_IN),
        .CE(EN_MA),
