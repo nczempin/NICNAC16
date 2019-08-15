@@ -20,16 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_out, ir_out, ma_out, md_out, ac_out, I_NOP, I_JMP, EN_IR, EN_PC);
+module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_out, ir_out, ma_out, md_out, ac_out, I_NOP, I_JMP, EN_IR, EN_PC, DO_JUMP);
      input clk;
     input reset;
     input fetch;
     input execute;
     input incr_pc;
-    input[15:0] PC_IN;
+    output[15:0] PC_IN;
     input t0, t1, t2, t3;
     input EN_IR;
     input EN_PC;
+    input DO_JUMP;
     
     output [15:0] pc_out;
     output [3:0] ir_out;
@@ -40,7 +41,8 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
     output I_NOP;
     output I_JMP;
    
-    
+    wire [15:0] ALU_OUT;
+    assign ALU_OUT = 1; //TODO actually add 1 to PC;
     
     REG4CE IR(ir_out, clk, EN_IR, reset, md_out[15:12]);
     
@@ -48,9 +50,12 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
     assign I_NOP = D0;
     assign I_JMP = D1;
     
+    wire [15:0]JUMP_ADR;
+    assign JUMP_ADR = 0; //TODO get from MD
     Decoder4_16 instruction_decoder(D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, D15, ir_out, ~reset);
     
-    
+    select1of4_16 pc_in_priority(JUMP_ADR, ALU_OUT, 0, D, DO_JUMP, incr_pc, 0, DO_RET, PC_IN);
+
     FD16CE PC(
        .D(PC_IN),
        .CE(EN_PC),

@@ -1,4 +1,4 @@
-`timescale 10ns / 10ps
+`timescale 10us / 10ns
 
 module testbench_system_timing ();
 reg clk, reset, enable;
@@ -11,7 +11,7 @@ wire[15:0] ac_out;
 wire[3:0] ir_out;
 wire incr_pc;
 
-reg [15:0] PC_IN;
+wire [15:0] PC_IN;
 
 wire I_NOP, I_JMP;
 wire EN_IR, EN_PC;
@@ -22,7 +22,7 @@ initial begin
 clk=1;
 enable = 0;
 md_out = 0;
-PC_IN =0;
+
 
 	//start reset
 
@@ -62,7 +62,8 @@ datapath dp (
    .I_NOP(I_NOP),
    .I_JMP(I_JMP),
    .EN_IR(EN_IR),
-   .EN_PC(EN_PC)
+   .EN_PC(EN_PC),
+   .DO_JUMP(do_jump)
 );
  
 
