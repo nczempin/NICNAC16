@@ -11,12 +11,13 @@ wire[15:0] pc_out, ma_out;
 wire [15:0] md_out;
 wire[15:0] ac_out;
 wire[3:0] ir_out;
+wire [15:0] alu_out;
 wire incr_pc;
 
 wire [15:0] PC_IN;
 
-wire I_NOP, I_JMP;
-wire EN_IR, EN_PC, EN_MA, EN_MD;
+wire I_NOP, I_JMP, I_LDA;
+wire EN_IR, EN_PC, EN_MA, EN_MD, EN_AC;
 
 wire do_jump;
 
@@ -46,8 +47,10 @@ always #1 clk =~clk;
 always @(pc_out)
 begin
   if (ma_out == 4)
-     MEMORY_READ = 16'b0001_0000_0000_0010;
-  else
+     MEMORY_READ = 16'b0001_0000_0000_0010; //JMP 2
+  else if (ma_out == 2)
+     MEMORY_READ = 16'b0100_0000_0000_1001; //LDA 9
+  else  
      MEMORY_READ =ma_out+'h100;
 end
 
@@ -67,13 +70,16 @@ datapath dp (
    .ma_out(ma_out),
    .md_out(md_out),
    .ac_out(ac_out),
+   .alu_out(alu_out),
    .MEMORY_READ(MEMORY_READ),
    .I_NOP(I_NOP),
    .I_JMP(I_JMP),
+   .I_LDA(I_LDA),
    .EN_IR(EN_IR),
    .EN_PC(EN_PC),
    .EN_MA(EN_MA),
    .EN_MD(EN_MD),
+   .EN_AC(EN_AC),
    .DO_JUMP(do_jump)
 );
  
@@ -89,12 +95,15 @@ control_unit cu(
     .t3(t3),
     .I_JMP(I_JMP),
     .I_NOP(I_NOP),
+    .I_LDA(I_LDA),
     .incr_pc(incr_pc),
     .do_jump(do_jump),
     .EN_IR(EN_IR),
     .EN_PC(EN_PC),
     .EN_MA(EN_MA),
-    .EN_MD(EN_MD)
+    .EN_MD(EN_MD),
+    .EN_AC(EN_AC)
+
 
 );
     
