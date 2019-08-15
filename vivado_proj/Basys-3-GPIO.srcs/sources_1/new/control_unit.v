@@ -46,7 +46,7 @@ module control_unit(clk, reset, fetch, execute, t0, t1, t2, t3, I_JMP, incr_pc, 
     assign EN_IR = t3 & fetch;
     assign EN_PC = incr_pc |do_jump; 
     assign do_jump = execute & t0 & instr_jump;
-    assign incr_pc =1;
+    assign incr_pc =fetch&t2;
     
     system_timing st (
         .reset(reset),

@@ -42,14 +42,14 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
     output I_JMP;
    
     wire [15:0] ALU_OUT;
-    assign ALU_OUT = 1; //TODO actually add 1 to PC;
+    //assign ALU_OUT = 1; //TODO actually add 1 to PC;
     
     REG4CE IR(ir_out, clk, EN_IR, reset, md_out[15:12]);
     
     wire D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, D15;
     assign I_NOP = D0;
     assign I_JMP = D1;
-    
+    wire CO;
     wire [15:0]JUMP_ADR;
     assign JUMP_ADR = 0; //TODO get from MD
     Decoder4_16 instruction_decoder(D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, D15, ir_out, ~reset);
@@ -63,6 +63,8 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN, t0, t1, t2, t3, pc_o
        .CLR(reset),
        .Q(pc_out)
     );
+    
+    ADSU16 ALU(pc_out, 1, CO, ALU_OUT);
     
     always @(posedge clk or posedge reset)
     

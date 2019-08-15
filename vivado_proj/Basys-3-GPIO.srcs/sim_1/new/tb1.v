@@ -41,6 +41,8 @@ always @(pc_out)
 begin
   if (pc_out == 7)
      md_out = 16'b0001_0000_0000_0000;
+  else
+     md_out =0;
 end
 
 datapath dp (
