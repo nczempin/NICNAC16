@@ -24,7 +24,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
          t0, t1, t2, t3,
          pc_out, ir_out, ma_out, md_out, ac_out, alu_out,
          MEMORY_READ,
-         I_NOP, I_JMP, I_LDA,
+         I_NOP, I_JMP, I_LDA, , I_STA, I_ADD,
          EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
          DO_JUMP);
          
@@ -58,6 +58,9 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     output I_NOP;
     output I_JMP;
     output I_LDA;
+    output I_STA;
+    output I_ADD;
+    
    
     
     wire [15:0] MA_IN;
@@ -78,6 +81,8 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     assign I_NOP = D0;
     assign I_JMP = D1;
     assign I_LDA = D4;
+    assign I_STA = D5;
+    assign I_ADD = D6;
     wire CO;
     wire [15:0]JUMP_ADR;
     assign JUMP_ADR = md_out[11:0];

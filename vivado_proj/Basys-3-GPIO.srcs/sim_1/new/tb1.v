@@ -16,7 +16,7 @@ wire incr_pc;
 
 wire [15:0] PC_IN;
 
-wire I_NOP, I_JMP, I_LDA;
+wire I_NOP, I_JMP, I_LDA, I_STA, I_ADD;
 wire EN_IR, EN_PC, EN_MA, EN_MD, EN_AC;
 
 wire do_jump;
@@ -44,20 +44,6 @@ always #1 clk =~clk;
 //always #700 enable =~ enable; 
 
 
-//always @(ma_out)
-//begin
-//  if (ma_out == 4)
-//     MEMORY_READ = 16'b0001_0000_0000_0010; //JMP 2
-//  else if (ma_out == 2)
-//     MEMORY_READ = 16'b0100_0000_0000_1001; //LDA 9
-// else if (ma_out == 9)
-//     MEMORY_READ = 16'b0010_0011_0100_0101; //data: 0x2345
-//  else  
-//     MEMORY_READ =ma_out+'h100;
-//end
-
-wire [7:0] address;
-wire [15:0] value;
 ROM_from_file rff(ma_out[7:0], MEMORY_READ);
 
 datapath dp (
@@ -81,6 +67,8 @@ datapath dp (
    .I_NOP(I_NOP),
    .I_JMP(I_JMP),
    .I_LDA(I_LDA),
+   .I_STA(I_STA),
+   .I_ADD(I_ADD),
    .EN_IR(EN_IR),
    .EN_PC(EN_PC),
    .EN_MA(EN_MA),
@@ -102,6 +90,8 @@ control_unit cu(
     .I_JMP(I_JMP),
     .I_NOP(I_NOP),
     .I_LDA(I_LDA),
+   .I_STA(I_STA),
+   .I_ADD(I_ADD),
     .incr_pc(incr_pc),
     .do_jump(do_jump),
     .EN_IR(EN_IR),
