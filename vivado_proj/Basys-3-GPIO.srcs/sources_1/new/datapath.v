@@ -93,7 +93,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
        .D(MA_IN),
        .CE(EN_MA),
        .C(clk),
-       .CLR(reset),
+       .CLR(0),
        .Q(ma_out)
     );
       // mux16_2 mdmux( pc_out, md_out, MA_MUX_SEL, MA_MUX_OUT);

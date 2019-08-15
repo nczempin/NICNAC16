@@ -48,7 +48,7 @@ begin
   if (ma_out == 4)
      MEMORY_READ = 16'b0001_0000_0000_0010;
   else
-     MEMORY_READ =0;
+     MEMORY_READ =ma_out+'h100;
 end
 
 datapath dp (
