@@ -26,7 +26,7 @@ wire [15:0] MEMORY_READ;
 		.MEMORY_READ(MEMORY_READ)
    );
 	
-ROM_from_file rff(ma_out[7:0], MEMORY_READ);
+ROM rom(ma_out[7:0], MEMORY_READ);
 
 //initial begin  
 //	//$monitor("%b%b%b%b PC=%h, f%be%b, s%bl%b. %h %h",UUT.T0,UUT.T1,UUT.T2,UUT.T3,UUT.PC.Q,UUT.FETCH, UUT.EXECUTE, I_STA, UUT.I_LDA, UUT.MD.Q, UUT.AC.Q);  

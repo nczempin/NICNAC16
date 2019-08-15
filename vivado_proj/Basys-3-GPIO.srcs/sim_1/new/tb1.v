@@ -44,7 +44,7 @@ always #1 clk =~clk;
 //always #700 enable =~ enable; 
 
 
-ROM_from_file rff(ma_out[7:0], MEMORY_READ);
+ROM rom(ma_out[7:0], MEMORY_READ);
 
 datapath dp (
    .clk(clk),
