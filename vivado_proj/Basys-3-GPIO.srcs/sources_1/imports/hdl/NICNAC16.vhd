@@ -38,7 +38,7 @@ end component;
 
 
 constant TMR_CNTR_MAX : std_logic_vector(26 downto 0) := "101111101011110000100000000"; --100,000,000 = clk cycles per second
-constant TMR_VAL_MAX : std_logic_vector(3 downto 0) := "1001"; --9
+constant TMR_VAL_MAX : std_logic_vector(3 downto 0) := "1111"; --0xF
 
 constant RESET_CNTR_MAX : std_logic_vector(17 downto 0) := "110000110101000000";-- 100,000,000 * 0.002 = 200,000 = clk cycles per 2 ms
 
@@ -123,13 +123,13 @@ begin
 			cpu_clk <= '0';
 		elsif (tmrCntr = TMR_CNTR_MAX) then
 		cpu_clk <= not cpu_clk;
-		tmrVal(0) <=  cpu_clk;
---		tmrVal <= tmrVal + 1;
---			if (tmrVal = TMR_VAL_MAX) then
---				tmrVal <= (others => '0');
---			else
---				tmrVal <= tmrVal + 1;
---			end if;
+		--tmrVal(0) <=  cpu_clk;
+		tmrVal <= tmrVal + 1;
+			if (tmrVal = TMR_VAL_MAX) then
+				tmrVal <= (others => '0');
+			else
+				tmrVal <= tmrVal + 1;
+			end if;
 		end if;
 	end if;
 end process;
@@ -137,17 +137,43 @@ end process;
 --This select statement encodes the value of tmrVal to the necessary
 --cathode signals to display it on the 7-segment
 with tmrVal select
-	SSEG_CA <=    "11000000" when "0000",
-				  "11111001" when "0001",
-				  "10100100" when "0010",
-				  "10110000" when "0011",
-				  "10011001" when "0100",
-				  "10010010" when "0101",
-				  "10000010" when "0110",
-				  "11111000" when "0111",
-				  "10000000" when "1000",
-				  "10010000" when "1001",
-				  "11111111" when others;
+---- hexadecimal
+--	SSEG_CA <=    "11000000" when "0000",
+--				  "11111001" when "0001",
+--				  "10100100" when "0010",
+--				  "10110000" when "0011",
+--				  "10011001" when "0100",
+--				  "10010010" when "0101",
+--				  "10000010" when "0110",
+--				  "11111000" when "0111",
+--				  "10000000" when "1000",
+--				  "10010000" when "1001",
+--				  "10001000" when "1010",
+--				  "10000011" when "1011",
+--				  "11000110" when "1100",
+--				  "10100001" when "1101",
+--				  "10000110" when "1110",
+--				  "10001110" when "1111",
+--				  "01111111" when others; -- not really any others
+-- 8x8 coordinates (e. g. chess board)
+	SSEG_CA <=   
+				  "11111001" when "0000",
+				  "10100100" when "0001",
+				  "10110000" when "0010",
+				  "10011001" when "0011",
+				  "10010010" when "0100",
+				  "10000010" when "0101",
+				  "11111000" when "0110",
+				  "10000000" when "0111",
+				  "10001000" when "1000",
+				  "10000011" when "1001",
+				  "11000110" when "1010",
+				  "10100001" when "1011",
+				  "10000110" when "1100",
+				  "10001110" when "1101",
+				  "10010000" when "1110",
+				  "10001011" when "1111",
+				  "01111111" when others; -- not really any others
 
 
 ----------------------------------------------------------
