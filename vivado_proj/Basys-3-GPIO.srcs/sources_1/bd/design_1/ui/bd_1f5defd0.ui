@@ -2,32 +2,32 @@
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0.19  2019-03-26 bk=1.5019 VDI=41 GEI=35 GUI=JA:9.0 non-TLS
 #  -string -flagsOSRD
-preplace port reset_rtl_0 -pg 1 -lvl 0 -x -780 -y 40 -defaultsOSRD
-preplace port reset_rtl_0_0 -pg 1 -lvl 0 -x -780 -y -20 -defaultsOSRD
-preplace port reset_rtl_0_0_1 -pg 1 -lvl 0 -x -780 -y 150 -defaultsOSRD
-preplace port reset_rtl_0_0_1_2 -pg 1 -lvl 0 -x -780 -y 170 -defaultsOSRD
-preplace port clk_100MHz -pg 1 -lvl 0 -x -780 -y 60 -defaultsOSRD
-preplace port clk_100MHz_1 -pg 1 -lvl 0 -x -780 -y 190 -defaultsOSRD
-preplace inst control_unit_0 -pg 1 -lvl 3 -x -80 -y 340 -defaultsOSRD
-preplace inst datapath_0 -pg 1 -lvl 5 -x 600 -y 350 -defaultsOSRD
+preplace port reset_rtl_0 -pg 1 -lvl 0 -x -790 -y 40 -defaultsOSRD
+preplace port reset_rtl_0_0 -pg 1 -lvl 0 -x -790 -y -20 -defaultsOSRD
+preplace port reset_rtl_0_0_1 -pg 1 -lvl 0 -x -790 -y 150 -defaultsOSRD
+preplace port reset_rtl_0_0_1_2 -pg 1 -lvl 0 -x -790 -y 170 -defaultsOSRD
+preplace port clk_100MHz -pg 1 -lvl 0 -x -790 -y 60 -defaultsOSRD
+preplace port clk_100MHz_1 -pg 1 -lvl 0 -x -790 -y 190 -defaultsOSRD
 preplace inst clk_wiz -pg 1 -lvl 1 -x -670 -y 50 -defaultsOSRD
 preplace inst rst_clk_wiz_100M -pg 1 -lvl 2 -x -380 -y 50 -defaultsOSRD
 preplace inst clk_wiz_1 -pg 1 -lvl 4 -x 250 -y 40 -defaultsOSRD
 preplace inst rst_clk_wiz_1_100M -pg 1 -lvl 5 -x 600 -y 50 -defaultsOSRD
-preplace netloc clk_wiz_clk_out1 1 1 2 -570 290 N
+preplace inst control_unit_0 -pg 1 -lvl 3 -x -80 -y 340 -defaultsOSRD
+preplace inst datapath_0 -pg 1 -lvl 5 -x 600 -y 350 -defaultsOSRD
+preplace netloc clk_wiz_clk_out1 1 1 2 -570 260 N
 preplace netloc clk_wiz_locked 1 1 1 -580 60n
 preplace netloc rst_clk_wiz_100M_peripheral_aresetn 1 2 1 -210 90n
 preplace netloc clk_wiz_1_clk_out1 1 4 1 350 10n
 preplace netloc clk_wiz_1_locked 1 4 1 340 50n
-preplace netloc rst_clk_wiz_1_100M_peripheral_aresetn 1 4 2 360 150 770
+preplace netloc rst_clk_wiz_1_100M_peripheral_aresetn 1 4 2 350 560 770
 preplace netloc reset_rtl_0_1 1 0 1 NJ 40
 preplace netloc reset_rtl_0_0_1 1 0 2 NJ -20 -560J
 preplace netloc reset_rtl_0_0_1_1 1 0 4 NJ 150 NJ 150 -190J 30 NJ
 preplace netloc reset_rtl_0_0_1_2_1 1 0 5 NJ 170 NJ 170 -200J -30 NJ -30 360J
 preplace netloc clk_100MHz_1 1 0 1 N 60
-preplace netloc clk_100MHz_1_1 1 0 4 NJ 190 NJ 190 NJ 190 30J
-levelinfo -pg 1 -780 -670 -380 -80 250 600 1070
-pagesize -pg 1 -db -bbox -sgen -950 -50 1070 760
+preplace netloc clk_100MHz_1_1 1 0 4 -770J 180 NJ 180 NJ 180 30J
+levelinfo -pg 1 -790 -670 -380 -80 250 600 1070
+pagesize -pg 1 -db -bbox -sgen -960 -50 1070 760
 "
 }
 {
