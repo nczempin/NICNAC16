@@ -27,8 +27,8 @@ module control_unit(clk, reset, fetch, execute,
                      EN_IR, EN_PC, EN_MA, EN_MD, EN_AC);
     input clk;
      input reset;
-    input fetch;
-    input execute;
+    output fetch;
+    output execute;
     
     output t0, t1, t2, t3;
     input I_JMP;

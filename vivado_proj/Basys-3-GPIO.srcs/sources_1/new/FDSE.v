@@ -25,8 +25,7 @@ module FDSE(D,CE,C,S,Q);
     input CE;
     input C;
     input S;
-    output Q;
-    reg Q;
+    output reg Q;
     
     always @ ( posedge C or posedge S )
     begin
@@ -35,6 +34,6 @@ module FDSE(D,CE,C,S,Q);
 	else if (CE)
 		Q <= D;
 	else
-	    Q <= Q;
+	    Q <= 0;
 	end
 endmodule

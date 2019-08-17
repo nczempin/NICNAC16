@@ -48,14 +48,7 @@ wire EN_IR, EN_PC, EN_MA, EN_MD, EN_AC;
 
 wire do_jump;
 
-FD16CE led_r(
-       .D(md_out),
-       .CE(1),
-       .C(clk),
-       .CLR(reset),
-       .Q(led_out)
-    );
-    
+assign led_out = pc_out;
     	
 ROM rom(ma_out[7:0], MEMORY_READ);
 

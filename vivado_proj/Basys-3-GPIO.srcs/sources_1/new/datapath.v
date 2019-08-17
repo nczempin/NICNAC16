@@ -63,8 +63,6 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     
  output  [15:0]pc_out;
 
-
-  
     
     wire [15:0] MA_IN;
     wire [15:0] MD_IN;

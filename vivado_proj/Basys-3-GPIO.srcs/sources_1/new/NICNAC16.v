@@ -34,8 +34,10 @@ module NICNAC16(
     reg [26:0] counter_100M;
     reg [3:0] counter_10;
     
+    wire clk_cpu;
     
-    assign SSEG_AN =4'b1110;
+    
+    assign SSEG_AN =4'b1111;
     always @ (posedge clk_fpga, posedge reset) begin
        if(reset)
           counter_100M <= 0;
@@ -57,5 +59,17 @@ module NICNAC16(
                counter_10 <= counter_10 + 1'b1;
                
                
-        assign LED[0] = counter_10==0;
+        
+        assign clk_cpu =  counter_10 < 5;
+        assign SSEG_CA = clk_cpu;
+        
+         dunc16 UUT (
+		.clk(clk_cpu), 
+		.reset(reset),
+		//.pc_out(pc_out),
+		//.ac_out(ac_out),
+		//.ma_out(ma_out),
+		//.MEMORY_READ(MEMORY_READ),
+		.led_out(LED)
+   );
 endmodule

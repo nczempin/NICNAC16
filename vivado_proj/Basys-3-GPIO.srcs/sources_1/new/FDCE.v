@@ -20,18 +20,18 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module FDCE(D,CE,C,CLR,Q);
+module FDCE(D,CE,C,CLR,Q, Q_);
     input D;
     input CE;
     input C;
     input CLR;
-    output Q;
-    reg Q;
+    output reg Q;
+    output Q_;
     
     always @ ( posedge C or posedge CLR)
     begin
         if (CLR)
-		Q = 0;
+		Q <= 0;
 	else if (CE)
 		Q <= D;
 	else
