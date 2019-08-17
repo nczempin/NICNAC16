@@ -5,9 +5,9 @@
 
 # Clock signal
 #Bank = 34, Pin name = ,					Sch name = CLK100MHZ
-set_property PACKAGE_PIN W5 [get_ports CLK]
-set_property IOSTANDARD LVCMOS33 [get_ports CLK]
-create_clock -period 10.000 -name sys_clk_pin -waveform {0.000 5.000} -add [get_ports CLK]
+set_property PACKAGE_PIN W5 [get_ports clk_fpga]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_fpga]
+create_clock -period 10.000 -name sys_clk_pin -waveform {0.000 5.000} -add [get_ports clk_fpga]
 
 # Switches
 set_property PACKAGE_PIN V17 [get_ports {SW[0]}]

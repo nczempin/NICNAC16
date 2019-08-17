@@ -8,21 +8,21 @@ use IEEE.STD_LOGIC_1164.ALL;
 --counter.
 use IEEE.std_logic_unsigned.all;
 
-entity NICNAC16 is
+entity NICNUC16 is
     Port ( SW 			: in  STD_ULOGIC_VECTOR (15 downto 0);
            BTN 			: in  STD_ULOGIC_VECTOR (4 downto 0);
            CLK 			: in  STD_LOGIC;
            LED 			: out  STD_ULOGIC_VECTOR (15 downto 0);
            SSEG_CA 		: out  STD_ULOGIC_VECTOR (7 downto 0);
            SSEG_AN 		: out  STD_ULOGIC_VECTOR (3 downto 0)
---           pc_out       : out STD_LOGIC_VECTOR (15 downto 0);
+--           LED_OUT       : out STD_LOGIC_VECTOR (15 downto 0);
 --           ac_out       : out STD_LOGIC_VECTOR (15 downto 0);
 --           ma_out       : out STD_LOGIC_VECTOR (7 downto 0);
 --           MEMORY_READ  : out STD_LOGIC_VECTOR (15 downto 0)			
   );
-end NICNAC16;
+end NICNUC16;
 
-architecture Behavioral of NICNAC16 is
+architecture Behavioral of NICNUC16 is
 
 
 component debouncer
@@ -65,7 +65,7 @@ signal clk_cntr_reg : STD_ULOGIC_VECTOR (4 downto 0) := (others=>'0');
 
 signal cpu_clk :STD_ULOGIC :='0';
 
-signal PC_OUT: STD_ULOGIC_VECTOR (15 downto 0):= (others=>'0');
+signal LED_OUT: STD_ULOGIC_VECTOR (15 downto 0):= (others=>'0');
 --signal AC_OUT: STD_ULOGIC_VECTOR (15 downto 0);
 --signal MA_OUT: STD_ULOGIC_VECTOR (15 downto 0);
 --signal MEMORY_READ: STD_ULOGIC_VECTOR (15 downto 0);
@@ -74,7 +74,7 @@ signal PC_OUT: STD_ULOGIC_VECTOR (15 downto 0):= (others=>'0');
 COMPONENT dunc16 PORT (
    clk: in STD_ULOGIC;
   reset: in STD_ULOGIC;
- hurz:out STD_ULOGIC_VECTOR (15 downto 0)
+ led_out:out STD_ULOGIC_VECTOR (15 downto 0)
 -- ac_out:out STD_ULOGIC_VECTOR (15 downto 0);
 -- ma_out:out STD_ULOGIC_VECTOR (15 downto 0);
 --  MEMORY_READ:in STD_ULOGIC_VECTOR (15 downto 0)
@@ -86,7 +86,7 @@ Inst_dunc16: dunc16
    port map(
    clk => cpu_clk,
      reset => BTN(4),
-  hurz => PC_OUT
+  led_out => LED_OUT
 --   ac_out=>AC_OUT,
 --   ma_out=>MA_OUT,
 --   MEMORY_READ=>MEMORY_READ
@@ -97,7 +97,7 @@ Inst_dunc16: dunc16
 ----------------------------------------------------------
 
 --with BTN(4) select
---	LED <= PC_OUT 			when '0',
+--	LED <= LED_OUT 			when '0',
 --			 "0000000000000000" when others;
 			 			 
 ----------------------------------------------------------
@@ -134,7 +134,7 @@ begin
 			cpu_clk <= '0';
 		elsif (tmrCntr = TMR_CNTR_MAX) then
 		    cpu_clk <= not cpu_clk;
-		   tmrVal <= PC_OUT(3 downto 0);
+		   tmrVal <= LED_OUT(3 downto 0);
 		--tmrVal(0) <=  cpu_clk;
 --		tmrVal <= tmrVal + 1;
 --			if (tmrVal = TMR_VAL_MAX) then

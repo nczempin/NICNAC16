@@ -19,46 +19,20 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module counter (  input clk,               // Declare input port for clock to allow counter to count up
-                  input rstn,              // Declare input port for reset to allow the counter to be reset to 0 when required
-                  output reg[15:0] out);    // Declare 16-bit output port to get the counter values
- 
-  // This always block will be triggered at the rising edge of clk (0->1)
-  // Once inside this block, it checks if the reset is 0, if yes then change out to zero
-  // If reset is 1, then design should be allowed to count up, so increment counter
-  always @ (posedge clk) begin
-//    if ( rstn)
-//      out <= 0;
-//    else 
-      out <= out + 1;
-  end
-endmodule
-module dunc16(clk, reset, hurz);//, ac_out,ma_out, MEMORY_READ );
-//module dunc16(clk, reset, four_bits_out );
+module dunc16(clk, reset,led_out );
+
 input clk, reset;
 //
-output  [15:0]hurz;
-
-counter c ( .clk (clk),
-                 .rstn (reset),
-                 .out (hurz));
 
 
+output [15:0] led_out;
 
-wire [15:0] pc_out;
 
-//output[15:0] ac_out;
-//output[15:0]  ma_out; 
-//input [15:0] MEMORY_READ;
-//wire[15:0] pc_out;
+wire[15:0] pc_out;
 wire[15:0] ac_out;
 wire[15:0]  ma_out; 
 wire [15:0] MEMORY_READ;
-wire [3:0] fbo;
 
-//assign four_bits_out = pc_out[3:0];
-//assign hurz = pc_out;
-//reg enable;
 wire t0, t1, t2, t3;
 wire fetch, execute;
 
@@ -74,10 +48,21 @@ wire EN_IR, EN_PC, EN_MA, EN_MD, EN_AC;
 
 wire do_jump;
 
+FD16CE led_r(
+       .D(md_out),
+       .CE(1),
+       .C(clk),
+       .CLR(reset),
+       .Q(led_out)
+    );
+    
+    	
+ROM rom(ma_out[7:0], MEMORY_READ);
+
 
 datapath dp (
-   .clk(0),
-   .reset(0),
+   .clk(clk),
+   .reset(reset),
    .fetch(fetch),
    .execute(execute),
    .incr_pc(incr_pc),

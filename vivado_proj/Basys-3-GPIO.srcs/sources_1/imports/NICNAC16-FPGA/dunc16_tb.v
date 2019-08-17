@@ -8,10 +8,11 @@ module dunc16_tb();
     reg clk;
    reg reset;
 
-wire [15:0] pc_out;
-wire [15:0] ac_out;
-wire [15:0] ma_out;
-wire [15:0] MEMORY_READ;
+//wire [15:0] pc_out;
+//wire [15:0] ac_out;
+//wire [15:0] ma_out;
+//wire [15:0] MEMORY_READ;
+wire [15:0] led_out;
 
 
 // Bidirs
@@ -20,14 +21,12 @@ wire [15:0] MEMORY_READ;
    dunc16 UUT (
 		.clk(clk), 
 		.reset(reset),
-		.pc_out(pc_out),
-		.ac_out(ac_out),
-		.ma_out(ma_out),
-		.MEMORY_READ(MEMORY_READ)
+		//.pc_out(pc_out),
+		//.ac_out(ac_out),
+		//.ma_out(ma_out),
+		//.MEMORY_READ(MEMORY_READ),
+		.led_out(led_out)
    );
-	
-ROM rom(ma_out[7:0], MEMORY_READ);
-
 //initial begin  
 //	//$monitor("%b%b%b%b PC=%h, f%be%b, s%bl%b. %h %h",UUT.T0,UUT.T1,UUT.T2,UUT.T3,UUT.PC.Q,UUT.FETCH, UUT.EXECUTE, I_STA, UUT.I_LDA, UUT.MD.Q, UUT.AC.Q);  
 //    $monitor("%b%b PC=%h,",CLK, RESET,PC_OUT);  

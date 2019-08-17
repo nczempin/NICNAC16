@@ -46,7 +46,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     
     input DO_JUMP;
     
-    output [15:0] pc_out;
+    //output [15:0] pc_out;
     output [3:0] ir_out;
     output [15:0] ma_out;
     output  [15:0] md_out;
@@ -61,7 +61,10 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     output I_STA;
     output I_ADD;
     
-   
+ output  [15:0]pc_out;
+
+
+  
     
     wire [15:0] MA_IN;
     wire [15:0] MD_IN;

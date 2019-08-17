@@ -28,12 +28,17 @@ module FD16CE(D,CE,C,CLR,Q);
     input CLR;
     output reg [15:0] Q;
     
-    
-    always @ ( posedge C, posedge CLR)
+//   counter16b c ( .clk (C),
+//                 .rstn (CLR),
+//                 .out (Q));
+ 
+    always @ ( posedge C or posedge CLR)
     begin
         if (CLR)
 		Q = 0;
 	else if (CE)
 		Q <= D;
+	else
+	    Q <= Q;
 	end
 endmodule
