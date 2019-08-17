@@ -29,18 +29,18 @@ module Stages(CLK, RESET, NEW_CYCLE, FETCH, EXECUTE);
     
     
     FDSE ft (
-        .D(EXECUTE),
-        .C( CLK),
+       .D(EXECUTE),
+       .C( CLK),
        .S(RESET),
        .CE(NEW_CYCLE),
-      .Q(FETCH)   
+       .Q(FETCH)   
        );
    FDCE ex(
      .D(FETCH),
      .C(CLK),     
-      .CLR(RESET), 
-      .CE(NEW_CYCLE),
-       .Q(EXECUTE)
+     .CLR(RESET), 
+     .CE(NEW_CYCLE),
+     .Q(EXECUTE)
    );
  
 endmodule

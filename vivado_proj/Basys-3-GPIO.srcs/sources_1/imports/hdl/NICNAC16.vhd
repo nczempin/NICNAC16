@@ -9,12 +9,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.std_logic_unsigned.all;
 
 entity NICNAC16 is
-    Port ( SW 			: in  STD_LOGIC_VECTOR (15 downto 0);
-           BTN 			: in  STD_LOGIC_VECTOR (4 downto 0);
+    Port ( SW 			: in  STD_ULOGIC_VECTOR (15 downto 0);
+           BTN 			: in  STD_ULOGIC_VECTOR (4 downto 0);
            CLK 			: in  STD_LOGIC;
-           LED 			: out  STD_LOGIC_VECTOR (15 downto 0);
-           SSEG_CA 		: out  STD_LOGIC_VECTOR (7 downto 0);
-           SSEG_AN 		: out  STD_LOGIC_VECTOR (3 downto 0)
+           LED 			: out  STD_ULOGIC_VECTOR (15 downto 0);
+           SSEG_CA 		: out  STD_ULOGIC_VECTOR (7 downto 0);
+           SSEG_AN 		: out  STD_ULOGIC_VECTOR (3 downto 0)
 --           pc_out       : out STD_LOGIC_VECTOR (15 downto 0);
 --           ac_out       : out STD_LOGIC_VECTOR (15 downto 0);
 --           ma_out       : out STD_LOGIC_VECTOR (7 downto 0);
@@ -30,47 +30,54 @@ Generic(
         DEBNC_CLOCKS : integer;
         PORT_WIDTH : integer);
 Port(
-		SIGNAL_I : in std_logic_vector(4 downto 0);
-		CLK_I : in std_logic;          
-		SIGNAL_O : out std_logic_vector(4 downto 0)
+		SIGNAL_I : in STD_ULOGIC_VECTOR(4 downto 0);
+		CLK_I : in STD_ULOGIC;          
+		SIGNAL_O : out STD_ULOGIC_VECTOR(4 downto 0)
 		);
 end component;
 
 
-constant TMR_CNTR_MAX : std_logic_vector(26 downto 0) := "101111101011110000100000000"; --100,000,000 = clk cycles per second
-constant TMR_VAL_MAX : std_logic_vector(3 downto 0) := "1111"; --0xF
+constant TMR_CNTR_MAX : STD_LOGIC_VECTOR(26 downto 0) := "101111101011110000100000000"; --100,000,000 = clk cycles per second
+constant TMR_VAL_MAX : STD_ULOGIC_VECTOR(3 downto 0) := "1111"; --0xF
 
-constant RESET_CNTR_MAX : std_logic_vector(17 downto 0) := "110000110101000000";-- 100,000,000 * 0.002 = 200,000 = clk cycles per 2 ms
+constant RESET_CNTR_MAX : STD_ULOGIC_VECTOR(17 downto 0) := "110000110101000000";-- 100,000,000 * 0.002 = 200,000 = clk cycles per 2 ms
 
 --This is used to determine when the 7-segment display should be
 --incremented
-signal tmrCntr : std_logic_vector(26 downto 0) := (others => '0');
+signal tmrCntr : STD_LOGIC_VECTOR(26 downto 0) := (others => '0');
 
 --This counter keeps track of which number is currently being displayed
 --on the 7-segment.
-signal tmrVal : std_logic_vector(3 downto 0) := (others => '0');
+signal tmrVal : STD_ULOGIC_VECTOR(3 downto 0) := (others => '0');
 
 
 --Used to determine when a button press has occured
-signal btnReg : std_logic_vector (3 downto 0) := "0000";
-signal btnDetect : std_logic;
+signal btnReg : STD_ULOGIC_VECTOR (3 downto 0) := "0000";
+signal btnDetect : STD_ULOGIC;
 
 
 --Debounced btn signals used to prevent single button presses
 --from being interpreted as multiple button presses.
-signal btnDeBnc : std_logic_vector(4 downto 0);
+signal btnDeBnc : STD_ULOGIC_VECTOR(4 downto 0);
+signal fba : STD_ULOGIC_VECTOR(3 downto 0);
 
-signal clk_cntr_reg : std_logic_vector (4 downto 0) := (others=>'0'); 
+signal clk_cntr_reg : STD_ULOGIC_VECTOR (4 downto 0) := (others=>'0'); 
 
-signal cpu_clk :std_logic :='0';
+signal cpu_clk :STD_ULOGIC :='0';
+
+signal PC_OUT: STD_ULOGIC_VECTOR (15 downto 0):= (others=>'0');
+--signal AC_OUT: STD_ULOGIC_VECTOR (15 downto 0);
+--signal MA_OUT: STD_ULOGIC_VECTOR (15 downto 0);
+--signal MEMORY_READ: STD_ULOGIC_VECTOR (15 downto 0);
+--signal led_connection: STD_ULOGIC_VECTOR (15 downto 0);
 
 COMPONENT dunc16 PORT (
-   clk: in STD_LOGIC;
-  reset: in STD_LOGIC
--- pc_out:out STD_LOGIC_VECTOR (15 downto 0);
--- ac_out:out STD_LOGIC_VECTOR (15 downto 0);
--- ma_out:out STD_LOGIC_VECTOR (15 downto 0);
---  MEMORY_READ:out STD_LOGIC_VECTOR (15 downto 0)
+   clk: in STD_ULOGIC;
+  reset: in STD_ULOGIC;
+ hurz:out STD_ULOGIC_VECTOR (15 downto 0)
+-- ac_out:out STD_ULOGIC_VECTOR (15 downto 0);
+-- ma_out:out STD_ULOGIC_VECTOR (15 downto 0);
+--  MEMORY_READ:in STD_ULOGIC_VECTOR (15 downto 0)
 );
 END COMPONENT;
 
@@ -78,16 +85,20 @@ begin
 Inst_dunc16: dunc16
    port map(
    clk => cpu_clk,
-   reset => BTN(4)
-);
+     reset => BTN(4),
+  hurz => PC_OUT
+--   ac_out=>AC_OUT,
+--   ma_out=>MA_OUT,
+--   MEMORY_READ=>MEMORY_READ
+   );
  
 ----------------------------------------------------------
 ------                LED Control                  -------
 ----------------------------------------------------------
 
-with BTN(4) select
-	LED <= SW 			when '0',
-			 "0000000000000000" when others;
+--with BTN(4) select
+--	LED <= PC_OUT 			when '0',
+--			 "0000000000000000" when others;
 			 			 
 ----------------------------------------------------------
 ------           7-Seg Display Control             -------
@@ -122,14 +133,17 @@ begin
 			tmrVal <= (others => '0');
 			cpu_clk <= '0';
 		elsif (tmrCntr = TMR_CNTR_MAX) then
-		cpu_clk <= not cpu_clk;
+		    cpu_clk <= not cpu_clk;
+		   tmrVal <= PC_OUT(3 downto 0);
 		--tmrVal(0) <=  cpu_clk;
-		tmrVal <= tmrVal + 1;
-			if (tmrVal = TMR_VAL_MAX) then
-				tmrVal <= (others => '0');
-			else
-				tmrVal <= tmrVal + 1;
-			end if;
+--		tmrVal <= tmrVal + 1;
+--			if (tmrVal = TMR_VAL_MAX) then
+--				tmrVal <= (others => '0');
+--			else
+--				tmrVal <= tmrVal + 1;
+--			end if;
+        else
+           --tmrVal <= (others => '0');
 		end if;
 	end if;
 end process;
@@ -138,42 +152,42 @@ end process;
 --cathode signals to display it on the 7-segment
 with tmrVal select
 ---- hexadecimal
---	SSEG_CA <=    "11000000" when "0000",
---				  "11111001" when "0001",
---				  "10100100" when "0010",
---				  "10110000" when "0011",
---				  "10011001" when "0100",
---				  "10010010" when "0101",
---				  "10000010" when "0110",
---				  "11111000" when "0111",
---				  "10000000" when "1000",
---				  "10010000" when "1001",
---				  "10001000" when "1010",
---				  "10000011" when "1011",
---				  "11000110" when "1100",
---				  "10100001" when "1101",
---				  "10000110" when "1110",
---				  "10001110" when "1111",
---				  "01111111" when others; -- not really any others
--- 8x8 coordinates (e. g. chess board)
-	SSEG_CA <=   
-				  "11111001" when "0000",
-				  "10100100" when "0001",
-				  "10110000" when "0010",
-				  "10011001" when "0011",
-				  "10010010" when "0100",
-				  "10000010" when "0101",
-				  "11111000" when "0110",
-				  "10000000" when "0111",
-				  "10001000" when "1000",
-				  "10000011" when "1001",
-				  "11000110" when "1010",
-				  "10100001" when "1011",
-				  "10000110" when "1100",
-				  "10001110" when "1101",
-				  "10010000" when "1110",
-				  "10001011" when "1111",
+	SSEG_CA <=    "11000000" when "0000",
+				  "11111001" when "0001",
+				  "10100100" when "0010",
+				  "10110000" when "0011",
+				  "10011001" when "0100",
+				  "10010010" when "0101",
+				  "10000010" when "0110",
+				  "11111000" when "0111",
+				  "10000000" when "1000",
+				  "10010000" when "1001",
+				  "10001000" when "1010",
+				  "10000011" when "1011",
+				  "11000110" when "1100",
+				  "10100001" when "1101",
+				  "10000110" when "1110",
+				  "10001110" when "1111",
 				  "01111111" when others; -- not really any others
+-- 8x8 coordinates (e. g. chess board)
+--	SSEG_CA <=   
+--				  "11111001" when "0000",
+--				  "10100100" when "0001",
+--				  "10110000" when "0010",
+--				  "10011001" when "0011",
+--				  "10010010" when "0100",
+--				  "10000010" when "0101",
+--				  "11111000" when "0110",
+--				  "10000000" when "0111",
+--				  "10001000" when "1000",
+--				  "10000011" when "1001",
+--				  "11000110" when "1010",
+--				  "10100001" when "1011",
+--				  "10000110" when "1100",
+--				  "10001110" when "1101",
+--				  "10010000" when "1110",
+--				  "10001011" when "1111",
+--				  "01111111" when others; -- not really any others
 
 
 ----------------------------------------------------------

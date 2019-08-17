@@ -34,5 +34,7 @@ module FDSE(D,CE,C,S,Q);
 		Q <= 1;
 	else if (CE)
 		Q <= D;
+	else
+	    Q <= Q;
 	end
 endmodule
