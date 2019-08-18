@@ -27,15 +27,16 @@ module select1of4_16(
     input SEL_B,
     input SEL_C,
     input SEL_D,
-    output [15:0] OUT
+    output reg [15:0] OUT
     );
-reg [15:0] OUT;
+
 always  @ (A or B or C or D or SEL_A or SEL_B or SEL_C or SEL_D) begin
 	// when (what shouldn't really happen; TODO how do I "assert" invalid conditions?) more than one is selected, take the "earliest" one.
 	if (SEL_A) OUT = A;
 	else if (SEL_B) OUT = B;
 	else if (SEL_C) OUT = C;
 	else if (SEL_D) OUT = D;
+	else OUT = 16'h0000;
 	
 end
 

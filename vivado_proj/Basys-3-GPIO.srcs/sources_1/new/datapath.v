@@ -91,6 +91,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     assign JUMP_ADR = md_out[11:0];
     Decoder4_16 instruction_decoder(D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, D15, ir_out, ~reset);
     wire[15:0] D;
+    assign D = 16'h0000; // TODO for now
     wire DO_RET;
     select1of4_16 pc_in_priority(JUMP_ADR, alu_out, 16'h0, D, DO_JUMP, incr_pc, 1'b0, DO_RET, PC_IN);
 
