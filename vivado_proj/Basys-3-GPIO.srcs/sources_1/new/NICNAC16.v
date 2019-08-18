@@ -26,7 +26,7 @@ module NICNAC16(
  //   assign sseg_in = 16'hdeaf;//led_out;
    //assign sseg_in = led_out;
     wire [3:0] sseg_dp;
-    assign sseg_dp = 4'b1111;
+    assign sseg_dp ={clk_cpu, status, 2'b11};
     sseg_interface16b si16(
     .clk(clk_fpga),
     .data(led_out),
