@@ -28,7 +28,7 @@ module NICNAC16(
     output [7:0] SSEG_CA,
     output [3:0] SSEG_AN
     );
-    parameter MAX_COUNT = 5_000_000 -1;
+    parameter MAX_COUNT = 2_000_000 -1;
     wire reset;
     wire counter_en;
     reg [26:0] counter_100M;
@@ -36,6 +36,7 @@ module NICNAC16(
     
     wire clk_cpu;
     wire [15:0] led_out;
+    wire status;
     
     assign SSEG_AN =4'b1011;
     always @ (posedge clk_fpga, posedge reset) begin
@@ -61,7 +62,7 @@ module NICNAC16(
                
         
         assign clk_cpu =  counter_10 < 5;
-        assign SSEG_CA[7] = clk_cpu;
+        assign SSEG_CA[7] = status;
         assign LED = led_out;
          dunc16 UUT (
 		.clk(clk_cpu), 
@@ -70,6 +71,7 @@ module NICNAC16(
 		//.ac_out(ac_out),
 		//.ma_out(ma_out),
 		//.MEMORY_READ(MEMORY_READ),
+		.fetch(status),
 		.led_out(led_out)
    );
 endmodule

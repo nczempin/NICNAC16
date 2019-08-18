@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module dunc16(clk, reset,led_out );
+module dunc16(clk, reset,led_out,fetch, execute );
 
 input clk, reset;
 //
@@ -34,7 +34,7 @@ wire[15:0]  ma_out;
 wire [15:0] MEMORY_READ;
 
 wire t0, t1, t2, t3;
-wire fetch, execute;
+output fetch, execute;
 
 wire [15:0] md_out;
 wire[3:0] ir_out;
