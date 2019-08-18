@@ -1,5 +1,6 @@
 `timescale 1ns / 1ps
 
+ 
 
 module NICNAC16(
     input clk_fpga,
@@ -17,34 +18,24 @@ module NICNAC16(
     
     assign reset = BTN[4];
     
-   // assign SSEG_AN = 4'b0000;
-    //assign SSEG_CA[7] = clk_cpu;
-    //assign SSEG_CA[6] = clk_cpu;
-    //assign SSEG_CA[5] = clk_cpu;
-    //assign SSEG_CA[4] = clk_cpu;
-    //assign SSEG_CA[3] = status;
-    //assign SSEG_CA[2] = status;
-    //assign SSEG_CA[1] = status;
-    //assign SSEG_CA[0] = status;
-    wire [7:0] in0, in1, in2, in3;
-    wire [3:0] an;
-    assign an = SSEG_AN;
-    assign in0 = 8'b11111001;
-    assign in1 = 8'b10100100;
-    assign in2 = 8'b10110000;
-    assign in3 = 8'b10011001;
-     multiplex_sseg sseg_multiplexer(
-     .clk(clk_fpga),
-     .in0(in0),
-     .in1(in1),
-     .in2(in2),
-     .in3(in3),
-     .sseg(SSEG_CA),
-     .an(an)
- );
- 
+   
+//     wire [3:0] an;
+//    assign an = SSEG_AN;
     
-    assign LED = led_out;
+    //wire [15:0] sseg_in;
+ //   assign sseg_in = 16'hdeaf;//led_out;
+   //assign sseg_in = led_out;
+    wire [3:0] sseg_dp;
+    assign sseg_dp = 4'b1111;
+    sseg_interface16b si16(
+    .clk(clk_fpga),
+    .data(led_out),
+    .decimal_points(sseg_dp),
+    .sseg_ca( SSEG_CA),
+    .sseg_an( SSEG_AN)
+    );
+ 
+    assign LED =led_out;
 wire cd_out;
     clock_divider cd(
         .clk_in(clk_fpga),
