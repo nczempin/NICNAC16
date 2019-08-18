@@ -1,6 +1,6 @@
 // Verilog test fixture created from schematic B:\NICNAC16\dunc16.sch - Wed Sep 17 00:13:28 2014
 
-`timescale 10us / 10ns
+`timescale 10ns / 1ps
 
 module dunc16_tb();
 
@@ -13,7 +13,7 @@ module dunc16_tb();
 //wire [15:0] ma_out;
 //wire [15:0] MEMORY_READ;
 wire [15:0] led_out;
-
+wire status;
 
 // Bidirs
 
@@ -25,6 +25,7 @@ wire [15:0] led_out;
 		//.ac_out(ac_out),
 		//.ma_out(ma_out),
 		//.MEMORY_READ(MEMORY_READ),
+		.status(status),
 		.led_out(led_out)
    );
 //initial begin  

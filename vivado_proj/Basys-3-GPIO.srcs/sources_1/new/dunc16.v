@@ -57,7 +57,7 @@ module dunc16(clk, reset,led_out,status);
             
     ROM rom(ma_out[7:0], MEMORY_READ);
     
-    assign fetch = status;
+    assign status =fetch;
     
     datapath dp (
        .clk(clk),
