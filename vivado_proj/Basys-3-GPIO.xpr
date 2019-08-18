@@ -68,6 +68,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/hdl/NICNAC16.vhd">
         <FileInfo RelPath="NICNAC16.vhd">
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -81,17 +82,9 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/NICNAC16-FPGA/RAM_tb.v">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../NICNAC16-FPGA/RAM_tb.v"/>
-          <Attr Name="ImportTime" Val="1565467307"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/new/FD.v">
         <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -122,6 +115,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/delay.v">
         <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -257,6 +251,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/src/mojo_top.v">
         <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../NICNAC16-FPGA/src/mojo_top.v"/>
           <Attr Name="ImportTime" Val="1565467307"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -282,14 +277,9 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/box.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/imports/hdl/clk_wiz_0.vhd">
         <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../src/hdl/clk_wiz_0.vhd"/>
           <Attr Name="ImportTime" Val="1535398890"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -298,6 +288,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/imports/hdl/clk_wiz_0_clk_wiz.vhd">
         <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../src/hdl/clk_wiz_0_clk_wiz.vhd"/>
           <Attr Name="ImportTime" Val="1535398890"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -307,6 +298,7 @@
       <File Path="$PPRDIR/archive_project_summary.txt"/>
       <File Path="$PSRCDIR/sources_1/imports/hdl/GPIO_Demo.vhd">
         <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -387,6 +379,15 @@
       <File Path="$PSRCDIR/sources_1/imports/NICNAC16-FPGA/rom.txt"/>
       <File Path="$PSRCDIR/sim_1/new/ring_counter_tb.v">
         <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/NICNAC16-FPGA/RAM_tb.v">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../NICNAC16-FPGA/RAM_tb.v"/>
+          <Attr Name="ImportTime" Val="1565467307"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
