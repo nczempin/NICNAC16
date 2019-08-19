@@ -20,7 +20,7 @@ module debouncer_tb();
 initial begin
     clk=1;
     switch = 5'b00000;
-    #100
+    #100.3 // make it unsynchronized
     
     switch =5'b00001;
    repeat (6) begin
@@ -32,6 +32,7 @@ initial begin
 #10000;
    repeat (6) begin
      #1000
+     
     switch = 5'b00000;
     #1000
     switch =5'b00001;

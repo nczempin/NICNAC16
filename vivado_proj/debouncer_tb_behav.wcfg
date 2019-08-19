@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="debouncer_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="debouncer_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="1536666667fs"></ZoomStartTime>
+      <ZoomEndTime time="76436666668fs"></ZoomEndTime>
+      <Cursor1Time time="14020000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
+      <ValueColumnWidth column_width="85"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="9" />
+   <wvobject fp_name="/debouncer_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/switch" type="array">
+      <obj_property name="ElementShortName">switch[4:0]</obj_property>
+      <obj_property name="ObjectShortName">switch[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/debounced_switch" type="array">
+      <obj_property name="ElementShortName">debounced_switch[4:0]</obj_property>
+      <obj_property name="ObjectShortName">debounced_switch[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/UUT/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/UUT/switch_in" type="array">
+      <obj_property name="ElementShortName">switch_in[4:0]</obj_property>
+      <obj_property name="ObjectShortName">switch_in[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/UUT/switch_out" type="array">
+      <obj_property name="ElementShortName">switch_out[4:0]</obj_property>
+      <obj_property name="ObjectShortName">switch_out[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/UUT/synchronized_switch" type="array">
+      <obj_property name="ElementShortName">synchronized_switch[4:0]</obj_property>
+      <obj_property name="ObjectShortName">synchronized_switch[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/UUT/WIDTH" type="array">
+      <obj_property name="ElementShortName">WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/UUT/CLOCK_FREQUENCY" type="array">
+      <obj_property name="ElementShortName">CLOCK_FREQUENCY[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CLOCK_FREQUENCY[31:0]</obj_property>
+   </wvobject>
+</wave_config>
