@@ -1,23 +1,5 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 08/20/2019 12:45:06 AM
-// Design Name: 
-// Module Name: debouncer
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+
 
 
 module debouncer(clk, switch_in, switch_out);
@@ -28,4 +10,25 @@ module debouncer(clk, switch_in, switch_out);
     input [WIDTH-1:0] switch_in;
     output[WIDTH-1:0] switch_out;
     
+    
+    wire [WIDTH-1:0] synchronized_switch;
+    synchronizer sync1(clk, switch_in, synchronized_switch);
+    
+endmodule
+
+module synchronizer(clk, switch_in, synchronized_switch);
+ parameter WIDTH = 5;
+    parameter CLOCK_FREQUENCY = 100_000_000;
+    input clk;
+    input [WIDTH-1:0] switch_in;
+    output reg[WIDTH-1:0] synchronized_switch;
+   
+   
+   reg [WIDTH-1:0] Q;
+   always @(posedge clk) begin
+      synchronized_switch <= Q;
+      Q <= switch_in;
+      
+   end
+				
 endmodule
