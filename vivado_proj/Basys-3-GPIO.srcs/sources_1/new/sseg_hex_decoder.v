@@ -26,3 +26,25 @@ module sseg_hex_decoder(
           default : segments = 7'b1111111; //can't happen
       endcase   
 endmodule
+
+//for chess coordinates:
+
+//8x8 coordinates (e. g. chess board)
+//SSEG_CA <=   
+//11111001" when "0000",
+//10100100" when "0001",
+//10110000" when "0010",
+//10011001" when "0011",
+//10010010" when "0100",
+//10000010" when "0101",
+//11111000" when "0110",
+//10000000" when "0111",
+//10001000" when "1000",
+//10000011" when "1001",
+//-				  "11000110" when "1010",
+//-				  "10100001" when "1011",
+//10000110" when "1100",
+//10001110" when "1101",
+//10010000" when "1110",
+//10001011" when "1111",
+//01111111" when others; -- not really any others
