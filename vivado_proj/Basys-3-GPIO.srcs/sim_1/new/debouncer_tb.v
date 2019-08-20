@@ -4,8 +4,8 @@ module debouncer_tb();
 
 // Inputs
     reg clk;
-   reg [4:0] switch;
-   wire [4:0] debounced_switch;
+   reg  switch;
+   wire debounced_switch;
 
 // Instantiate the UUT
    debouncer UUT (
@@ -19,25 +19,25 @@ module debouncer_tb();
 //end
 initial begin
     clk=1;
-    switch = 5'b00000;
+    switch = 1'b0;
     #100.3 // make it unsynchronized
     
-    switch =5'b00001;
+    switch =1'b1;
+    forever begin
    repeat (6) begin
      #1000
-    switch = 5'b00000;
+    switch = 1'b0;
     #1000
-    switch =5'b00001;
+    switch =1'b1;
    end
 #10000;
    repeat (6) begin
      #1000
-     
-    switch = 5'b00000;
+   switch = 1'b0;
     #1000
-    switch =5'b00001;
+    switch =1'b1;
    end
-
+end
 end
 always #0.5 clk =~clk;
 
