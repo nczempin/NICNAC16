@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1536666667fs"></ZoomStartTime>
-      <ZoomEndTime time="76436666668fs"></ZoomEndTime>
-      <Cursor1Time time="14020000000fs"></Cursor1Time>
+      <ZoomStartTime time="208164420000000fs"></ZoomStartTime>
+      <ZoomEndTime time="208665420000001fs"></ZoomEndTime>
+      <Cursor1Time time="208581920000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="85"></ValueColumnWidth>
+      <ValueColumnWidth column_width="81"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="9" />
+   <WVObjectSize size="14" />
    <wvobject fp_name="/debouncer_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -55,5 +55,25 @@
    <wvobject fp_name="/debouncer_tb/UUT/CLOCK_FREQUENCY" type="array">
       <obj_property name="ElementShortName">CLOCK_FREQUENCY[31:0]</obj_property>
       <obj_property name="ObjectShortName">CLOCK_FREQUENCY[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/UUT/wc/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/UUT/wc/sample_pulse" type="logic">
+      <obj_property name="ElementShortName">sample_pulse</obj_property>
+      <obj_property name="ObjectShortName">sample_pulse</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/UUT/wc/counter" type="array">
+      <obj_property name="ElementShortName">counter[15:0]</obj_property>
+      <obj_property name="ObjectShortName">counter[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/UUT/wc/CLOCK_FREQUENCY" type="array">
+      <obj_property name="ElementShortName">CLOCK_FREQUENCY[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CLOCK_FREQUENCY[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/debouncer_tb/UUT/wc/SAMPLE_COUNT_MAX" type="array">
+      <obj_property name="ElementShortName">SAMPLE_COUNT_MAX[31:0]</obj_property>
+      <obj_property name="ObjectShortName">SAMPLE_COUNT_MAX[31:0]</obj_property>
    </wvobject>
 </wave_config>

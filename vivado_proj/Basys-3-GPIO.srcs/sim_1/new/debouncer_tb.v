@@ -1,4 +1,4 @@
-`timescale 10ns / 1ps
+`timescale 1ns / 1ps
 
 module debouncer_tb();
 
@@ -39,7 +39,7 @@ initial begin
    end
 
 end
-always #1 clk =~clk;
+always #0.5 clk =~clk;
 
 //initial begin
 ////	ININ = 0;
