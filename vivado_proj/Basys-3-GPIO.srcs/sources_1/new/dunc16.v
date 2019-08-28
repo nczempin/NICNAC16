@@ -71,7 +71,6 @@ module dunc16(clk, reset,led_out,status);
        .t2(t2),
        .t3(t3),
        .pc_out(pc_out),
-       .ir_out(ir_out),
        .ma_out(ma_out),
        .md_out(md_out),
        .ac_out(ac_out),
@@ -111,7 +110,9 @@ module dunc16(clk, reset,led_out,status);
         .EN_PC(EN_PC),
         .EN_MA(EN_MA),
         .EN_MD(EN_MD),
-        .EN_AC(EN_AC)
+        .EN_AC(EN_AC),
+        .ir_out(ir_out),
+        .ir_in(md_out[15:12])
     );
     
 endmodule

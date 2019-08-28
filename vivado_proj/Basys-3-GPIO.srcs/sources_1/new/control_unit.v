@@ -1,41 +1,25 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 08/14/2019 09:35:57 AM
-// Design Name: 
-// Module Name: control_unit
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 
 module control_unit(clk, reset, fetch, execute, 
                     t0, t1, t2, t3,
                     I_JMP, I_NOP, I_LDA, I_STA,I_ADD, 
                     incr_pc, do_jump,
-                     EN_IR, EN_PC, EN_MA, EN_MD, EN_AC);
+                     EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
+                     ir_out, ir_in);
     input clk;
-     input reset;
+    input reset;
+    input [3:0] ir_in;
+    output [3:0] ir_out;
     output fetch;
     output execute;
     
     output t0, t1, t2, t3;
-    input I_JMP;
-    input I_NOP;
-    input I_LDA;
-    input I_STA;
-    input I_ADD;
+    output I_JMP;
+    output I_NOP;
+    output I_LDA;
+    output I_STA;
+    output I_ADD;
     
     
     output incr_pc;
@@ -47,6 +31,13 @@ module control_unit(clk, reset, fetch, execute,
     output EN_MD;
     output EN_AC;
     
+    
+    wire [15:0] D;
+    assign I_NOP = D[0];
+    assign I_JMP = D[1];
+    assign I_LDA = D[4];
+    assign I_STA = D[5];
+    assign I_ADD = D[6];
     wire instr_jump;
     
     wire icynext;
@@ -87,4 +78,7 @@ module control_unit(clk, reset, fetch, execute,
         .execute(execute),
         .new_cycle(new_cycle)
     );
+   REG4CE IR(ir_out, clk, EN_IR, reset, ir_in);
+   Decoder4_16Bus instruction_decoder(D, ir_out, ~reset);
+
 endmodule

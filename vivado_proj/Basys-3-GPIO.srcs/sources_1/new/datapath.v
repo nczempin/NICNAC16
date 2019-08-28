@@ -3,7 +3,7 @@
 
 module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
          t0, t1, t2, t3,
-         pc_out, ir_out, ma_out, md_out, ac_out, alu_out,
+         pc_out, ma_out, md_out, ac_out, alu_out,
          MEMORY_READ,
          I_NOP, I_JMP, I_LDA, I_STA, I_ADD,
          EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
@@ -28,7 +28,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     input DO_JUMP;
     
     //output [15:0] pc_out;
-    output [3:0] ir_out;
+   
     output [15:0] ma_out;
     output  [15:0] md_out;
     output [15:0] ac_out;
@@ -43,8 +43,8 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     output I_ADD;
     
  output  [15:0]pc_out;
-
-    
+ 
+ 
     wire [15:0] MA_IN;
     wire [15:0] MD_IN;
     wire [15:0] AC_IN;
@@ -59,20 +59,13 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     
     assign AC_IN = AC_MUX_OUT;//md_out; // TODO: mux with alu_out
     
-    REG4CE IR(ir_out, clk, EN_IR, reset, md_out[15:12]);
+     
     
-    wire D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, D15;
-    assign I_NOP = D0;
-    assign I_JMP = D1;
-    assign I_LDA = D4;
-    assign I_STA = D5;
-    assign I_ADD = D6;
     wire CO;
     wire [15:0]JUMP_ADR;
     assign JUMP_ADR = md_out[11:0];
-    Decoder4_16 instruction_decoder(D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13, D14, D15, ir_out, ~reset);
-    wire[15:0] D;
-    assign D = 16'h0000; // TODO for now
+    
+    
     wire DO_RET;
     select1of4_16 pc_in_priority(JUMP_ADR, alu_out, 16'h0, D, DO_JUMP, incr_pc, 1'b0, DO_RET, PC_IN);
 
