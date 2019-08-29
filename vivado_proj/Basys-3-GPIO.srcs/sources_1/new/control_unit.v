@@ -6,7 +6,9 @@ module control_unit(clk, reset, fetch, execute,
                     I_JMP, I_NOP, I_LDA, I_STA,I_ADD, 
                     incr_pc, do_jump,
                      EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
-                     ir_out, ir_in);
+                     ir_out, ir_in,
+                     MA_MUX_SEL,AC_MUX_SEL,ALU_MUX_A_SEL,ALU_MUX_B_SEL
+                      );
     input clk;
     input reset;
     input [3:0] ir_in;
@@ -30,6 +32,11 @@ module control_unit(clk, reset, fetch, execute,
     output EN_MA;
     output EN_MD;
     output EN_AC;
+    
+     output MA_MUX_SEL;
+    output AC_MUX_SEL;
+    output ALU_MUX_A_SEL;
+    output ALU_MUX_B_SEL;
     
     
     wire [15:0] D;
@@ -80,5 +87,11 @@ module control_unit(clk, reset, fetch, execute,
     );
    REG4CE IR(ir_out, clk, EN_IR, reset, ir_in);
    Decoder4_16Bus instruction_decoder(D, ir_out, ~reset);
-
+//TODO these need to move to the CU
+   
+    assign MA_MUX_SEL = fetch & t3; //TODO document as to why
+    assign AC_MUX_SEL = execute & I_ADD & t2; //TODO document as to why
+    //TODO: CU
+    assign ALU_MUX_A_SEL =incr_pc;
+    assign ALU_MUX_B_SEL =incr_pc;
 endmodule

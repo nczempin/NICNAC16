@@ -7,7 +7,9 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
          MEMORY_READ,
          I_NOP, I_JMP, I_LDA, I_STA, I_ADD,
          EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
-         DO_JUMP);
+         DO_JUMP,
+         MA_MUX_SEL,AC_MUX_SEL,ALU_MUX_A_SEL,ALU_MUX_B_SEL
+         );
          
     input clk;
     input reset;
@@ -44,6 +46,12 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     
  output  [15:0]pc_out;
  
+     input MA_MUX_SEL;
+    input AC_MUX_SEL;
+    input ALU_MUX_A_SEL;
+    input ALU_MUX_B_SEL;
+
+ 
  
     wire [15:0] MA_IN;
     wire [15:0] MD_IN;
@@ -76,11 +84,6 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
        .CLR(reset),
        .Q(pc_out)
     );
-    //TODO these need to move to the CU
-    wire MA_MUX_SEL;
-    assign MA_MUX_SEL = fetch & t3; //TODO document as to why
-    wire AC_MUX_SEL;
-    assign AC_MUX_SEL = execute & I_ADD & t2; //TODO document as to why
     
     
     
@@ -113,11 +116,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     );
     wire [15:0] ALU_IN_A;
     wire [15:0] ALU_IN_B;
-    wire ALU_MUX_A_SEL;
-    wire ALU_MUX_B_SEL;
-    //TODO: CU
-    assign ALU_MUX_A_SEL =incr_pc;
-    assign ALU_MUX_B_SEL =incr_pc;
+    
     
     mux16_2 alumux_a( ac_out, pc_out, ALU_MUX_A_SEL, ALU_IN_A);
     mux16_2 alumux_b ( md_out, 16'b1, ALU_MUX_B_SEL, ALU_IN_B);

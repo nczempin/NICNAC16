@@ -49,6 +49,10 @@ module dunc16(clk, reset,led_out,status);
     wire EN_IR, EN_PC, EN_MA, EN_MD, EN_AC;
     
     wire do_jump;
+      wire MA_MUX_SEL;
+    wire AC_MUX_SEL;
+    wire ALU_MUX_A_SEL;
+    wire ALU_MUX_B_SEL;
     
     assign led_out[3:0] = pc_out[3:0];
     assign led_out[7:4] = ac_out[3:0];
@@ -86,7 +90,11 @@ module dunc16(clk, reset,led_out,status);
        .EN_MA(EN_MA),
        .EN_MD(EN_MD),
        .EN_AC(EN_AC),
-       .DO_JUMP(do_jump)
+       .DO_JUMP(do_jump),
+       .MA_MUX_SEL(MA_MUX_SEL),
+       .AC_MUX_SEL(AC_MUX_SEL),
+       .ALU_MUX_A_SEL(ALU_MUX_A_SEL),
+       .ALU_MUX_B_SEL(ALU_MUX_B_SEL)
     );
      
     
@@ -112,7 +120,11 @@ module dunc16(clk, reset,led_out,status);
         .EN_MD(EN_MD),
         .EN_AC(EN_AC),
         .ir_out(ir_out),
-        .ir_in(md_out[15:12])
+        .ir_in(md_out[15:12]),
+         .MA_MUX_SEL(MA_MUX_SEL),
+       .AC_MUX_SEL(AC_MUX_SEL),
+       .ALU_MUX_A_SEL(ALU_MUX_A_SEL),
+       .ALU_MUX_B_SEL(ALU_MUX_B_SEL)
     );
     
 endmodule
