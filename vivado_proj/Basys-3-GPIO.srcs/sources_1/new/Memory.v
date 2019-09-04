@@ -3,7 +3,7 @@
 
 module Memory(
     input clk,
-    input en_write,
+    input en_mem_write,
     output [15:0] mem_read,
     input [15:0] mem_write,
     input [15:0] mem_address
@@ -20,7 +20,7 @@ module Memory(
     assign ram_address = mem_address[7:0];
     assign rom_address = mem_address[7:0];
     wire ram_write;
-    assign ram_write=en_write & ~rom_or_ram;
+    assign ram_write=en_mem_write & ~rom_or_ram;
     wire [15:0] ram_in;
     assign ram_in = mem_write;
     wire [15:0] ram_out;

@@ -19,13 +19,17 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module dunc16(clk, reset,led_out,status);
+module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_mem_write);
 
     input clk, reset;
     //
     
     output [15:0] led_out;
     output status;
+    output [15:0] mem_address;
+    output [15:0] mem_read;
+    output [15:0] mem_write;
+    output en_mem_write;
     
     
     wire fetch;
@@ -34,8 +38,10 @@ module dunc16(clk, reset,led_out,status);
     wire [15:0] pc_out;
     wire [15:0] ac_out;
     wire [15:0] ma_out; 
+    assign ma_out = mem_address;
     wire [15:0] MEMORY_READ;
-    
+    assign MEMORY_READ = mem_read;
+    assign en_mem_write = 1'b0;    
     wire t0, t1, t2, t3;
     
     wire [15:0] md_out;
@@ -59,7 +65,7 @@ module dunc16(clk, reset,led_out,status);
     assign led_out[11:8] = md_out[3:0];
     assign led_out[15:12] = ma_out[3:0];
             
-    ROM rom(ma_out[7:0], MEMORY_READ);
+    //ROM rom(ma_out[7:0], MEMORY_READ);
     
     assign status =fetch;
     
