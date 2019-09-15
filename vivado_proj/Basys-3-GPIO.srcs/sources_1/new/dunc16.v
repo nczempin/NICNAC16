@@ -38,9 +38,8 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
     wire [15:0] pc_out;
     wire [15:0] ac_out;
     wire [15:0] ma_out; 
-    assign ma_out = mem_address;
-    wire [15:0] MEMORY_READ;
-    assign MEMORY_READ = mem_read;
+    assign mem_address = ma_out;
+    
     assign en_mem_write = 1'b0;    
     wire t0, t1, t2, t3;
     
@@ -85,7 +84,7 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
        .md_out(md_out),
        .ac_out(ac_out),
        .alu_out(alu_out),
-       .MEMORY_READ(MEMORY_READ),
+       .mem_read(mem_read),
        .I_NOP(I_NOP),
        .I_JMP(I_JMP),
        .I_LDA(I_LDA),

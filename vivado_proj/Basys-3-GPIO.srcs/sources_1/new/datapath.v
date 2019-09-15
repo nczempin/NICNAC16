@@ -4,7 +4,7 @@
 module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
          t0, t1, t2, t3,
          pc_out, ma_out, md_out, ac_out, alu_out,
-         MEMORY_READ,
+         mem_read,
          I_NOP, I_JMP, I_LDA, I_STA, I_ADD,
          EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
          DO_JUMP,
@@ -36,7 +36,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     output [15:0] ac_out;
     output [15:0] alu_out;
     
-    input [15:0] MEMORY_READ;
+    input [15:0] mem_read;
     
     output I_NOP;
     output I_JMP;
@@ -60,10 +60,10 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     wire [15:0] MA_MUX_OUT;
     wire [15:0] AC_MUX_OUT;
     
-    wire [15:0] mma; //M[MA]
+   // wire [15:0] mma; //M[MA]
     
     assign MA_IN= MA_MUX_OUT[11:0];
-    assign MD_IN = MEMORY_READ; // TODO mux
+    assign MD_IN = mem_read; // TODO mux
     
     assign AC_IN = AC_MUX_OUT;//md_out; // TODO: mux with alu_out
     
@@ -73,15 +73,18 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     wire [15:0]JUMP_ADR;
     assign JUMP_ADR = md_out[11:0];
     
-    
+    wire [15:0] D;
     wire DO_RET;
-    select1of4_16 pc_in_priority(JUMP_ADR, alu_out, 16'h0, D, DO_JUMP, incr_pc, 1'b0, DO_RET, PC_IN);
+    wire [15:0] reset_vector;
+    assign reset_vector = 16'h0100; 
+    
+     select1of4_16 pc_in_priority(reset_vector, JUMP_ADR, alu_out, D, reset, DO_JUMP, incr_pc, DO_RET, PC_IN);
 
     FD16CE PC(
        .D(PC_IN),
        .CE(EN_PC),
        .C(clk),
-       .CLR(reset),
+       .CLR(1'b0),
        .Q(pc_out)
     );
     
