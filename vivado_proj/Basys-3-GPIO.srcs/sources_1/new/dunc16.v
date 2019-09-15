@@ -40,10 +40,11 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
     wire [15:0] ma_out; 
     assign mem_address = ma_out;
     
-    assign en_mem_write = 1'b0;    
+    //assign en_mem_write = 1'b0;    
     wire t0, t1, t2, t3;
     
     wire [15:0] md_out;
+    assign mem_write = md_out;
     wire [3:0] ir_out;
     wire [15:0] alu_out;
     wire incr_pc;
@@ -54,7 +55,8 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
     wire EN_IR, EN_PC, EN_MA, EN_MD, EN_AC;
     
     wire do_jump;
-      wire MA_MUX_SEL;
+    wire MA_MUX_SEL;
+    wire MD_MUX_SEL;
     wire AC_MUX_SEL;
     wire ALU_MUX_A_SEL;
     wire ALU_MUX_B_SEL;
@@ -97,6 +99,7 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
        .EN_AC(EN_AC),
        .DO_JUMP(do_jump),
        .MA_MUX_SEL(MA_MUX_SEL),
+       .MD_MUX_SEL(MD_MUX_SEL),
        .AC_MUX_SEL(AC_MUX_SEL),
        .ALU_MUX_A_SEL(ALU_MUX_A_SEL),
        .ALU_MUX_B_SEL(ALU_MUX_B_SEL)
@@ -126,10 +129,12 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
         .EN_AC(EN_AC),
         .ir_out(ir_out),
         .ir_in(md_out[15:12]),
-         .MA_MUX_SEL(MA_MUX_SEL),
-       .AC_MUX_SEL(AC_MUX_SEL),
-       .ALU_MUX_A_SEL(ALU_MUX_A_SEL),
-       .ALU_MUX_B_SEL(ALU_MUX_B_SEL)
+        .MA_MUX_SEL(MA_MUX_SEL),
+        .MD_MUX_SEL(MD_MUX_SEL),
+        .AC_MUX_SEL(AC_MUX_SEL),
+        .ALU_MUX_A_SEL(ALU_MUX_A_SEL),
+        .ALU_MUX_B_SEL(ALU_MUX_B_SEL),
+        .en_mem_write(en_mem_write)
     );
     
 endmodule

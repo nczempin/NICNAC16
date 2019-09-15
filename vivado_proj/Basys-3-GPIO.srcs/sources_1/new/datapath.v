@@ -8,7 +8,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
          I_NOP, I_JMP, I_LDA, I_STA, I_ADD,
          EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
          DO_JUMP,
-         MA_MUX_SEL,AC_MUX_SEL,ALU_MUX_A_SEL,ALU_MUX_B_SEL
+         MA_MUX_SEL, MD_MUX_SEL, AC_MUX_SEL, ALU_MUX_A_SEL, ALU_MUX_B_SEL
          );
          
     input clk;
@@ -44,9 +44,10 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     output I_STA;
     output I_ADD;
     
- output  [15:0]pc_out;
+    output  [15:0]pc_out;
  
-     input MA_MUX_SEL;
+    input MA_MUX_SEL;
+    input MD_MUX_SEL;
     input AC_MUX_SEL;
     input ALU_MUX_A_SEL;
     input ALU_MUX_B_SEL;
@@ -58,12 +59,13 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     wire [15:0] AC_IN;
     
     wire [15:0] MA_MUX_OUT;
+    wire [15:0] MD_MUX_OUT;
     wire [15:0] AC_MUX_OUT;
     
    // wire [15:0] mma; //M[MA]
     
-    assign MA_IN= MA_MUX_OUT[11:0];
-    assign MD_IN = mem_read; // TODO mux
+    assign MA_IN = MA_MUX_OUT[11:0];
+    assign MD_IN = MD_MUX_OUT;
     
     assign AC_IN = AC_MUX_OUT;//md_out; // TODO: mux with alu_out
     
@@ -99,7 +101,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
        .CLR(1'b0),
        .Q(ma_out)
     );
-      // mux16_2 mdmux( pc_out, md_out, MA_MUX_SEL, MA_MUX_OUT);
+    mux16_2 mdmux( mem_read, ac_out, MD_MUX_SEL, MD_MUX_OUT);
     
     FD16CE MD(
        .D(MD_IN),
@@ -110,6 +112,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     );
     
      mux16_2 acmux( md_out, alu_out, AC_MUX_SEL, AC_MUX_OUT);
+     
     FD16CE AC(
        .D(AC_IN),
        .CE(EN_AC),

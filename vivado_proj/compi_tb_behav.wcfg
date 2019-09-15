@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="58513931fs"></ZoomStartTime>
-      <ZoomEndTime time="348297214fs"></ZoomEndTime>
-      <Cursor1Time time="190000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="285385053fs"></ZoomEndTime>
+      <Cursor1Time time="110998000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="231"></NameColumnWidth>
-      <ValueColumnWidth column_width="106"></ValueColumnWidth>
+      <ValueColumnWidth column_width="86"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="48" />
+   <WVObjectSize size="59" />
    <wvobject fp_name="/compi_tb/c/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -31,6 +31,46 @@
    <wvobject fp_name="/compi_tb/c/mem_read" type="array">
       <obj_property name="ElementShortName">mem_read[15:0]</obj_property>
       <obj_property name="ObjectShortName">mem_read[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mem_write" type="array">
+      <obj_property name="ElementShortName">mem_write[15:0]</obj_property>
+      <obj_property name="ObjectShortName">mem_write[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/romram/ram/ram[8]" type="array">
+      <obj_property name="ElementShortName">[8][15:0]</obj_property>
+      <obj_property name="ObjectShortName">[8][15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/romram/ram/ADDRESS" type="array">
+      <obj_property name="ElementShortName">ADDRESS[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ADDRESS[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/romram/ram/IN" type="array">
+      <obj_property name="ElementShortName">IN[15:0]</obj_property>
+      <obj_property name="ObjectShortName">IN[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/romram/ram/WRITE" type="logic">
+      <obj_property name="ElementShortName">WRITE</obj_property>
+      <obj_property name="ObjectShortName">WRITE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/romram/ram/CLK" type="logic">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/romram/ram/OUT" type="array">
+      <obj_property name="ElementShortName">OUT[15:0]</obj_property>
+      <obj_property name="ObjectShortName">OUT[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/romram/ram/ADDRESS" type="array">
+      <obj_property name="ElementShortName">ADDRESS[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ADDRESS[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/romram/ram/IN" type="array">
+      <obj_property name="ElementShortName">IN[15:0]</obj_property>
+      <obj_property name="ObjectShortName">IN[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/romram/ram/WRITE" type="logic">
+      <obj_property name="ElementShortName">WRITE</obj_property>
+      <obj_property name="ObjectShortName">WRITE</obj_property>
    </wvobject>
    <wvobject fp_name="/compi_tb/c/mem_address" type="array">
       <obj_property name="ElementShortName">mem_address[15:0]</obj_property>
@@ -155,6 +195,10 @@
    <wvobject fp_name="/compi_tb/c/mycpu/cu/CLRWRITE" type="logic">
       <obj_property name="ElementShortName">CLRWRITE</obj_property>
       <obj_property name="ObjectShortName">CLRWRITE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/WRITE" type="logic">
+      <obj_property name="ElementShortName">WRITE</obj_property>
+      <obj_property name="ObjectShortName">WRITE</obj_property>
    </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/do_jump" type="logic">
       <obj_property name="ElementShortName">do_jump</obj_property>

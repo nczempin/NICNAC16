@@ -6,7 +6,8 @@ module control_unit(clk, reset, fetch, execute,
                     incr_pc, do_jump,
                      EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
                      ir_out, ir_in,
-                     MA_MUX_SEL, AC_MUX_SEL, ALU_MUX_A_SEL, ALU_MUX_B_SEL
+                     MA_MUX_SEL, MD_MUX_SEL, AC_MUX_SEL, ALU_MUX_A_SEL, ALU_MUX_B_SEL,
+                     en_mem_write
                       );
     input clk;
     input reset;
@@ -33,16 +34,20 @@ module control_unit(clk, reset, fetch, execute,
     output EN_AC;
     
     output MA_MUX_SEL;
+    output MD_MUX_SEL;
     output AC_MUX_SEL;
     output ALU_MUX_A_SEL;
     output ALU_MUX_B_SEL;
+    
+    output en_mem_write;
     
     wire SETWRITE;
     assign SETWRITE = execute & t0 & I_STA;
     wire CLRWRITE;
     assign CLRWRITE = execute & t2 & I_STA;
+   wire WRITE;
    
-    wire WRITE;
+   assign en_mem_write =WRITE;
     jk_ff m_w_ff (
        .clk( clk),
        .j(SETWRITE),
@@ -79,6 +84,7 @@ module control_unit(clk, reset, fetch, execute,
     assign EN_MD = fetch & (t0 | t2)
                     |execute & I_LDA & t1
                     |execute & I_ADD & t1
+                    |execute & I_STA & t0
                     ;
     
     assign EN_AC = execute & I_LDA & t2
@@ -103,8 +109,9 @@ module control_unit(clk, reset, fetch, execute,
 
    
     assign MA_MUX_SEL = fetch & t3; //TODO document as to why
+    assign MD_MUX_SEL = execute & I_STA & t0; //TODO document as to why
     assign AC_MUX_SEL = execute & I_ADD & t2; //TODO document as to why
 
-    assign ALU_MUX_A_SEL =incr_pc;
-    assign ALU_MUX_B_SEL =incr_pc;
+    assign ALU_MUX_A_SEL = incr_pc; //TODO document as to why
+    assign ALU_MUX_B_SEL = incr_pc; //TODO document as to why
 endmodule
