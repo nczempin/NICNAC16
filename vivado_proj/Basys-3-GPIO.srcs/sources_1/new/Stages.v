@@ -27,23 +27,23 @@ module Stages(CLK, RESET, NEW_CYCLE, FETCH, EXECUTE);
     output FETCH;
     output EXECUTE;
     
-    FDPE #(
-    .INIT(1'b1) 
+    FDRE #(
+    .INIT(1'b0) 
     )
-    ft (
+    ex (
        .D(FETCH),
        .C( CLK),
-       .PRE(RESET),
+       .R(RESET),
        .CE(NEW_CYCLE),
        .Q(EXECUTE)   
        );
-   FDRE #(
-      .INIT(1'b0) 
-   ) ex (
+   FDPE #(
+      .INIT(1'b1) 
+   ) ft (
       .Q(FETCH),      // 1-bit Data output
       .C(CLK),      // 1-bit Clock input
       .CE(NEW_CYCLE),    // 1-bit Clock enable input
-      .R(RESET),  // 1-bit Asynchronous clear input
+      .PRE(RESET),  // 1-bit Asynchronous clear input
       .D(EXECUTE)       // 1-bit Data input
    );
    
