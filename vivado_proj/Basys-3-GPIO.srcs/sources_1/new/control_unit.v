@@ -67,8 +67,8 @@ module control_unit(clk, reset, fetch, execute,
     assign I_LDA = D[4];
     assign I_STA = D[5];
     assign I_ADD = D[6];
-    assign I_BAN = D[7];
-    assign I_BAZ = D[8];
+    assign I_BAZ = D[7];
+    assign I_BAN = D[8];
     wire instr_jump;
     
     wire icynext;

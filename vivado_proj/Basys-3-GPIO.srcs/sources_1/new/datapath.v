@@ -133,5 +133,11 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     
   ADSU16 ALU(ALU_IN_A, ALU_IN_B, CO, alu_out);
     
+  wire AZ;
+  wire AN;
   
+  ISNEG16 test_an(
+   .I(ac_out),
+   .O(AN)
+  );
 endmodule
