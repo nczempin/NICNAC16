@@ -2,7 +2,7 @@
 
 module control_unit(clk, reset, fetch, execute, 
                     t0, t1, t2, t3,
-                    I_JMP, I_NOP, I_LDA, I_STA, I_ADD, 
+                    I_JMP, I_NOP, I_BL, I_RET, I_LDA, I_STA, I_ADD, I_BAN, I_BAZ, 
                     incr_pc, do_jump,
                      EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
                      ir_out, ir_in,
@@ -22,6 +22,10 @@ module control_unit(clk, reset, fetch, execute,
     output I_LDA;
     output I_STA;
     output I_ADD;
+    output I_BL;
+    output I_RET;
+    output I_BAN;
+    output I_BAZ;
     
     
     output incr_pc;
@@ -58,9 +62,13 @@ module control_unit(clk, reset, fetch, execute,
     wire [15:0] D;
     assign I_NOP = D[0];
     assign I_JMP = D[1];
+    assign I_BL = D[2];
+    assign I_RET = D[3];
     assign I_LDA = D[4];
     assign I_STA = D[5];
     assign I_ADD = D[6];
+    assign I_BAN = D[7];
+    assign I_BAZ = D[8];
     wire instr_jump;
     
     wire icynext;
