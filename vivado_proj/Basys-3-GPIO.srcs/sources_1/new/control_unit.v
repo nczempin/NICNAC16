@@ -1,13 +1,12 @@
 `timescale 1ns / 1ps
 
-
 module control_unit(clk, reset, fetch, execute, 
                     t0, t1, t2, t3,
-                    I_JMP, I_NOP, I_LDA, I_STA,I_ADD, 
+                    I_JMP, I_NOP, I_LDA, I_STA, I_ADD, 
                     incr_pc, do_jump,
                      EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
                      ir_out, ir_in,
-                     MA_MUX_SEL,AC_MUX_SEL,ALU_MUX_A_SEL,ALU_MUX_B_SEL
+                     MA_MUX_SEL, AC_MUX_SEL, ALU_MUX_A_SEL, ALU_MUX_B_SEL
                       );
     input clk;
     input reset;
@@ -38,6 +37,18 @@ module control_unit(clk, reset, fetch, execute,
     output ALU_MUX_A_SEL;
     output ALU_MUX_B_SEL;
     
+    wire SETWRITE;
+    assign SETWRITE = execute & t0 & I_STA;
+    wire CLRWRITE;
+    assign CLRWRITE = execute & t2 & I_STA;
+   
+    wire WRITE;
+    jk_ff m_w_ff (
+       .clk( clk),
+       .j(SETWRITE),
+       .k(CLRWRITE),
+       .q(WRITE)
+       );
     
     wire [15:0] D;
     assign I_NOP = D[0];
@@ -50,20 +61,22 @@ module control_unit(clk, reset, fetch, execute,
     wire icynext;
     assign	icynext =
        reset 
-       |execute & I_JMP &t0
+       |execute & I_JMP & t0
        |execute & I_NOP & t0
        |execute & I_LDA & t2
        |execute & I_ADD & t2
+       |execute & I_STA & t2
+       
        ;
 
     wire new_cycle;
     
     assign instr_jump = I_JMP; // TODO or BL or taken branches
     assign EN_IR = t3 & fetch;
-    assign EN_PC = incr_pc |do_jump|reset; 
+    assign EN_PC = incr_pc | do_jump | reset; 
     assign EN_MA = (t3 & fetch )|
-                   (t0&fetch);
-    assign EN_MD = fetch & (t0 |t2)
+                   (t0 & fetch);
+    assign EN_MD = fetch & (t0 | t2)
                     |execute & I_LDA & t1
                     |execute & I_ADD & t1
                     ;
@@ -71,7 +84,7 @@ module control_unit(clk, reset, fetch, execute,
     assign EN_AC = execute & I_LDA & t2
                    |execute & I_ADD & t2;
     assign do_jump = execute & t0 & instr_jump;
-    assign incr_pc =fetch&t2;
+    assign incr_pc = fetch & t2;
     
     system_timing st (
         .reset(reset),
@@ -87,11 +100,11 @@ module control_unit(clk, reset, fetch, execute,
     );
    REG4CE IR(ir_out, clk, EN_IR, reset, ir_in);
    Decoder4_16Bus instruction_decoder(D, ir_out, ~reset);
-//TODO these need to move to the CU
+
    
     assign MA_MUX_SEL = fetch & t3; //TODO document as to why
     assign AC_MUX_SEL = execute & I_ADD & t2; //TODO document as to why
-    //TODO: CU
+
     assign ALU_MUX_A_SEL =incr_pc;
     assign ALU_MUX_B_SEL =incr_pc;
 endmodule

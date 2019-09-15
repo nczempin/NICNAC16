@@ -26,12 +26,14 @@ module ROM(
     );
     always @(address)
     case (address)
-    8'd0: data = 16'h410f; //LDA (15)
-    8'd1: data = 16'h6109; //ADD (9)
-    8'd2: data = 16'h0100; //NOP
-    8'd3: data = 16'h1101; // JMP 0x101
-    8'd9: data = 16'h0007; // .dw 7
-    8'd15: data = 16'ha5c3; // .dw 7
+    // ROM starts at $0100 at the moment; within it the addresses cut off the 01 (MSB)
+    8'h00: data = 16'h410f; // LDA ($0115)
+    8'h01: data = 16'h6109; // ADD ($0109)
+    8'h02: data = 16'h5108; // STA ($0108) ;store result at address you find in $108 (which is 7, in RAM)
+    8'h03: data = 16'h1101; // JMP $0101
+    8'h08: data = 16'h0007; // .dw 7
+    8'h09: data = 16'h000c; // .dw $0c
+    8'h0f: data = 16'ha5c3; // .dw $a5c3
     
     default: data = 16'h05c5; //NOP with tag
     endcase

@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="1059021923fs"></ZoomEndTime>
-      <Cursor1Time time="45511000fs"></Cursor1Time>
+      <ZoomStartTime time="58513931fs"></ZoomStartTime>
+      <ZoomEndTime time="348297214fs"></ZoomEndTime>
+      <Cursor1Time time="190000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="231"></NameColumnWidth>
-      <ValueColumnWidth column_width="114"></ValueColumnWidth>
+      <ValueColumnWidth column_width="106"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="45" />
+   <WVObjectSize size="48" />
    <wvobject fp_name="/compi_tb/c/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -55,6 +55,10 @@
    <wvobject fp_name="/compi_tb/c/mycpu/execute" type="logic">
       <obj_property name="ElementShortName">execute</obj_property>
       <obj_property name="ObjectShortName">execute</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/st/icynext" type="logic">
+      <obj_property name="ElementShortName">icynext</obj_property>
+      <obj_property name="ObjectShortName">icynext</obj_property>
    </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/pc_out" type="array">
       <obj_property name="ElementShortName">pc_out[15:0]</obj_property>
@@ -143,6 +147,14 @@
    <wvobject fp_name="/compi_tb/c/mycpu/EN_AC" type="logic">
       <obj_property name="ElementShortName">EN_AC</obj_property>
       <obj_property name="ObjectShortName">EN_AC</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/SETWRITE" type="logic">
+      <obj_property name="ElementShortName">SETWRITE</obj_property>
+      <obj_property name="ObjectShortName">SETWRITE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/CLRWRITE" type="logic">
+      <obj_property name="ElementShortName">CLRWRITE</obj_property>
+      <obj_property name="ObjectShortName">CLRWRITE</obj_property>
    </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/do_jump" type="logic">
       <obj_property name="ElementShortName">do_jump</obj_property>
