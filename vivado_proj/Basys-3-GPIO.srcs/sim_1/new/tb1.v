@@ -1,4 +1,4 @@
-`timescale 10us / 10ns
+`timescale 10ns / 1ps
 
 module testbench_dp_cu ();
 reg clk, reset;
@@ -21,8 +21,12 @@ wire EN_IR, EN_PC, EN_MA, EN_MD, EN_AC;
 
 wire do_jump;
 
-wire [15:0] MEMORY_READ;
-
+wire [15:0] mem_read;
+wire MA_MUX_SEL;
+    wire AC_MUX_SEL;
+    wire ALU_MUX_A_SEL;
+    wire ALU_MUX_B_SEL;
+    
 initial begin
 clk=1;
 //enable = 0;
@@ -39,67 +43,80 @@ clk=1;
 	
 
 end
-always #1 clk =~clk;
+always #0.5 clk =~clk;
 
 //always #700 enable =~ enable; 
 
 
-ROM rom(ma_out[7:0], MEMORY_READ);
-
+Memory romram(
+    .mem_address(ma_out), 
+		.mem_write(16'b0), 
+		.en_mem_write(1'b0), 
+		.clk(clk), 
+		.mem_read(mem_read)
+	);
 datapath dp (
-   .clk(clk),
-   .reset(reset),
-   .fetch(fetch),
-   .execute(execute),
-   .incr_pc(incr_pc),
-   .PC_IN(PC_IN),
-   .t0(t0),
-   .t1(t1),
-   .t2(t2),
-   .t3(t3),
-   .pc_out(pc_out),
-    .ma_out(ma_out),
-   .md_out(md_out),
-   .ac_out(ac_out),
-   .alu_out(alu_out),
-   .MEMORY_READ(MEMORY_READ),
-   .I_NOP(I_NOP),
-   .I_JMP(I_JMP),
-   .I_LDA(I_LDA),
-   .I_STA(I_STA),
-   .I_ADD(I_ADD),
-   .EN_IR(EN_IR),
-   .EN_PC(EN_PC),
-   .EN_MA(EN_MA),
-   .EN_MD(EN_MD),
-   .EN_AC(EN_AC),
-   .DO_JUMP(do_jump)
-);
- 
-
-control_unit cu( 
-    .clk(clk),
-    .reset(reset),
-    .fetch(fetch),
-    .execute(execute),
-    .t0(t0),
-    .t1(t1),
-    .t2(t2),
-    .t3(t3),
-    .I_JMP(I_JMP),
-    .I_NOP(I_NOP),
-    .I_LDA(I_LDA),
-   .I_STA(I_STA),
-   .I_ADD(I_ADD),
-    .incr_pc(incr_pc),
-    .do_jump(do_jump),
-    .EN_IR(EN_IR),
-    .EN_PC(EN_PC),
-    .EN_MA(EN_MA),
-    .EN_MD(EN_MD),
-    .EN_AC(EN_AC)
-
-
-);
+       .clk(clk),
+       .reset(reset),
+       .fetch(fetch),
+       .execute(execute),
+       .incr_pc(incr_pc),
+       .PC_IN(PC_IN),
+       .t0(t0),
+       .t1(t1),
+       .t2(t2),
+       .t3(t3),
+       .pc_out(pc_out),
+       .ma_out(ma_out),
+       .md_out(md_out),
+       .ac_out(ac_out),
+       .alu_out(alu_out),
+       .mem_read(mem_read),
+       .I_NOP(I_NOP),
+       .I_JMP(I_JMP),
+       .I_LDA(I_LDA),
+       .I_STA(I_STA),
+       .I_ADD(I_ADD),
+       .EN_IR(EN_IR),
+       .EN_PC(EN_PC),
+       .EN_MA(EN_MA),
+       .EN_MD(EN_MD),
+       .EN_AC(EN_AC),
+       .DO_JUMP(do_jump),
+       .MA_MUX_SEL(MA_MUX_SEL),
+       .AC_MUX_SEL(AC_MUX_SEL),
+       .ALU_MUX_A_SEL(ALU_MUX_A_SEL),
+       .ALU_MUX_B_SEL(ALU_MUX_B_SEL)
+    );
+     
+    
+    control_unit cu( 
+        .clk(clk),
+        .reset(reset),
+        .fetch(fetch),
+        .execute(execute),
+        .t0(t0),
+        .t1(t1),
+        .t2(t2),
+        .t3(t3),
+        .I_JMP(I_JMP),
+        .I_NOP(I_NOP),
+        .I_LDA(I_LDA),
+        .I_STA(I_STA),
+        .I_ADD(I_ADD),
+        .incr_pc(incr_pc),
+        .do_jump(do_jump),
+        .EN_IR(EN_IR),
+        .EN_PC(EN_PC),
+        .EN_MA(EN_MA),
+        .EN_MD(EN_MD),
+        .EN_AC(EN_AC),
+        .ir_out(ir_out),
+        .ir_in(md_out[15:12]),
+         .MA_MUX_SEL(MA_MUX_SEL),
+       .AC_MUX_SEL(AC_MUX_SEL),
+       .ALU_MUX_A_SEL(ALU_MUX_A_SEL),
+       .ALU_MUX_B_SEL(ALU_MUX_B_SEL)
+    );
     
 endmodule

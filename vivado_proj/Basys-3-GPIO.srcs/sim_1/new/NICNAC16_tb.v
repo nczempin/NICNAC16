@@ -1,4 +1,4 @@
-`timescale 10ns / 10ps
+`timescale 1ns / 1ps
 
 module NICNAC16_tb ();
 reg clk, reset;
@@ -23,8 +23,9 @@ reg clk, reset;
 
 //wire [15:0] MEMORY_READ;
 
-wire SW;
-wire BTN;
+wire [15:0] SW;
+wire [4:0] BTN;
+assign BTN = {reset,4'b0000};
 wire LED;
 wire SSEG_CA;
 wire SSEG_AN;
@@ -53,7 +54,7 @@ clk=1;
 	
 
 end
-always #1 clk =~clk;
+always #0.5 clk =~clk;
 
 //always #700 enable =~ enable; 
 

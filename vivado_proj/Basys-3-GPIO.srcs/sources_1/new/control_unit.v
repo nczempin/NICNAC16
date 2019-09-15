@@ -33,7 +33,7 @@ module control_unit(clk, reset, fetch, execute,
     output EN_MD;
     output EN_AC;
     
-     output MA_MUX_SEL;
+    output MA_MUX_SEL;
     output AC_MUX_SEL;
     output ALU_MUX_A_SEL;
     output ALU_MUX_B_SEL;
@@ -60,7 +60,7 @@ module control_unit(clk, reset, fetch, execute,
     
     assign instr_jump = I_JMP; // TODO or BL or taken branches
     assign EN_IR = t3 & fetch;
-    assign EN_PC = incr_pc |do_jump; 
+    assign EN_PC = incr_pc |do_jump|reset; 
     assign EN_MA = (t3 & fetch )|
                    (t0&fetch);
     assign EN_MD = fetch & (t0 |t2)

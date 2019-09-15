@@ -26,10 +26,10 @@ module ROM(
     );
     always @(address)
     case (address)
-    8'd0: data = 16'h400f; //LDA (15)
-    8'd1: data = 16'h6009; //ADD (9)
-    8'd2: data = 16'h0000; //NOP
-    8'd3: data = 16'h1001; // JMP 1
+    8'd0: data = 16'h410f; //LDA (15)
+    8'd1: data = 16'h6109; //ADD (9)
+    8'd2: data = 16'h0100; //NOP
+    8'd3: data = 16'h1101; // JMP 0x101
     8'd9: data = 16'h0007; // .dw 7
     8'd15: data = 16'ha5c3; // .dw 7
     
