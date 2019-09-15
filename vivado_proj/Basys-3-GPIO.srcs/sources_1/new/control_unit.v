@@ -7,7 +7,8 @@ module control_unit(clk, reset, fetch, execute,
                      EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
                      ir_out, ir_in,
                      MA_MUX_SEL, MD_MUX_SEL, AC_MUX_SEL, ALU_MUX_A_SEL, ALU_MUX_B_SEL,
-                     en_mem_write
+                     en_mem_write,
+                     AN, AZ
                       );
     input clk;
     input reset;
@@ -45,6 +46,9 @@ module control_unit(clk, reset, fetch, execute,
     
     output en_mem_write;
     
+    input AN;
+    input AZ;
+    
     wire SETWRITE;
     assign SETWRITE = execute & t0 & I_STA;
     wire CLRWRITE;
@@ -75,6 +79,7 @@ module control_unit(clk, reset, fetch, execute,
     assign	icynext =
        reset 
        |execute & I_JMP & t0
+       |execute & I_BAN & t0
        |execute & I_NOP & t0
        |execute & I_LDA & t2
        |execute & I_ADD & t2
@@ -84,9 +89,10 @@ module control_unit(clk, reset, fetch, execute,
 
     wire new_cycle;
     
-    assign instr_jump = I_JMP; // TODO or BL or taken branches
+    assign instr_jump = I_JMP | (I_BAN & AN) | (I_BAZ & AZ); // TODO or BL or taken branches
     assign EN_IR = t3 & fetch;
-    assign EN_PC = incr_pc | do_jump | reset; 
+    assign do_jump = execute & t0 & instr_jump;
+  assign EN_PC = incr_pc | do_jump | reset; 
     assign EN_MA = (t3 & fetch )|
                    (t0 & fetch);
     assign EN_MD = fetch & (t0 | t2)
@@ -97,8 +103,7 @@ module control_unit(clk, reset, fetch, execute,
     
     assign EN_AC = execute & I_LDA & t2
                    |execute & I_ADD & t2;
-    assign do_jump = execute & t0 & instr_jump;
-    assign incr_pc = fetch & t2;
+      assign incr_pc = fetch & t2;
     
     system_timing st (
         .reset(reset),

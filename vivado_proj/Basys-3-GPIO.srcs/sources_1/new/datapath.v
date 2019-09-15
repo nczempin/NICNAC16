@@ -8,7 +8,8 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
          I_JMP, I_NOP, I_BL, I_RET, I_LDA, I_STA, I_ADD, I_BAN, I_BAZ, 
          EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
          DO_JUMP,
-         MA_MUX_SEL, MD_MUX_SEL, AC_MUX_SEL, ALU_MUX_A_SEL, ALU_MUX_B_SEL
+         MA_MUX_SEL, MD_MUX_SEL, AC_MUX_SEL, ALU_MUX_A_SEL, ALU_MUX_B_SEL,
+         AN, AZ
          );
          
     input clk;
@@ -56,7 +57,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     input ALU_MUX_A_SEL;
     input ALU_MUX_B_SEL;
 
- 
+    output AN, AZ;
  
     wire [15:0] MA_IN;
     wire [15:0] MD_IN;
@@ -132,9 +133,8 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     mux16_2 alumux_b ( md_out, 16'b1, ALU_MUX_B_SEL, ALU_IN_B);
     
   ADSU16 ALU(ALU_IN_A, ALU_IN_B, CO, alu_out);
-    
-  wire AZ;
-  wire AN;
+  
+  
   
   ISNEG16 test_an(
    .I(ac_out),

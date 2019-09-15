@@ -61,6 +61,8 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
     wire ALU_MUX_A_SEL;
     wire ALU_MUX_B_SEL;
     
+    wire AZ, AN;
+    
     assign led_out[3:0] = pc_out[3:0];
     assign led_out[7:4] = ac_out[3:0];
     assign led_out[11:8] = md_out[3:0];
@@ -106,7 +108,9 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
        .MD_MUX_SEL(MD_MUX_SEL),
        .AC_MUX_SEL(AC_MUX_SEL),
        .ALU_MUX_A_SEL(ALU_MUX_A_SEL),
-       .ALU_MUX_B_SEL(ALU_MUX_B_SEL)
+       .ALU_MUX_B_SEL(ALU_MUX_B_SEL),
+       .AN(AN),
+       .AZ(AZ)
     );
      
     
@@ -142,7 +146,9 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
         .AC_MUX_SEL(AC_MUX_SEL),
         .ALU_MUX_A_SEL(ALU_MUX_A_SEL),
         .ALU_MUX_B_SEL(ALU_MUX_B_SEL),
-        .en_mem_write(en_mem_write)
+        .en_mem_write(en_mem_write),
+        .AN(AN),
+        .AZ(AZ)
     );
     
 endmodule

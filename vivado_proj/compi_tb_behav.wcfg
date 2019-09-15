@@ -12,12 +12,12 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="745499182fs"></ZoomEndTime>
-      <Cursor1Time time="900000000fs"></Cursor1Time>
+      <ZoomEndTime time="493474715fs"></ZoomEndTime>
+      <Cursor1Time time="80000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="231"></NameColumnWidth>
-      <ValueColumnWidth column_width="78"></ValueColumnWidth>
+      <ValueColumnWidth column_width="74"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="52" />
    <wvobject fp_name="/compi_tb/c/clk" type="logic">
@@ -51,14 +51,6 @@
    <wvobject fp_name="/compi_tb/c/status" type="array">
       <obj_property name="ElementShortName">status[15:0]</obj_property>
       <obj_property name="ObjectShortName">status[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/clk" type="logic">
-      <obj_property name="ElementShortName">clk</obj_property>
-      <obj_property name="ObjectShortName">clk</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/reset" type="logic">
-      <obj_property name="ElementShortName">reset</obj_property>
-      <obj_property name="ObjectShortName">reset</obj_property>
    </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/led_out" type="array">
       <obj_property name="ElementShortName">led_out[15:0]</obj_property>
@@ -172,6 +164,10 @@
       <obj_property name="ElementShortName">I_BAN</obj_property>
       <obj_property name="ObjectShortName">I_BAN</obj_property>
    </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/dp/AN" type="logic">
+      <obj_property name="ElementShortName">AN</obj_property>
+      <obj_property name="ObjectShortName">AN</obj_property>
+   </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/I_BAZ" type="logic">
       <obj_property name="ElementShortName">I_BAZ</obj_property>
       <obj_property name="ObjectShortName">I_BAZ</obj_property>
@@ -227,5 +223,9 @@
    <wvobject fp_name="/compi_tb/c/mycpu/dp/test_an/I" type="array">
       <obj_property name="ElementShortName">I[15:0]</obj_property>
       <obj_property name="ObjectShortName">I[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/instr_jump" type="logic">
+      <obj_property name="ElementShortName">instr_jump</obj_property>
+      <obj_property name="ObjectShortName">instr_jump</obj_property>
    </wvobject>
 </wave_config>
