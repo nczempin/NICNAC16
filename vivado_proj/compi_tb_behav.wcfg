@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="684357512fs"></ZoomEndTime>
+      <ZoomEndTime time="956053132fs"></ZoomEndTime>
       <Cursor1Time time="500000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="142"></NameColumnWidth>
+      <NameColumnWidth column_width="134"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="51" />
+   <WVObjectSize size="57" />
    <wvobject fp_name="/compi_tb/c/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -103,7 +103,6 @@
    <wvobject fp_name="/compi_tb/c/mycpu/cu/ir_in" type="array">
       <obj_property name="ElementShortName">ir_in[4:0]</obj_property>
       <obj_property name="ObjectShortName">ir_in[4:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/cu/i_decoder_in" type="array">
       <obj_property name="ElementShortName">i_decoder_in[3:0]</obj_property>
@@ -114,7 +113,6 @@
       <obj_property name="ElementShortName">ir_out[3:0]</obj_property>
       <obj_property name="ObjectShortName">ir_out[3:0]</obj_property>
       <obj_property name="label">ir_out[4:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/cu/IO" type="logic">
       <obj_property name="ElementShortName">IO</obj_property>
@@ -127,6 +125,30 @@
    <wvobject fp_name="/compi_tb/c/mycpu/cu/OUTPUT" type="logic">
       <obj_property name="ElementShortName">OUTPUT</obj_property>
       <obj_property name="ObjectShortName">OUTPUT</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/SETOUTP" type="logic">
+      <obj_property name="ElementShortName">SETOUTP</obj_property>
+      <obj_property name="ObjectShortName">SETOUTP</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/CLROUTP" type="logic">
+      <obj_property name="ElementShortName">CLROUTP</obj_property>
+      <obj_property name="ObjectShortName">CLROUTP</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/SETINP" type="logic">
+      <obj_property name="ElementShortName">SETINP</obj_property>
+      <obj_property name="ObjectShortName">SETINP</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/CLRINP" type="logic">
+      <obj_property name="ElementShortName">CLRINP</obj_property>
+      <obj_property name="ObjectShortName">CLRINP</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/OUTP" type="logic">
+      <obj_property name="ElementShortName">OUTP</obj_property>
+      <obj_property name="ObjectShortName">OUTP</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/INP" type="logic">
+      <obj_property name="ElementShortName">INP</obj_property>
+      <obj_property name="ObjectShortName">INP</obj_property>
    </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/EN_IR" type="logic">
       <obj_property name="ElementShortName">EN_IR</obj_property>

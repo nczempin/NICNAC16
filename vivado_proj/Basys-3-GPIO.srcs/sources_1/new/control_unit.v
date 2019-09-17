@@ -60,6 +60,28 @@ module control_unit(clk, reset, fetch, execute,
     assign INPUT = I_DIO & IO & RUN;
     assign OUTPUT = I_DIO & ~IO & RUN;
     
+    wire SETOUTP;
+    assign SETOUTP = execute & I_DIO & OUTPUT & t0;
+    wire SETINP;
+    assign SETINP = execute & I_DIO & INPUT & t0;
+    
+    wire OUTP, INP;
+    wire CLROUTP, CLRINP;
+    
+    assign CLROUTP = execute & I_DIO & t3;
+    assign CLRINP = execute & I_DIO & t3;
+    jk_ff out_ff (
+       .clk( clk),
+       .j(SETOUTP),
+       .k(CLROUTP),
+       .q(OUTP)
+       );
+    jk_ff inp_ff (
+       .clk( clk),
+       .j(SETINP),
+       .k(CLRINP),
+       .q(INP)
+       );
     wire SETWRITE;
     assign SETWRITE = execute & t0 & I_STA;
     wire CLRWRITE;

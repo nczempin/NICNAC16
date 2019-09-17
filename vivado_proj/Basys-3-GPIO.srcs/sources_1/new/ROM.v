@@ -8,8 +8,8 @@ module ROM(
     always @(address)
     case (address)
     // ROM starts at $0100 at the moment; within it the addresses cut off the 01 (MSB)
-     8'h00: data = 16'hf000; // DIO $000
-     8'h01: data = 16'h4113; // LDA ($0113)
+     8'h00: data = 16'hf000; // DIO (out) $000
+     8'h01: data = 16'hf800; // DIO (in) $000
      8'h02: data = 16'h6114; // ADD ($0114)
      8'h03: data = 16'h8102; // BAN ($0102)
      8'h04: data = 16'h0000; // NOP
