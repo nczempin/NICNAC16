@@ -90,9 +90,9 @@ module control_unit(clk, reset, fetch, execute,
     wire new_cycle;
     
     assign instr_jump = I_JMP | (I_BAN & AN) | (I_BAZ & AZ); // TODO or BL or taken branches
-    assign EN_IR = t3 & fetch;
-    assign do_jump = execute & t0 & instr_jump;
-  assign EN_PC = incr_pc | do_jump | reset; 
+ assign EN_IR = (t3 & fetch) ;
+     assign do_jump = execute & t0 & instr_jump;
+    assign EN_PC = incr_pc | do_jump | reset; 
     assign EN_MA = (t3 & fetch )|
                    (t0 & fetch);
     assign EN_MD = fetch & (t0 | t2)

@@ -15,7 +15,7 @@ module compi(
   wire [15:0] mem_address;
 
  wire [15:0] led_out;
- wire [15:0] status;
+ wire  status;
     dunc16 mycpu (
         .clk(clk), 
         .reset(reset),

@@ -1,25 +1,33 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 08/13/2019 04:42:35 PM
-// Design Name: 
-// Module Name: Stages
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 
+module two_bit_ring_counter (
+      input clock,
+      input reset,
+      input enable,
+      output [1:0] q
+    );
+ 
+  reg[1:0] a;
+ 
+    always @(posedge clock)
+      if (reset)
+        a = 4'b00;
+ 
+      else
+      if (enable)
+          case (a)
+           2'b00: a <= 2'b01; // happens only on reset
+           2'b01: a <= 2'b10;
+           2'b10: a <= 2'b01;
+           2'b11: a <= 2'b01; // technically, shouldn't happen
+        endcase
+        // else a=a
+ 
+    assign q = a;
+ 
+  endmodule
+ 
 module Stages(CLK, RESET, NEW_CYCLE, FETCH, EXECUTE);
     input CLK;
     input RESET;
@@ -27,26 +35,11 @@ module Stages(CLK, RESET, NEW_CYCLE, FETCH, EXECUTE);
     output FETCH;
     output EXECUTE;
     
-    FDRE #(
-    .INIT(1'b0) 
-    )
-    ex (
-       .D(FETCH),
-       .C( CLK),
-       .R(RESET),
-       .CE(NEW_CYCLE),
-       .Q(EXECUTE)   
-       );
-   FDPE #(
-      .INIT(1'b1) 
-   ) ft (
-      .Q(FETCH),      // 1-bit Data output
-      .C(CLK),      // 1-bit Clock input
-      .CE(NEW_CYCLE),    // 1-bit Clock enable input
-      .PRE(RESET),  // 1-bit Asynchronous clear input
-      .D(EXECUTE)       // 1-bit Data input
-   );
-   
-   
- 
+    two_bit_ring_counter tbrc (
+    .q({EXECUTE, FETCH}),
+    .clock(CLK),
+    .reset(RESET),
+    .enable(NEW_CYCLE)
+    );
+    
 endmodule

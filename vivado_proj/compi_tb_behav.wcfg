@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="493474715fs"></ZoomEndTime>
-      <Cursor1Time time="80000000fs"></Cursor1Time>
+      <ZoomEndTime time="1190118156fs"></ZoomEndTime>
+      <Cursor1Time time="110000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="231"></NameColumnWidth>
-      <ValueColumnWidth column_width="74"></ValueColumnWidth>
+      <NameColumnWidth column_width="158"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="52" />
+   <WVObjectSize size="46" />
    <wvobject fp_name="/compi_tb/c/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -27,10 +27,6 @@
    <wvobject fp_name="/compi_tb/c/reset" type="logic">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/en_mem_write" type="logic">
-      <obj_property name="ElementShortName">en_mem_write</obj_property>
-      <obj_property name="ObjectShortName">en_mem_write</obj_property>
    </wvobject>
    <wvobject fp_name="/compi_tb/c/mem_read" type="array">
       <obj_property name="ElementShortName">mem_read[15:0]</obj_property>
@@ -48,29 +44,9 @@
       <obj_property name="ElementShortName">led_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">led_out[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/compi_tb/c/status" type="array">
-      <obj_property name="ElementShortName">status[15:0]</obj_property>
-      <obj_property name="ObjectShortName">status[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/led_out" type="array">
-      <obj_property name="ElementShortName">led_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">led_out[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/status" type="logic">
+   <wvobject fp_name="/compi_tb/c/status" type="logic">
       <obj_property name="ElementShortName">status</obj_property>
       <obj_property name="ObjectShortName">status</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/mem_address" type="array">
-      <obj_property name="ElementShortName">mem_address[15:0]</obj_property>
-      <obj_property name="ObjectShortName">mem_address[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/mem_read" type="array">
-      <obj_property name="ElementShortName">mem_read[15:0]</obj_property>
-      <obj_property name="ObjectShortName">mem_read[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/mem_write" type="array">
-      <obj_property name="ElementShortName">mem_write[15:0]</obj_property>
-      <obj_property name="ObjectShortName">mem_write[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/en_mem_write" type="logic">
       <obj_property name="ElementShortName">en_mem_write</obj_property>
@@ -83,18 +59,6 @@
    <wvobject fp_name="/compi_tb/c/mycpu/execute" type="logic">
       <obj_property name="ElementShortName">execute</obj_property>
       <obj_property name="ObjectShortName">execute</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/pc_out" type="array">
-      <obj_property name="ElementShortName">pc_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">pc_out[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/ac_out" type="array">
-      <obj_property name="ElementShortName">ac_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">ac_out[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/ma_out" type="array">
-      <obj_property name="ElementShortName">ma_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">ma_out[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/t0" type="logic">
       <obj_property name="ElementShortName">t0</obj_property>
@@ -112,13 +76,41 @@
       <obj_property name="ElementShortName">t3</obj_property>
       <obj_property name="ObjectShortName">t3</obj_property>
    </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/st/icynext" type="logic">
+      <obj_property name="ElementShortName">icynext</obj_property>
+      <obj_property name="ObjectShortName">icynext</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/st/new_cycle" type="logic">
+      <obj_property name="ElementShortName">new_cycle</obj_property>
+      <obj_property name="ObjectShortName">new_cycle</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/pc_out" type="array">
+      <obj_property name="ElementShortName">pc_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/ac_out" type="array">
+      <obj_property name="ElementShortName">ac_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ac_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/ma_out" type="array">
+      <obj_property name="ElementShortName">ma_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ma_out[15:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/md_out" type="array">
       <obj_property name="ElementShortName">md_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">md_out[15:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/cu/ir_in" type="array">
+      <obj_property name="ElementShortName">ir_in[3:0]</obj_property>
+      <obj_property name="ObjectShortName">ir_in[3:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/ir_out" type="array">
       <obj_property name="ElementShortName">ir_out[3:0]</obj_property>
       <obj_property name="ObjectShortName">ir_out[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/compi_tb/c/mycpu/EN_IR" type="logic">
+      <obj_property name="ElementShortName">EN_IR</obj_property>
+      <obj_property name="ObjectShortName">EN_IR</obj_property>
    </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/alu_out" type="array">
       <obj_property name="ElementShortName">alu_out[15:0]</obj_property>
@@ -172,10 +164,6 @@
       <obj_property name="ElementShortName">I_BAZ</obj_property>
       <obj_property name="ObjectShortName">I_BAZ</obj_property>
    </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/EN_IR" type="logic">
-      <obj_property name="ElementShortName">EN_IR</obj_property>
-      <obj_property name="ObjectShortName">EN_IR</obj_property>
-   </wvobject>
    <wvobject fp_name="/compi_tb/c/mycpu/EN_PC" type="logic">
       <obj_property name="ElementShortName">EN_PC</obj_property>
       <obj_property name="ObjectShortName">EN_PC</obj_property>
@@ -215,17 +203,5 @@
    <wvobject fp_name="/compi_tb/c/mycpu/ALU_MUX_B_SEL" type="logic">
       <obj_property name="ElementShortName">ALU_MUX_B_SEL</obj_property>
       <obj_property name="ObjectShortName">ALU_MUX_B_SEL</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/dp/test_an/O" type="logic">
-      <obj_property name="ElementShortName">O</obj_property>
-      <obj_property name="ObjectShortName">O</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/dp/test_an/I" type="array">
-      <obj_property name="ElementShortName">I[15:0]</obj_property>
-      <obj_property name="ObjectShortName">I[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/compi_tb/c/mycpu/cu/instr_jump" type="logic">
-      <obj_property name="ElementShortName">instr_jump</obj_property>
-      <obj_property name="ObjectShortName">instr_jump</obj_property>
    </wvobject>
 </wave_config>
