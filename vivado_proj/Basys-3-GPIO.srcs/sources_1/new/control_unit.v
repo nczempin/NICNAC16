@@ -12,8 +12,8 @@ module control_unit(clk, reset, fetch, execute,
                       );
     input clk;
     input reset;
-    input [3:0] ir_in;
-    output [3:0] ir_out;
+    input [4:0] ir_in;
+    output [4:0] ir_out;
     output fetch;
     output execute;
     
@@ -49,6 +49,16 @@ module control_unit(clk, reset, fetch, execute,
     
     input AN;
     input AZ;
+    
+    wire RUN;
+    assign RUN = ~reset; //TODO for now
+    wire INPUT;
+    wire OUTPUT;
+    wire IO;
+    assign IO = ir_out[0];
+    
+    assign INPUT = I_DIO & IO & RUN;
+    assign OUTPUT = I_DIO & ~IO & RUN;
     
     wire SETWRITE;
     assign SETWRITE = execute & t0 & I_STA;
@@ -124,8 +134,10 @@ module control_unit(clk, reset, fetch, execute,
         .execute(execute),
         .new_cycle(new_cycle)
     );
-    REG4CE IR(ir_out, clk, EN_IR, reset, ir_in);
-    Decoder4_16Bus instruction_decoder(D, ir_out, ~reset);
+    reg5ce IR(ir_out, clk, EN_IR, reset, ir_in);
+    wire [3:0] i_decoder_in;
+    assign i_decoder_in = ir_out[4:1];
+    Decoder4_16Bus instruction_decoder(D, i_decoder_in, RUN);
 
    
     assign MA_MUX_SEL = fetch & t3; //TODO document as to why

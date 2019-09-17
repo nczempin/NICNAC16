@@ -142,7 +142,7 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
         .EN_MD(EN_MD),
         .EN_AC(EN_AC),
         .ir_out(ir_out),
-        .ir_in(md_out[15:12]),
+        .ir_in(md_out[15:11]),
         .MA_MUX_SEL(MA_MUX_SEL),
         .MD_MUX_SEL(MD_MUX_SEL),
         .AC_MUX_SEL(AC_MUX_SEL),
