@@ -51,7 +51,7 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
     
     wire [15:0] PC_IN;
     
-    wire I_NOP, I_JMP, I_BL, I_RET, I_LDA, I_STA, I_ADD, I_BAN, I_BAZ;
+    wire I_NOP, I_JMP, I_BL, I_RET, I_LDA, I_STA, I_ADD, I_BAN, I_BAZ, I_DIO;
     wire EN_IR, EN_PC, EN_MA, EN_MD, EN_AC;
     
     wire do_jump;
@@ -98,6 +98,7 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
        .I_BAZ(I_BAZ),
        .I_BAN(I_BAN),
        .I_ADD(I_ADD),
+       .I_DIO(I_DIO),
        .EN_IR(EN_IR),
        .EN_PC(EN_PC),
        .EN_MA(EN_MA),
@@ -123,7 +124,7 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
         .t1(t1),
         .t2(t2),
         .t3(t3),
-             .I_NOP(I_NOP),
+        .I_NOP(I_NOP),
        .I_JMP(I_JMP),
        .I_BL(I_BL),
        .I_RET(I_RET),
@@ -132,6 +133,7 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
        .I_BAZ(I_BAZ),
        .I_BAN(I_BAN),
        .I_ADD(I_ADD),
+       .I_DIO(I_DIO),
         .incr_pc(incr_pc),
         .do_jump(do_jump),
         .EN_IR(EN_IR),

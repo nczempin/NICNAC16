@@ -2,7 +2,7 @@
 
 module control_unit(clk, reset, fetch, execute, 
                     t0, t1, t2, t3,
-                    I_JMP, I_NOP, I_BL, I_RET, I_LDA, I_STA, I_ADD, I_BAN, I_BAZ, 
+                    I_JMP, I_NOP, I_BL, I_RET, I_LDA, I_STA, I_ADD, I_BAN, I_BAZ, I_DIO,
                     incr_pc, do_jump,
                      EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
                      ir_out, ir_in,
@@ -27,6 +27,7 @@ module control_unit(clk, reset, fetch, execute,
     output I_RET;
     output I_BAN;
     output I_BAZ;
+    output I_DIO;
     
     
     output incr_pc;
@@ -53,7 +54,7 @@ module control_unit(clk, reset, fetch, execute,
     assign SETWRITE = execute & t0 & I_STA;
     wire CLRWRITE;
     assign CLRWRITE = execute & t2 & I_STA;
-   wire WRITE;
+    wire WRITE;
    
    assign en_mem_write =WRITE;
     jk_ff m_w_ff (
@@ -66,13 +67,20 @@ module control_unit(clk, reset, fetch, execute,
     wire [15:0] D;
     assign I_NOP = D[0];
     assign I_JMP = D[1];
-    assign I_BL = D[2];
+    assign I_BL  = D[2];
     assign I_RET = D[3];
     assign I_LDA = D[4];
     assign I_STA = D[5];
     assign I_ADD = D[6];
     assign I_BAZ = D[7];
     assign I_BAN = D[8];
+    // 9
+    // 10
+    // 11
+    // 12
+    // 13
+    // 14
+    assign I_DIO = D[15];
     wire instr_jump;
     
     wire icynext;
@@ -84,14 +92,13 @@ module control_unit(clk, reset, fetch, execute,
        |execute & I_LDA & t2
        |execute & I_ADD & t2
        |execute & I_STA & t2
-       
        ;
 
     wire new_cycle;
     
     assign instr_jump = I_JMP | (I_BAN & AN) | (I_BAZ & AZ); // TODO or BL or taken branches
- assign EN_IR = (t3 & fetch) ;
-     assign do_jump = execute & t0 & instr_jump;
+    assign EN_IR = (t3 & fetch) ;
+    assign do_jump = execute & t0 & instr_jump;
     assign EN_PC = incr_pc | do_jump | reset; 
     assign EN_MA = (t3 & fetch )|
                    (t0 & fetch);
@@ -101,7 +108,7 @@ module control_unit(clk, reset, fetch, execute,
                     |execute & I_STA & t0
                     ;
     
-    assign EN_AC = execute & I_LDA & t2
+     assign EN_AC = execute & I_LDA & t2
                    |execute & I_ADD & t2;
       assign incr_pc = fetch & t2;
     
@@ -117,8 +124,8 @@ module control_unit(clk, reset, fetch, execute,
         .execute(execute),
         .new_cycle(new_cycle)
     );
-   REG4CE IR(ir_out, clk, EN_IR, reset, ir_in);
-   Decoder4_16Bus instruction_decoder(D, ir_out, ~reset);
+    REG4CE IR(ir_out, clk, EN_IR, reset, ir_in);
+    Decoder4_16Bus instruction_decoder(D, ir_out, ~reset);
 
    
     assign MA_MUX_SEL = fetch & t3; //TODO document as to why

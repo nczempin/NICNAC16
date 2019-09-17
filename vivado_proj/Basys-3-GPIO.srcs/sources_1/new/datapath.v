@@ -5,7 +5,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
          t0, t1, t2, t3,
          pc_out, ma_out, md_out, ac_out, alu_out,
          mem_read,
-         I_JMP, I_NOP, I_BL, I_RET, I_LDA, I_STA, I_ADD, I_BAN, I_BAZ, 
+         I_JMP, I_NOP, I_BL, I_RET, I_LDA, I_STA, I_ADD, I_BAN, I_BAZ, I_DIO,
          EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
          DO_JUMP,
          MA_MUX_SEL, MD_MUX_SEL, AC_MUX_SEL, ALU_MUX_A_SEL, ALU_MUX_B_SEL,
@@ -48,6 +48,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     input I_RET;
     input I_BAN;
     input I_BAZ;
+    input I_DIO;
     
     output  [15:0]pc_out;
  
