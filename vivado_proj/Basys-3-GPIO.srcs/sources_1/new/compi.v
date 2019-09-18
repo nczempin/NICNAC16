@@ -2,7 +2,10 @@
 
 module compi(
     input clk,
-    input reset
+    input reset,
+    inout [15:0] IODATA_BUS,
+    output [4:0] DEVADDRESS,
+    output [5:0] DEVCTRL
 );
      
     
@@ -24,8 +27,11 @@ module compi(
         .en_mem_write(en_mem_write),
         .mem_read(mem_read),
         .mem_write(mem_write),
-        .mem_address(mem_address)
-  );
+        .mem_address(mem_address),
+        .IODATA_BUS(IODATA_BUS),
+        .DEVADDRESS(DEVADDRESS),
+         .DEVCTRL(DEVCTRL)  
+   );
    Memory romram(
     .clk(clk),
     .en_mem_write(en_mem_write),

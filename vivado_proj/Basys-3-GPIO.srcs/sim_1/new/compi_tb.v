@@ -1,15 +1,20 @@
 `timescale 10ns / 1ps
 
 module compi_tb ();
-reg clk, reset;
-
-compi c(
+   reg clk, reset;
+   wire [15:0] IODATA_BUS;
+   wire [4:0] DEVADDRESS;
+   wire [5:0] DEVCTRL;
+   compi c(
     .clk(clk),
-    .reset(reset)
-);
+    .reset(reset),
+    .IODATA_BUS(IODATA_BUS),
+    .DEVADDRESS(DEVADDRESS),
+    .DEVCTRL(DEVCTRL)
+   );
 
-initial begin
-clk=1;
+   initial begin
+   clk=1;
 //enable = 0;
 //md_out = 0;
 

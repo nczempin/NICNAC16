@@ -8,8 +8,13 @@ module control_unit(clk, reset, fetch, execute,
                      ir_out, ir_in,
                      MA_MUX_SEL, MD_MUX_SEL, AC_MUX_SEL, ALU_MUX_A_SEL, ALU_MUX_B_SEL,
                      en_mem_write,
-                     AN, AZ
-                      );
+                     AN, AZ,
+                     ac_out,
+                     IODATA_BUS,         
+                     DEVADDRESS,
+                     DEVCTRL,
+                     md_out
+                    );
     input clk;
     input reset;
     input [4:0] ir_in;
@@ -50,6 +55,15 @@ module control_unit(clk, reset, fetch, execute,
     input AN;
     input AZ;
     
+    input [15:0] ac_out;
+    inout [15:0] IODATA_BUS; // TODO: move to datapath
+    output [4:0] DEVADDRESS;
+    output [5:0] DEVCTRL;
+    input [15:0] md_out;
+    
+    assign DEVADDRESS=md_out[4:0];
+    assign DEVCTRL=md_out[9:5];
+    
     wire RUN;
     assign RUN = ~reset; //TODO for now
     wire INPUT;
@@ -82,6 +96,21 @@ module control_unit(clk, reset, fetch, execute,
        .k(CLRINP),
        .q(INP)
        );
+       
+       
+    wire [15:0] IODATA_BUS;
+    //assign IODATA_BUS = OUTP?ac_out;
+    
+ reg [15:0] io_internal;
+ wire [15:0] not_ac;
+ wire [15:0] incoming_io_bus;
+ assign incoming_io_bus = ~IODATA_BUS;
+assign not_ac = ~ac_out; 
+always @(OUTP)
+io_internal <= OUTP?~ac_out:16'bz;
+
+assign IODATA_BUS = io_internal;
+
     wire SETWRITE;
     assign SETWRITE = execute & t0 & I_STA;
     wire CLRWRITE;
@@ -128,7 +157,7 @@ module control_unit(clk, reset, fetch, execute,
 
     wire new_cycle;
     
-    assign instr_jump = I_JMP | (I_BAN & AN) | (I_BAZ & AZ); // TODO or BL or taken branches
+    assign instr_jump = I_JMP | (I_BAN & AN) | (I_BAZ & AZ); // TODO or BL
     assign EN_IR = (t3 & fetch) ;
     assign do_jump = execute & t0 & instr_jump;
     assign EN_PC = incr_pc | do_jump | reset; 

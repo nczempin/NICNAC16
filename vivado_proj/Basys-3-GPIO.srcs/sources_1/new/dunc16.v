@@ -1,25 +1,12 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 08/12/2019 11:00:21 PM
-// Design Name: 
-// Module Name: dunc16
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
-module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_mem_write);
+
+module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_mem_write, 
+IODATA_BUS,DEVADDRESS,DEVCTRL);
+   output [4:0] DEVADDRESS;
+    output [5:0] DEVCTRL;
+
+
 
     input clk, reset;
     //
@@ -30,7 +17,7 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
     output [15:0] mem_read;
     output [15:0] mem_write;
     output en_mem_write;
-    
+    inout [15:0] IODATA_BUS;
     
     wire fetch;
     wire execute;
@@ -150,7 +137,12 @@ module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_me
         .ALU_MUX_B_SEL(ALU_MUX_B_SEL),
         .en_mem_write(en_mem_write),
         .AN(AN),
-        .AZ(AZ)
-    );
+        .AZ(AZ),
+        .ac_out(ac_out),
+        .IODATA_BUS(IODATA_BUS),
+  .DEVADDRESS(DEVADDRESS),
+    .DEVCTRL(DEVCTRL) ,
+    .md_out(md_out)
+     );
     
 endmodule
