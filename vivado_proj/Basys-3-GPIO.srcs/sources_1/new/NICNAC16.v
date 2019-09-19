@@ -62,13 +62,28 @@ wire cd_out;
  
    wire [15:0] IODATA_BUS;
    assign IODATA_BUS = device_out;
-  
+   wire out_r_in;
+   wire out_r_address_decoded;
+   assign out_r_address_decoded = DEVADDRESS == 5'h1c;
+   wire INP,OUTP;
+    assign out_r_in = ~(out_r_address_decoded & OUTP); //NAND, we are looking for rising edge
+  wire [15:0] latched_data;
+  FD16CE out_register(
+  .D(IODATA_BUS),
+  .Q(latched_data),
+  .CE(1'b1),
+  .C(out_r_in),
+  .CLR(reset)
+  );
+ 
    compi c(
     .clk(clk_cpu),
     .reset(reset),
     .IODATA_BUS(IODATA_BUS),
     .DEVADDRESS(DEVADDRESS),
-    .DEVCTRL(DEVCTRL)
+    .DEVCTRL(DEVCTRL),
+    .OUTP(OUTP),
+    .INP(INP)
    );
 
    

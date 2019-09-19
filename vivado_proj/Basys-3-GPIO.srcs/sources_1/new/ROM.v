@@ -12,8 +12,8 @@ module ROM(
      8'h01: data = 16'hf75c; // DIO (out) $75c
      8'h02: data = 16'hfc27; // DIO (in) $427
      8'h03: data = 16'h6114; // ADD ($0114)
-     8'h04: data = 16'h8102; // BAN ($0102)
-     8'h05: data = 16'h0000; // NOP
+     8'h04: data = 16'hf75c; // DIO (out) $75c
+     8'h05: data = 16'h8102; // BAN ($0102)
      8'h06: data = 16'h4112; // LDA ($0112)
      8'h07: data = 16'h6111; // ADD ($0111)
      8'h08: data = 16'h5008; // STA $008 ;store result at address 8, which is in RAM

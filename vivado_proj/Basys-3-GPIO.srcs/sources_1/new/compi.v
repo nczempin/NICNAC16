@@ -5,7 +5,9 @@ module compi(
     input reset,
     inout [15:0] IODATA_BUS,
     output [4:0] DEVADDRESS,
-    output [5:0] DEVCTRL
+    output [5:0] DEVCTRL,
+    output OUTP,
+    output INP
 );
      
     
@@ -30,7 +32,9 @@ module compi(
         .mem_address(mem_address),
         .IODATA_BUS(IODATA_BUS),
         .DEVADDRESS(DEVADDRESS),
-         .DEVCTRL(DEVCTRL)  
+         .DEVCTRL(DEVCTRL),
+         .OUTP(OUTP),
+         .INP(INP) 
    );
    Memory romram(
     .clk(clk),

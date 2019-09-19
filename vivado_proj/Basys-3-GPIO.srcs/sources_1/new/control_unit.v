@@ -13,7 +13,8 @@ module control_unit(clk, reset, fetch, execute,
                      IODATA_BUS,         
                      DEVADDRESS,
                      DEVCTRL,
-                     md_out
+                     md_out,
+                     OUTP,INP
                     );
     input clk;
     input reset;
@@ -60,7 +61,7 @@ module control_unit(clk, reset, fetch, execute,
     output [4:0] DEVADDRESS;
     output [5:0] DEVCTRL;
     input [15:0] md_out;
-    
+    output OUTP, INP;
     assign DEVADDRESS=md_out[4:0];
     assign DEVCTRL=md_out[9:5];
     
@@ -79,7 +80,7 @@ module control_unit(clk, reset, fetch, execute,
     wire SETINP;
     assign SETINP = execute & I_DIO & INPUT & t0;
     
-    wire OUTP, INP;
+    
     wire CLROUTP, CLRINP;
     
     assign CLROUTP = execute & I_DIO & t3;
@@ -104,10 +105,10 @@ module control_unit(clk, reset, fetch, execute,
  reg [15:0] io_internal;
  wire [15:0] not_ac;
  wire [15:0] incoming_io_bus;
- assign incoming_io_bus = ~IODATA_BUS;
+ assign incoming_io_bus = IODATA_BUS;
 assign not_ac = ~ac_out; 
 always @(OUTP)
-io_internal <= OUTP?~ac_out:16'bz;
+io_internal <= OUTP?ac_out:16'bz;
 
 assign IODATA_BUS = io_internal;
 

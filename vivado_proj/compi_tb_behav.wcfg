@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="595470668fs"></ZoomEndTime>
-      <Cursor1Time time="240000000fs"></Cursor1Time>
+      <ZoomStartTime time="58178535fs"></ZoomStartTime>
+      <ZoomEndTime time="588364294fs"></ZoomEndTime>
+      <Cursor1Time time="140000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="201"></NameColumnWidth>
-      <ValueColumnWidth column_width="83"></ValueColumnWidth>
+      <ValueColumnWidth column_width="75"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="13" />
+   <WVObjectSize size="18" />
    <wvobject fp_name="/NICNAC16_tb/nn16/clk_fpga" type="logic">
       <obj_property name="ElementShortName">clk_fpga</obj_property>
       <obj_property name="ObjectShortName">clk_fpga</obj_property>
@@ -55,7 +55,10 @@
    <wvobject fp_name="/NICNAC16_tb/nn16/DEVCTRL" type="array">
       <obj_property name="ElementShortName">DEVCTRL[5:0]</obj_property>
       <obj_property name="ObjectShortName">DEVCTRL[5:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/INP" type="logic">
+      <obj_property name="ElementShortName">INP</obj_property>
+      <obj_property name="ObjectShortName">INP</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/md_out" type="array">
       <obj_property name="ElementShortName">md_out[15:0]</obj_property>
@@ -65,6 +68,10 @@
       <obj_property name="ElementShortName">IO</obj_property>
       <obj_property name="ObjectShortName">IO</obj_property>
    </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/OUTP" type="logic">
+      <obj_property name="ElementShortName">OUTP</obj_property>
+      <obj_property name="ObjectShortName">OUTP</obj_property>
+   </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/INP" type="logic">
       <obj_property name="ElementShortName">INP</obj_property>
       <obj_property name="ObjectShortName">INP</obj_property>
@@ -72,5 +79,17 @@
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/OUTP" type="logic">
       <obj_property name="ElementShortName">OUTP</obj_property>
       <obj_property name="ObjectShortName">OUTP</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/latched_data" type="array">
+      <obj_property name="ElementShortName">latched_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">latched_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/out_r_in" type="logic">
+      <obj_property name="ElementShortName">out_r_in</obj_property>
+      <obj_property name="ObjectShortName">out_r_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/out_r_address_decoded" type="logic">
+      <obj_property name="ElementShortName">out_r_address_decoded</obj_property>
+      <obj_property name="ObjectShortName">out_r_address_decoded</obj_property>
    </wvobject>
 </wave_config>
