@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="1000000001fs"></ZoomEndTime>
-      <Cursor1Time time="520000000fs"></Cursor1Time>
+      <ZoomStartTime time="438550000fs"></ZoomStartTime>
+      <ZoomEndTime time="987243587fs"></ZoomEndTime>
+      <Cursor1Time time="610000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="201"></NameColumnWidth>
-      <ValueColumnWidth column_width="71"></ValueColumnWidth>
+      <ValueColumnWidth column_width="67"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="20" />
+   <WVObjectSize size="18" />
    <wvobject fp_name="/NICNAC16_tb/nn16/clk_fpga" type="logic">
       <obj_property name="ElementShortName">clk_fpga</obj_property>
       <obj_property name="ObjectShortName">clk_fpga</obj_property>
@@ -64,40 +64,32 @@
       <obj_property name="ElementShortName">md_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">md_out[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/IO" type="logic">
-      <obj_property name="ElementShortName">IO</obj_property>
-      <obj_property name="ObjectShortName">IO</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/OUTP" type="logic">
-      <obj_property name="ElementShortName">OUTP</obj_property>
-      <obj_property name="ObjectShortName">OUTP</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/INP" type="logic">
-      <obj_property name="ElementShortName">INP</obj_property>
-      <obj_property name="ObjectShortName">INP</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/OUTP" type="logic">
-      <obj_property name="ElementShortName">OUTP</obj_property>
-      <obj_property name="ObjectShortName">OUTP</obj_property>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/ac_out" type="array">
+      <obj_property name="ElementShortName">ac_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ac_out[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/incoming_io_bus" type="array">
       <obj_property name="ElementShortName">incoming_io_bus[15:0]</obj_property>
       <obj_property name="ObjectShortName">incoming_io_bus[15:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/latched_data" type="array">
-      <obj_property name="ElementShortName">latched_data[15:0]</obj_property>
-      <obj_property name="ObjectShortName">latched_data[15:0]</obj_property>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/I_JMP" type="logic">
+      <obj_property name="ElementShortName">I_JMP</obj_property>
+      <obj_property name="ObjectShortName">I_JMP</obj_property>
    </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/out_r_in" type="logic">
-      <obj_property name="ElementShortName">out_r_in</obj_property>
-      <obj_property name="ObjectShortName">out_r_in</obj_property>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/I_BAZ" type="logic">
+      <obj_property name="ElementShortName">I_BAZ</obj_property>
+      <obj_property name="ObjectShortName">I_BAZ</obj_property>
    </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/out_r_address_decoded" type="logic">
-      <obj_property name="ElementShortName">out_r_address_decoded</obj_property>
-      <obj_property name="ObjectShortName">out_r_address_decoded</obj_property>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/AZ" type="logic">
+      <obj_property name="ElementShortName">AZ</obj_property>
+      <obj_property name="ObjectShortName">AZ</obj_property>
    </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/ac_out" type="array">
-      <obj_property name="ElementShortName">ac_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">ac_out[15:0]</obj_property>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/pc_out" type="array">
+      <obj_property name="ElementShortName">pc_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/do_jump" type="logic">
+      <obj_property name="ElementShortName">do_jump</obj_property>
+      <obj_property name="ObjectShortName">do_jump</obj_property>
    </wvobject>
 </wave_config>

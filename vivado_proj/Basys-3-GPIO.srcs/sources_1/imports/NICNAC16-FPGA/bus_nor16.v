@@ -1,6 +1,5 @@
 `timescale 1ns / 1ps
-module bus_nor16(
-I, O);
+module bus_nor16( I, O);
     
 
    output O;

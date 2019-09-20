@@ -100,17 +100,16 @@ module control_unit(clk, reset, fetch, execute,
        
        
     wire [15:0] IODATA_BUS;
-    //assign IODATA_BUS = OUTP?ac_out;
-    
+
  reg [15:0] io_internal;
  wire [15:0] not_ac;
  wire [15:0] incoming_io_bus;
  assign incoming_io_bus = IODATA_BUS;
-assign not_ac = ~ac_out; 
-always @(OUTP)
-io_internal <= OUTP?ac_out:16'bz;
+    assign not_ac = ~ac_out; 
+    always @(OUTP)
+       io_internal <= OUTP?ac_out:16'bz;
 
-assign IODATA_BUS = io_internal;
+    assign IODATA_BUS = io_internal;
 
     wire SETWRITE;
     assign SETWRITE = execute & t0 & I_STA;
@@ -150,6 +149,7 @@ assign IODATA_BUS = io_internal;
        reset 
        |execute & I_JMP & t0
        |execute & I_BAN & t0
+       |execute & I_BAZ & t0
        |execute & I_NOP & t0
        |execute & I_LDA & t2
        |execute & I_ADD & t2

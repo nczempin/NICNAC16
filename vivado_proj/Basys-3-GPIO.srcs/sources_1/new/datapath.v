@@ -144,4 +144,8 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
    .I(ac_out),
    .O(AN)
   );
+  bus_nor16 trest_az(
+  .I(ac_out),
+  .O(AZ)
+  );
 endmodule
