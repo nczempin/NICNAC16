@@ -45,7 +45,7 @@ output INP;
     wire do_jump;
     wire MA_MUX_SEL;
     wire MD_MUX_SEL;
-    wire AC_MUX_SEL;
+    wire [1:0]  AC_MUX_SEL;
     wire ALU_MUX_A_SEL;
     wire ALU_MUX_B_SEL;
     
@@ -99,7 +99,8 @@ output INP;
        .ALU_MUX_A_SEL(ALU_MUX_A_SEL),
        .ALU_MUX_B_SEL(ALU_MUX_B_SEL),
        .AN(AN),
-       .AZ(AZ)
+       .AZ(AZ),
+       .IODATA_BUS(IODATA_BUS)
     );
      
     

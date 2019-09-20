@@ -47,7 +47,7 @@ module control_unit(clk, reset, fetch, execute,
     
     output MA_MUX_SEL;
     output MD_MUX_SEL;
-    output AC_MUX_SEL;
+    output [1:0] AC_MUX_SEL;
     output ALU_MUX_A_SEL;
     output ALU_MUX_B_SEL;
     
@@ -162,8 +162,8 @@ assign IODATA_BUS = io_internal;
     assign EN_IR = (t3 & fetch) ;
     assign do_jump = execute & t0 & instr_jump;
     assign EN_PC = incr_pc | do_jump | reset; 
-    assign EN_MA = (t3 & fetch )|
-                   (t0 & fetch);
+    assign EN_MA = (t3 & fetch )
+                   |(t0 & fetch);
     assign EN_MD = fetch & (t0 | t2)
                     |execute & I_LDA & t1
                     |execute & I_ADD & t1
@@ -171,7 +171,9 @@ assign IODATA_BUS = io_internal;
                     ;
     
      assign EN_AC = execute & I_LDA & t2
-                   |execute & I_ADD & t2;
+                   |execute & I_ADD & t2
+                   |execute & INPUT & t2
+                   ;
       assign incr_pc = fetch & t2;
     
     system_timing st (
@@ -194,7 +196,10 @@ assign IODATA_BUS = io_internal;
    
     assign MA_MUX_SEL = fetch & t3; //TODO document as to why
     assign MD_MUX_SEL = execute & I_STA & t0; //TODO document as to why
-    assign AC_MUX_SEL = execute & I_ADD & t2; //TODO document as to why
+    assign AC_MUX_SEL = execute & I_ADD & t2? 2'b01: 
+                        execute & INPUT & t2? 2'b10:
+                                              2'b00 //not using the 4th input for now
+    ; //TODO document as to why
 
     assign ALU_MUX_A_SEL = incr_pc; //TODO document as to why
     assign ALU_MUX_B_SEL = incr_pc; //TODO document as to why

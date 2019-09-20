@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="58178535fs"></ZoomStartTime>
-      <ZoomEndTime time="588364294fs"></ZoomEndTime>
-      <Cursor1Time time="140000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1000000001fs"></ZoomEndTime>
+      <Cursor1Time time="520000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="201"></NameColumnWidth>
-      <ValueColumnWidth column_width="75"></ValueColumnWidth>
+      <ValueColumnWidth column_width="71"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="18" />
+   <WVObjectSize size="20" />
    <wvobject fp_name="/NICNAC16_tb/nn16/clk_fpga" type="logic">
       <obj_property name="ElementShortName">clk_fpga</obj_property>
       <obj_property name="ObjectShortName">clk_fpga</obj_property>
@@ -80,6 +80,10 @@
       <obj_property name="ElementShortName">OUTP</obj_property>
       <obj_property name="ObjectShortName">OUTP</obj_property>
    </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/incoming_io_bus" type="array">
+      <obj_property name="ElementShortName">incoming_io_bus[15:0]</obj_property>
+      <obj_property name="ObjectShortName">incoming_io_bus[15:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/latched_data" type="array">
       <obj_property name="ElementShortName">latched_data[15:0]</obj_property>
       <obj_property name="ObjectShortName">latched_data[15:0]</obj_property>
@@ -91,5 +95,9 @@
    <wvobject fp_name="/NICNAC16_tb/nn16/out_r_address_decoded" type="logic">
       <obj_property name="ElementShortName">out_r_address_decoded</obj_property>
       <obj_property name="ObjectShortName">out_r_address_decoded</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/ac_out" type="array">
+      <obj_property name="ElementShortName">ac_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ac_out[15:0]</obj_property>
    </wvobject>
 </wave_config>

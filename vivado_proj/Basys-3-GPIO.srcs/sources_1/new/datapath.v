@@ -9,7 +9,8 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
          EN_IR, EN_PC, EN_MA, EN_MD, EN_AC,
          DO_JUMP,
          MA_MUX_SEL, MD_MUX_SEL, AC_MUX_SEL, ALU_MUX_A_SEL, ALU_MUX_B_SEL,
-         AN, AZ
+         AN, AZ,
+         IODATA_BUS
          );
          
     input clk;
@@ -54,11 +55,13 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
  
     input MA_MUX_SEL;
     input MD_MUX_SEL;
-    input AC_MUX_SEL;
+    input [1:0] AC_MUX_SEL;
     input ALU_MUX_A_SEL;
     input ALU_MUX_B_SEL;
 
     output AN, AZ;
+    
+    input[15:0] IODATA_BUS;
  
     wire [15:0] MA_IN;
     wire [15:0] MD_IN;
@@ -117,7 +120,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
        .Q(md_out)
     );
     
-     mux16_2 acmux( md_out, alu_out, AC_MUX_SEL, AC_MUX_OUT);
+     mux16_4 acmux( md_out, alu_out, IODATA_BUS, 16'b0, AC_MUX_SEL, AC_MUX_OUT);
      
     FD16CE AC(
        .D(AC_IN),
