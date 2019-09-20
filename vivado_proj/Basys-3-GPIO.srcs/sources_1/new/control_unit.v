@@ -14,7 +14,8 @@ module control_unit(clk, reset, fetch, execute,
                      DEVADDRESS,
                      DEVCTRL,
                      md_out,
-                     OUTP,INP
+                     OUTP,INP,
+                     RUN_MODE, RUN_CY
                     );
     input clk;
     input reset;
@@ -62,11 +63,13 @@ module control_unit(clk, reset, fetch, execute,
     output [5:0] DEVCTRL;
     input [15:0] md_out;
     output OUTP, INP;
+    input RUN_MODE;
+    input RUN_CY;
     assign DEVADDRESS=md_out[4:0];
     assign DEVCTRL=md_out[9:5];
     
     wire RUN;
-    assign RUN = ~reset; //TODO for now
+    assign RUN = RUN_MODE;
     wire INPUT;
     wire OUTPUT;
     wire IO;
@@ -186,7 +189,9 @@ module control_unit(clk, reset, fetch, execute,
         .t3(t3),
         .fetch(fetch),
         .execute(execute),
-        .new_cycle(new_cycle)
+        .new_cycle(new_cycle),
+        .RUN_MODE(RUN_MODE),
+        .RUN_CY(RUN_CY)
     );
     reg5ce IR(ir_out, clk, EN_IR, reset, ir_in);
     wire [3:0] i_decoder_in;

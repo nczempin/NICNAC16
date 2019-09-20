@@ -5,7 +5,8 @@ module two_bit_ring_counter (
       input clock,
       input reset,
       input enable,
-      output [1:0] q
+      output [1:0] q,
+      input d
     );
  
   reg[1:0] a;
@@ -16,24 +17,36 @@ module two_bit_ring_counter (
  
       else
       if (enable)
+      //TODO this can be simplified by using d as a bit in the assignments
+      if (d)
           case (a)
            2'b00: a <= 2'b01; // happens only on reset
            2'b01: a <= 2'b10;
            2'b10: a <= 2'b01;
            2'b11: a <= 2'b01; // technically, shouldn't happen
         endcase
+      else
+          case (a)
+           2'b00: a <= 2'b00; // happens only on reset
+           2'b01: a <= 2'b10;
+           2'b10: a <= 2'b00;
+           2'b11: a <= 2'b00; // technically, shouldn't happen
+        endcase
+    
         // else a=a
  
     assign q = a;
  
   endmodule
  
-module Stages(CLK, RESET, NEW_CYCLE, FETCH, EXECUTE);
+module Stages(CLK, RESET, NEW_CYCLE, FETCH, EXECUTE, RUN_MODE, RUN_CY);
     input CLK;
     input RESET;
     input NEW_CYCLE;
     output FETCH;
     output EXECUTE;
+    input RUN_MODE;
+    input RUN_CY;
     
     two_bit_ring_counter tbrc (
     .q({EXECUTE, FETCH}),

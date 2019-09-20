@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module system_timing(clk, reset, icynext, t0, t1, t2, t3, fetch, execute, new_cycle);
+module system_timing(clk, reset, icynext, t0, t1, t2, t3, fetch, execute, new_cycle, RUN_MODE, RUN_CY);
     input clk;
     input reset;
     input icynext;
@@ -12,6 +12,9 @@ module system_timing(clk, reset, icynext, t0, t1, t2, t3, fetch, execute, new_cy
     output execute;
     
     output new_cycle;
+    input RUN_MODE;
+    input RUN_CY;
+    
     timing_ring_counter trc(
     .clk(clk),
     .icynext(icynext),
@@ -26,6 +29,8 @@ module system_timing(clk, reset, icynext, t0, t1, t2, t3, fetch, execute, new_cy
     .CLK(clk),
     .NEW_CYCLE(new_cycle),
     .FETCH(fetch),
-    .EXECUTE(execute)
+    .EXECUTE(execute),
+    .RUN_MODE(RUN_MODE),
+    .RUN_CY(RUN_CY)
     );
 endmodule

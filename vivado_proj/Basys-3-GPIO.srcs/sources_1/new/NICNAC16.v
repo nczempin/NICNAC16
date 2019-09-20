@@ -85,6 +85,6 @@ wire cd_out;
     .OUTP(OUTP),
     .INP(INP)
    );
-
    
+    
 endmodule
