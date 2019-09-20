@@ -11,22 +11,25 @@ module console_timing (
 wire ff1_out;
 wire ff2_out;
 wire ff3_out;
-assign ff3_out = CONCY1;
+assign CONCY1 =ff3_out;
 wire ff4_out;
-assign ff4_out = CONCY2;
+assign CONCY2=ff4_out;
 wire clearem;
 assign clearem = ~(ff4_out | reset |RUN_MODE);
 wire t3_rise;
 assign t3_rise = ~(t3&clk);
+
+wire ff1_in;
+assign ff1_in = ~pushbutton | ~reset;
    d_ff ff1(
       .d(1),
       .o(ff1_out),
       .clr(clearem),
-      .clk(~pushbutton) // TODO debounce
+      .clk(ff1_in) // TODO debounce
    );
    d_ff ff2(
-      .d(1),
-      .o(ff1_out),
+      .d(ff1_out),
+      .o(ff2_out),
       .clr(clearem),
       .clk(t3_rise) 
    );

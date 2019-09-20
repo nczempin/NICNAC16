@@ -48,11 +48,15 @@ module Stages(CLK, RESET, NEW_CYCLE, FETCH, EXECUTE, RUN_MODE, RUN_CY);
     input RUN_MODE;
     input RUN_CY;
     
+    wire fetch_in;
+    assign fetch_in = RUN_CY | (RUN_MODE & EXECUTE);
+    
     two_bit_ring_counter tbrc (
     .q({EXECUTE, FETCH}),
     .clock(CLK),
     .reset(RESET),
-    .enable(NEW_CYCLE)
+    .enable(NEW_CYCLE),
+    .d(fetch_in)
     );
     
 endmodule

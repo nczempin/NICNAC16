@@ -2,7 +2,7 @@
 
 
 module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_mem_write, 
-IODATA_BUS,DEVADDRESS,DEVCTRL, OUTP, INP, t3);
+IODATA_BUS,DEVADDRESS,DEVCTRL, OUTP, INP, t3, RUN_MODE, RUN_CY);
    output [4:0] DEVADDRESS;
     output [5:0] DEVCTRL;
 output OUTP;
@@ -23,7 +23,8 @@ output INP;
     
     wire t0, t1, t2;
     output t3;
-
+input RUN_MODE;
+input RUN_CY;
 
 
     wire fetch;
@@ -150,7 +151,9 @@ output INP;
   .DEVADDRESS(DEVADDRESS),
     .DEVCTRL(DEVCTRL) ,
     .md_out(md_out),
-    .OUTP(OUTP)
+    .OUTP(OUTP),
+    .RUN_MODE(RUN_MODE),
+    .RUN_CY(RUN_CY)
      );
   
 endmodule

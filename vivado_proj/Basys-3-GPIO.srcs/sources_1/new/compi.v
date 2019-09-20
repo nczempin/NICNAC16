@@ -22,6 +22,10 @@ module compi(
  wire [15:0] led_out;
  wire  status;
  wire t3;
+    wire RUN_MODE;
+       wire RUN_CY;
+ 
+ 
     dunc16 mycpu (
         .clk(clk), 
         .reset(reset),
@@ -36,7 +40,9 @@ module compi(
          .DEVCTRL(DEVCTRL),
          .OUTP(OUTP),
          .INP(INP),
-         .t3(t3)
+         .t3(t3),
+         .RUN_MODE(RUN_MODE),
+         .RUN_CY(RUN_CY)
    );
    Memory romram(
     .clk(clk),
@@ -47,12 +53,16 @@ module compi(
     );
     
        wire pushbutton; //TODO
-       assign pushbutton = 1'b0; // TODO
+       assign pushbutton = 1'b1; // TODO
        wire CONCY1; // TODO
        wire CONCY2; //TODO
-       wire knob_setting;
-       wire RUN_MODE;
-       wire RUN_CY;
+       wire [1:0] knob_setting;
+       assign knob_setting = 2'b00; //TODO
+       
+    
+  
+  
+       
    console myconsole(
   .t3(t3),
     .clk(clk),
