@@ -1,12 +1,34 @@
 `timescale 1ns / 1ps
 
 
-module dunc16(clk, reset,led_out,status, mem_address, mem_read, mem_write, en_mem_write, 
-IODATA_BUS,DEVADDRESS,DEVCTRL, OUTP, INP, t3, RUN_MODE, RUN_CY);
+module dunc16(
+    clk,
+    reset,
+    led_out,
+    status,
+    mem_address,
+    mem_read,
+    mem_write,
+    en_mem_write,
+    IODATA_BUS,
+    DEVADDRESS,
+    DEVCTRL,
+    OUTP,
+    INP,
+    t3,
+    RUN_MODE,
+    RUN_CY,
+    pushbutton,
+    LOAD_SW, WRITE_SW, READ_SW, RUN_SW,
+    SW,
+    CONCY1,
+    CONCY2
+);
    output [4:0] DEVADDRESS;
-    output [5:0] DEVCTRL;
-output OUTP;
-output INP;
+   output [5:0] DEVCTRL;
+   output OUTP;
+   output INP;
+   input pushbutton;
 
 
 
@@ -23,9 +45,12 @@ output INP;
     
     wire t0, t1, t2;
     output t3;
-input RUN_MODE;
-input RUN_CY;
-
+   input RUN_MODE;
+   input RUN_CY;
+   input LOAD_SW, WRITE_SW, READ_SW, RUN_SW;
+   input [15:0] SW;
+   input CONCY1;
+   input CONCY2;
 
     wire fetch;
     wire execute;
@@ -62,9 +87,7 @@ input RUN_CY;
 //    assign led_out[7:4] = ac_out[3:0];
 //    assign led_out[11:8] = md_out[3:0];
 //    assign led_out[15:12] = ma_out[3:0];
-            
-    //ROM rom(ma_out[7:0], MEMORY_READ);
-    
+ 
     assign status =fetch;
     
     datapath dp (
@@ -107,7 +130,8 @@ input RUN_CY;
        .ALU_MUX_B_SEL(ALU_MUX_B_SEL),
        .AN(AN),
        .AZ(AZ),
-       .IODATA_BUS(IODATA_BUS)
+       .IODATA_BUS(IODATA_BUS),
+       .SW(SW)
     );
      
     
@@ -121,15 +145,15 @@ input RUN_CY;
         .t2(t2),
         .t3(t3),
         .I_NOP(I_NOP),
-       .I_JMP(I_JMP),
-       .I_BL(I_BL),
-       .I_RET(I_RET),
-       .I_LDA(I_LDA),
-       .I_STA(I_STA),
-       .I_BAZ(I_BAZ),
-       .I_BAN(I_BAN),
-       .I_ADD(I_ADD),
-       .I_DIO(I_DIO),
+        .I_JMP(I_JMP),
+        .I_BL(I_BL),
+        .I_RET(I_RET),
+        .I_LDA(I_LDA),
+        .I_STA(I_STA),
+        .I_BAZ(I_BAZ),
+        .I_BAN(I_BAN),
+        .I_ADD(I_ADD),
+        .I_DIO(I_DIO),
         .incr_pc(incr_pc),
         .do_jump(do_jump),
         .EN_IR(EN_IR),
@@ -149,12 +173,19 @@ input RUN_CY;
         .AZ(AZ),
         .ac_out(ac_out),
         .IODATA_BUS(IODATA_BUS),
-  .DEVADDRESS(DEVADDRESS),
-    .DEVCTRL(DEVCTRL) ,
-    .md_out(md_out),
-    .OUTP(OUTP),
-    .RUN_MODE(RUN_MODE),
-    .RUN_CY(RUN_CY)
+        .DEVADDRESS(DEVADDRESS),
+        .DEVCTRL(DEVCTRL) ,
+        .md_out(md_out),
+        .OUTP(OUTP),
+        .RUN_MODE(RUN_MODE),
+        .RUN_CY(RUN_CY),
+        .pushbutton(pushbutton),
+        .LOAD_SW(LOAD_SW),
+        .WRITE_SW(WRITE_SW),
+        .READ_SW(READ_SW),
+        .RUN_SW(RUN_SW),
+        .CONCY1(CONCY1),
+        .CONCY2(CONCY2)
      );
   
 endmodule

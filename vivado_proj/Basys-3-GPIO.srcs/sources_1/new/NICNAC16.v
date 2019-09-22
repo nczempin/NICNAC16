@@ -89,7 +89,8 @@ wire cd_out;
     .INP(INP),
     .knob_setting(knob_setting),
     .pushbutton(pushbutton),
-    .led_out(led_out)
+    .led_out(led_out),
+    .SW(SW)
    );
    
     

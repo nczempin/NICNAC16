@@ -15,7 +15,10 @@ module control_unit(clk, reset, fetch, execute,
                      DEVCTRL,
                      md_out,
                      OUTP,INP,
-                     RUN_MODE, RUN_CY
+                     RUN_MODE, RUN_CY,
+                     pushbutton,
+                     LOAD_SW, WRITE_SW, READ_SW, RUN_SW,
+                     CONCY1, CONCY2
                     );
     input clk;
     input reset;
@@ -65,6 +68,10 @@ module control_unit(clk, reset, fetch, execute,
     output OUTP, INP;
     input RUN_MODE;
     input RUN_CY;
+    input pushbutton;
+    input LOAD_SW, WRITE_SW, READ_SW, RUN_SW;
+    input CONCY1, CONCY2;
+    
     assign DEVADDRESS=md_out[4:0];
     assign DEVCTRL=md_out[9:5];
     
@@ -138,11 +145,11 @@ module control_unit(clk, reset, fetch, execute,
     assign I_ADD = D[6];
     assign I_BAZ = D[7];
     assign I_BAN = D[8];
-    // 9
-    // 10
-    // 11
+    // 9 SUB?
+    // 10 INC, DEC, ASL, ASR, ROL, ROR, ...
+    // 11 
     // 12
-    // 13
+    // 13 RTI?
     // 14
     assign I_DIO = D[15];
     wire instr_jump;
@@ -160,7 +167,8 @@ module control_unit(clk, reset, fetch, execute,
        ;
 
     wire new_cycle;
-    
+      wire do_load;
+
     assign instr_jump = I_JMP | (I_BAN & AN) | (I_BAZ & AZ); // TODO or BL
     assign EN_IR = (t3 & fetch) ;
     assign do_jump = execute & t0 & instr_jump;
@@ -176,6 +184,7 @@ module control_unit(clk, reset, fetch, execute,
      assign EN_AC = execute & I_LDA & t2
                    |execute & I_ADD & t2
                    |execute & INPUT & t2
+                   |do_load
                    ;
       assign incr_pc = fetch & t2;
     
@@ -198,14 +207,49 @@ module control_unit(clk, reset, fetch, execute,
     assign i_decoder_in = ir_out[4:1];
     Decoder4_16Bus instruction_decoder(D, i_decoder_in, 1'b1);
 
-   
+     
     assign MA_MUX_SEL = fetch & t3; //TODO document as to why
     assign MD_MUX_SEL = execute & I_STA & t0; //TODO document as to why
     assign AC_MUX_SEL = execute & I_ADD & t2? 2'b01: 
                         execute & INPUT & t2? 2'b10:
-                                              2'b00 //not using the 4th input for now
+                                     do_load? 2'b11:
+                                               2'b00 
     ; //TODO document as to why
 
     assign ALU_MUX_A_SEL = incr_pc; //TODO document as to why
     assign ALU_MUX_B_SEL = incr_pc; //TODO document as to why
+    
+    wire do_read;
+    wire do_write;
+    wire button_triggered;
+    assign do_load = button_triggered & LOAD_SW;
+    assign do_read = button_triggered & READ_SW;
+    assign do_write = button_triggered & WRITE_SW;    
+    pulser trigger_button(
+       .pulser(pushbutton),
+       .clk(clk),
+       .o(button_triggered)
+    );
+    
+endmodule
+module pulser(pulser, clk, o);
+   input pulser;
+   input clk;
+   output o;
+   
+   wire o1;
+   d_ff_sc input_ff (
+      .d(1'b1),
+      .o(o1),
+      .clr(~o),
+      .clk(pulser)
+    );
+    
+    d_ff output_ff (
+      .d(o1),
+      .o(o),
+      .clr(1'b1),
+      .clk(clk)
+    );
+   
 endmodule

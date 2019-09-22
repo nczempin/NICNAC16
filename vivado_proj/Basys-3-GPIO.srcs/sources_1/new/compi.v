@@ -10,7 +10,10 @@ module compi(
     output INP,
     input [1:0] knob_setting,
     input pushbutton,
-    output [15:0] led_out
+    output [15:0] led_out,
+    input [15:0] SW,
+    input CONCY1,
+    input CONCY2
 );
      
     
@@ -22,10 +25,11 @@ module compi(
   wire [15:0] mem_write;
   wire [15:0] mem_address;
 
- wire  status;
- wire t3;
-    wire RUN_MODE;
-       wire RUN_CY;
+   wire  status;
+   wire t3;
+   wire RUN_MODE;
+   wire RUN_CY;
+   wire LOAD_SW, WRITE_SW, READ_SW, RUN_SW;
  
  
     dunc16 mycpu (
@@ -44,7 +48,15 @@ module compi(
          .INP(INP),
          .t3(t3),
          .RUN_MODE(RUN_MODE),
-         .RUN_CY(RUN_CY)
+         .RUN_CY(RUN_CY),
+         .pushbutton(pushbutton),
+         .LOAD_SW(LOAD_SW),
+         .WRITE_SW(WRITE_SW),
+         .READ_SW(READ_SW),
+         .RUN_SW(RUN_SW),
+         .SW(SW),
+         .CONCY1(CONCY1),
+         .CONCY2(CONCY2)
    );
    Memory romram(
     .clk(clk),
@@ -53,20 +65,22 @@ module compi(
     .mem_write(mem_write),
     .mem_address(mem_address)
     );
-    
-       wire CONCY1;
-       wire CONCY2;
-       
+ 
    console myconsole(
   .t3(t3),
     .clk(clk),
     .reset(reset),
     .pushbutton(pushbutton),
     .knob_setting(knob_setting),
-    .CONCY1(CONCY1),
-    .CONCY2(CONCY2),
+  
     .RUN_MODE(RUN_MODE),
-    .RUN_CY(RUN_CY)
+    .RUN_CY(RUN_CY),
+    .LOAD_SW(LOAD_SW),
+    .WRITE_SW(WRITE_SW),
+     .READ_SW(READ_SW),
+      .RUN_SW(RUN_SW),
+      .CONCY1(CONCY1),
+    .CONCY2(CONCY2)
 
     ); 
 endmodule

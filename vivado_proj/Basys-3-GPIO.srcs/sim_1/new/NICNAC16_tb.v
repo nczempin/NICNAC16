@@ -3,7 +3,7 @@
 module NICNAC16_tb ();
 reg clk, reset;
 
-wire [15:0] SW;
+reg [15:0] SW;
 wire [4:0] BTN;
 assign BTN = {reset,4'b0000};
 wire LED;
@@ -29,30 +29,52 @@ initial begin
 
     pushbutton =1'b1; 
    knob_setting =2'b00;
+   reset =1'b0;
+   #1
 	reset = 1'b1;
+	SW = 16'haced;
 	
 		#4
 	reset = 1'b0;
 	
-	#30.1
-	
+	#9
+	pushbutton = 1'b0;
+	 #3
+	 pushbutton = 1'b1;
+	#10
 	 knob_setting =2'b01;
-	#30.2
+	 #6
+	 pushbutton = 1'b0;
+	 #3
+	 pushbutton = 1'b1;
+	#6
 	
 	 knob_setting =2'b10;
-	#30.3
+	#6
+	 pushbutton <= 1'b0;
+	 #3
+    pushbutton =1'b1; 
+#6
 	
 	 knob_setting =2'b11;
-	 	#30.4
+	#6
+	 pushbutton <= 1'b0;
+	 #3
+    pushbutton =1'b1; 
+ 	#6
 	
 	 knob_setting =2'b00;
-	 #10
+	 
+#32
+	SW = 16'hffff;
+	
+	 knob_setting =2'b11;
+	#6
 	 pushbutton <= 1'b0;
-	 #20
+	 #3
     pushbutton =1'b1; 
-
-
-
+    #2
+ knob_setting =2'b00;
 end
 always #0.5 clk =~clk;
 

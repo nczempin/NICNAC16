@@ -15,7 +15,7 @@ assign CONCY1 =ff3_out;
 wire ff4_out;
 assign CONCY2=ff4_out;
 wire clearem;
-assign clearem = (~CONCY2  |~RUN_MODE);
+assign clearem = (reset|~CONCY2  |~RUN_MODE);
 wire t3_rise;
 assign t3_rise = ~(t3&clk);
 
