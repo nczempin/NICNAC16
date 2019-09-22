@@ -7,7 +7,9 @@ module compi(
     output [4:0] DEVADDRESS,
     output [5:0] DEVCTRL,
     output OUTP,
-    output INP
+    output INP,
+    input [1:0] knob_setting,
+    input pushbutton
 );
      
     
@@ -52,16 +54,8 @@ module compi(
     .mem_address(mem_address)
     );
     
-       wire pushbutton; //TODO
-       assign pushbutton = 1'b1; // TODO
-       wire CONCY1; // TODO
-       wire CONCY2; //TODO
-       wire [1:0] knob_setting;
-       assign knob_setting = 2'b00; //TODO
-       
-    
-  
-  
+       wire CONCY1;
+       wire CONCY2;
        
    console myconsole(
   .t3(t3),

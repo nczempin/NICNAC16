@@ -23,7 +23,7 @@ module ROM(
       8'h10: data = 16'h0007; // .dw 7
       8'h11: data = 16'h000c; // .dw $000c
       8'h12: data = 16'ha5c3; // .dw $a5c3
-      8'h13: data = 16'b1111_1111_1111_1101; // .dw $fffe -- adding just three ones will wrap around to non-negative
+      8'h13: data = 16'b1111_1111_1111_1101; // .dw $fffd -- adding just three ones will wrap around to non-negative
       8'h14: data = 16'b0000_0000_0000_0001; // .dw $0001 
     
      default: data = 16'h05c5; //NOP with tag

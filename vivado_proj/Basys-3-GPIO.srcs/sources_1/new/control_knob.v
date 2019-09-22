@@ -16,14 +16,14 @@ module control_knob(
     wire READ_SW;
     assign READ_SW = knob_setting == 2'b01;
     wire LOAD_SW;
-    assign LOAD_SW = knob_setting == 2'b10;
+    assign LOAD_SW = knob_setting == 2'b11;
     
     assign RUN_CY = CONCY1 & RUN_SW;
     wire do_halt;
-    assign do_halt = ~(reset | HALT |LOAD_SW |WRITE_SW|READ_SW);
+    assign do_halt = reset | LOAD_SW | WRITE_SW| READ_SW;
     d_ff RUN (
-       .clk(~RUN_CY),
-       .clr(do_halt),
+       .clk(~RUN_CY|reset),
+       .clr(~do_halt),
        .d(1'b1),
        .o(RUN_MODE)
     );

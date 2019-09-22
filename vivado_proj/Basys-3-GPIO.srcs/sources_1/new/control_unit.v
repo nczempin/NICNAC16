@@ -196,7 +196,7 @@ module control_unit(clk, reset, fetch, execute,
     reg5ce IR(ir_out, clk, EN_IR, reset, ir_in);
     wire [3:0] i_decoder_in;
     assign i_decoder_in = ir_out[4:1];
-    Decoder4_16Bus instruction_decoder(D, i_decoder_in, RUN);
+    Decoder4_16Bus instruction_decoder(D, i_decoder_in, 1'b1);
 
    
     assign MA_MUX_SEL = fetch & t3; //TODO document as to why

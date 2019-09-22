@@ -6,7 +6,7 @@ module d_ff (
      output reg o
 );
 
-   always @(posedge clk)
+   always @(clr or posedge clk)
       if (!clr) begin
          o <= 1'b0;
       end else begin

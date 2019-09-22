@@ -21,7 +21,9 @@ module NICNAC16(
     input [4:0] BTN,
     output [15:0] LED,
     output [7:0] SSEG_CA,
-    output [3:0] SSEG_AN
+    output [3:0] SSEG_AN,
+    input [1:0] knob_setting,
+    input pushbutton
 );
     wire reset;
     wire status;
@@ -68,6 +70,7 @@ wire cd_out;
    wire INP,OUTP;
     assign out_r_in = ~(out_r_address_decoded & OUTP); //NAND, we are looking for rising edge
   wire [15:0] latched_data;
+  
   FD16CE out_register(
   .D(IODATA_BUS),
   .Q(latched_data),
@@ -83,7 +86,9 @@ wire cd_out;
     .DEVADDRESS(DEVADDRESS),
     .DEVCTRL(DEVCTRL),
     .OUTP(OUTP),
-    .INP(INP)
+    .INP(INP),
+    .knob_setting(knob_setting),
+    .pushbutton(pushbutton)
    );
    
     
