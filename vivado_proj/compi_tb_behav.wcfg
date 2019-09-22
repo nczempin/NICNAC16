@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="859000001fs"></ZoomEndTime>
-      <Cursor1Time time="340000000fs"></Cursor1Time>
+      <ZoomStartTime time="1274166666fs"></ZoomStartTime>
+      <ZoomEndTime time="2145166667fs"></ZoomEndTime>
+      <Cursor1Time time="1940000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="114"></NameColumnWidth>
+      <NameColumnWidth column_width="102"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="36" />
+   <WVObjectSize size="38" />
    <wvobject fp_name="/NICNAC16_tb/nn16/c/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -28,6 +28,14 @@
       <obj_property name="ElementShortName">pc_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">pc_out[15:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/LED" type="array">
+      <obj_property name="ElementShortName">LED[15:0]</obj_property>
+      <obj_property name="ObjectShortName">LED[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/led_out" type="array">
+      <obj_property name="ElementShortName">led_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">led_out[15:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/ac_out" type="array">
       <obj_property name="ElementShortName">ac_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">ac_out[15:0]</obj_property>
@@ -35,6 +43,10 @@
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/alu_out" type="array">
       <obj_property name="ElementShortName">alu_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">alu_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/md_out" type="array">
+      <obj_property name="ElementShortName">md_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">md_out[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/AC_MUX_SEL" type="array">
       <obj_property name="ElementShortName">AC_MUX_SEL[1:0]</obj_property>
@@ -48,14 +60,9 @@
       <obj_property name="ElementShortName">t2</obj_property>
       <obj_property name="ObjectShortName">t2</obj_property>
    </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/md_out" type="array">
-      <obj_property name="ElementShortName">md_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">md_out[15:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/ir_out" type="array">
       <obj_property name="ElementShortName">ir_out[3:0]</obj_property>
       <obj_property name="ObjectShortName">ir_out[3:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/fetch" type="logic">
       <obj_property name="ElementShortName">fetch</obj_property>
@@ -101,6 +108,10 @@
       <obj_property name="ElementShortName">I_JMP</obj_property>
       <obj_property name="ObjectShortName">I_JMP</obj_property>
    </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/I_DIO" type="logic">
+      <obj_property name="ElementShortName">I_DIO</obj_property>
+      <obj_property name="ObjectShortName">I_DIO</obj_property>
+   </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/myconsole/ck/RUN_SW" type="logic">
       <obj_property name="ElementShortName">RUN_SW</obj_property>
       <obj_property name="ObjectShortName">RUN_SW</obj_property>
@@ -140,10 +151,6 @@
    <wvobject fp_name="/NICNAC16_tb/nn16/c/myconsole/ct/ff4_out" type="logic">
       <obj_property name="ElementShortName">ff4_out</obj_property>
       <obj_property name="ObjectShortName">ff4_out</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/reset" type="logic">
-      <obj_property name="ElementShortName">reset</obj_property>
-      <obj_property name="ObjectShortName">reset</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/CONCY2" type="logic">
       <obj_property name="ElementShortName">CONCY2</obj_property>

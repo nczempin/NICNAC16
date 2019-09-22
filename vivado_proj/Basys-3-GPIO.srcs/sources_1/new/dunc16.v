@@ -57,10 +57,11 @@ input RUN_CY;
     
     wire AZ, AN;
     
-    assign led_out[3:0] = pc_out[3:0];
-    assign led_out[7:4] = ac_out[3:0];
-    assign led_out[11:8] = md_out[3:0];
-    assign led_out[15:12] = ma_out[3:0];
+    assign led_out = ac_out;
+//    assign led_out[3:0] = pc_out[3:0];
+//    assign led_out[7:4] = ac_out[3:0];
+//    assign led_out[11:8] = md_out[3:0];
+//    assign led_out[15:12] = ma_out[3:0];
             
     //ROM rom(ma_out[7:0], MEMORY_READ);
     

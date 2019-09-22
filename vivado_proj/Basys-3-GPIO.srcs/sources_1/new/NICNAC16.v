@@ -39,7 +39,7 @@ module NICNAC16(
     assign sseg_dp ={clk_cpu, status, 2'b11};
     sseg_interface16b si16(
     .clk(clk_fpga),
-    .data(led_out),
+    .data(led_out), //TODO
     .decimal_points(sseg_dp),
     .sseg_ca( SSEG_CA),
     .sseg_an( SSEG_AN)
@@ -88,7 +88,8 @@ wire cd_out;
     .OUTP(OUTP),
     .INP(INP),
     .knob_setting(knob_setting),
-    .pushbutton(pushbutton)
+    .pushbutton(pushbutton),
+    .led_out(led_out)
    );
    
     

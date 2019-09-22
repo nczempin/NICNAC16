@@ -9,7 +9,8 @@ module compi(
     output OUTP,
     output INP,
     input [1:0] knob_setting,
-    input pushbutton
+    input pushbutton,
+    output [15:0] led_out
 );
      
     
@@ -21,7 +22,6 @@ module compi(
   wire [15:0] mem_write;
   wire [15:0] mem_address;
 
- wire [15:0] led_out;
  wire  status;
  wire t3;
     wire RUN_MODE;
