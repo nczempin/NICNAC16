@@ -49,7 +49,7 @@ module control_unit(clk, reset, fetch, execute,
     output EN_MD;
     output EN_AC;
     
-    output MA_MUX_SEL;
+    output [1:0]MA_MUX_SEL;
     output MD_MUX_SEL;
     output [1:0] AC_MUX_SEL;
     output ALU_MUX_A_SEL;
@@ -173,8 +173,10 @@ module control_unit(clk, reset, fetch, execute,
     assign EN_IR = (t3 & fetch) ;
     assign do_jump = execute & t0 & instr_jump;
     assign EN_PC = incr_pc | do_jump | reset; 
-    assign EN_MA = (t3 & fetch )
-                   |(t0 & fetch);
+    assign EN_MA = fetch & t0 
+                  |fetch & t3
+                  |do_load
+                   ;
     assign EN_MD = fetch & (t0 | t2)
                     |execute & I_LDA & t1
                     |execute & I_ADD & t1
@@ -208,7 +210,11 @@ module control_unit(clk, reset, fetch, execute,
     Decoder4_16Bus instruction_decoder(D, i_decoder_in, 1'b1);
 
      
-    assign MA_MUX_SEL = fetch & t3; //TODO document as to why
+    assign MA_MUX_SEL = fetch & t0 ? 2'b00 : 
+                        fetch & t3 ? 2'b01 :
+                           do_load ? 2'b10 :
+                                     2'b11
+                        ; //TODO document as to why
     assign MD_MUX_SEL = execute & I_STA & t0; //TODO document as to why
     assign AC_MUX_SEL = execute & I_ADD & t2? 2'b01: 
                         execute & INPUT & t2? 2'b10:
@@ -231,25 +237,4 @@ module control_unit(clk, reset, fetch, execute,
        .o(button_triggered)
     );
     
-endmodule
-module pulser(pulser, clk, o);
-   input pulser;
-   input clk;
-   output o;
-   
-   wire o1;
-   d_ff_sc input_ff (
-      .d(1'b1),
-      .o(o1),
-      .clr(~o),
-      .clk(pulser)
-    );
-    
-    d_ff output_ff (
-      .d(o1),
-      .o(o),
-      .clr(1'b1),
-      .clk(clk)
-    );
-   
 endmodule

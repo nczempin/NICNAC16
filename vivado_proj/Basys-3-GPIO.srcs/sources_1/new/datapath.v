@@ -54,7 +54,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     
     output  [15:0]pc_out;
  
-    input MA_MUX_SEL;
+    input[1:0]MA_MUX_SEL;
     input MD_MUX_SEL;
     input [1:0] AC_MUX_SEL;
     input ALU_MUX_A_SEL;
@@ -101,10 +101,10 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
        .CLR(1'b0),
        .Q(pc_out)
     );
+    wire[15:0] TODO; // TODO 11:0
     
     
-    
-    mux16_2 mamux( pc_out, md_out, MA_MUX_SEL, MA_MUX_OUT);
+    mux16_4 mamux( pc_out, md_out, SW, TODO, MA_MUX_SEL, MA_MUX_OUT);
     
     FD16CE MA(
        .D(MA_IN),

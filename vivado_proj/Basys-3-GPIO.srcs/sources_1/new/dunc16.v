@@ -74,7 +74,7 @@ module dunc16(
     wire EN_IR, EN_PC, EN_MA, EN_MD, EN_AC;
     
     wire do_jump;
-    wire MA_MUX_SEL;
+    wire[1:0] MA_MUX_SEL;
     wire MD_MUX_SEL;
     wire [1:0]  AC_MUX_SEL;
     wire ALU_MUX_A_SEL;
