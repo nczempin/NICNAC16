@@ -89,7 +89,7 @@ module dunc16(
 //    assign led_out[15:12] = ma_out[3:0];
  
     assign status =fetch;
-    
+    wire do_load;
     datapath dp (
        .clk(clk),
        .reset(reset),
@@ -131,7 +131,8 @@ module dunc16(
        .AN(AN),
        .AZ(AZ),
        .IODATA_BUS(IODATA_BUS),
-       .SW(SW)
+       .SW(SW),
+       .do_load(do_load)
     );
      
     
@@ -185,7 +186,8 @@ module dunc16(
         .READ_SW(READ_SW),
         .RUN_SW(RUN_SW),
         .CONCY1(CONCY1),
-        .CONCY2(CONCY2)
+        .CONCY2(CONCY2),
+        .do_load(do_load)
      );
   
 endmodule

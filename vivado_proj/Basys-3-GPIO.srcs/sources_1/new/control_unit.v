@@ -18,7 +18,8 @@ module control_unit(clk, reset, fetch, execute,
                      RUN_MODE, RUN_CY,
                      pushbutton,
                      LOAD_SW, WRITE_SW, READ_SW, RUN_SW,
-                     CONCY1, CONCY2
+                     CONCY1, CONCY2,
+                     do_load
                     );
     input clk;
     input reset;
@@ -71,6 +72,8 @@ module control_unit(clk, reset, fetch, execute,
     input pushbutton;
     input LOAD_SW, WRITE_SW, READ_SW, RUN_SW;
     input CONCY1, CONCY2;
+    
+    output do_load;
     
     assign DEVADDRESS=md_out[4:0];
     assign DEVCTRL=md_out[9:5];
@@ -167,12 +170,11 @@ module control_unit(clk, reset, fetch, execute,
        ;
 
     wire new_cycle;
-      wire do_load;
-
+    
     assign instr_jump = I_JMP | (I_BAN & AN) | (I_BAZ & AZ); // TODO or BL
     assign EN_IR = (t3 & fetch) ;
     assign do_jump = execute & t0 & instr_jump;
-    assign EN_PC = incr_pc | do_jump | reset; 
+    assign EN_PC = incr_pc | do_jump | reset | do_load; 
     assign EN_MA = fetch & t0 
                   |fetch & t3
                   |do_load
