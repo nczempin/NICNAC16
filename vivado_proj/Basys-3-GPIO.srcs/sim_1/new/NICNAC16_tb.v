@@ -6,9 +6,9 @@ reg clk, reset;
 reg [15:0] SW;
 wire [4:0] BTN;
 assign BTN = {reset,4'b0000};
-wire LED;
-wire SSEG_CA;
-wire SSEG_AN;
+wire [15:0] LED;
+wire [7:0]SSEG_CA;
+wire [3:0]SSEG_AN;
 
     reg [1:0] knob_setting;
     reg pushbutton;
@@ -42,6 +42,8 @@ initial begin
 	 #3
 	 pushbutton = 1'b1;
 	#10
+	// READ on console
+	SW = 16'h4ab5;
 	 knob_setting =2'b01;
 	 #6
 	 pushbutton = 1'b0;
@@ -49,13 +51,19 @@ initial begin
 	 pushbutton = 1'b1;
 	#6
 	
+	// WRITE via console
+	SW = 16'h00d5;
+
 	 knob_setting =2'b10;
 	#6
 	 pushbutton <= 1'b0;
 	 #3
     pushbutton =1'b1; 
 #6
-	
+
+// LOAD via console
+		SW = 16'h0104;
+
 	 knob_setting =2'b11;
 	#6
 	 pushbutton <= 1'b0;
@@ -63,6 +71,8 @@ initial begin
     pushbutton =1'b1; 
  	#6
 	
+	
+	// RUN MODE
 	 knob_setting =2'b00;
 	 
 #32

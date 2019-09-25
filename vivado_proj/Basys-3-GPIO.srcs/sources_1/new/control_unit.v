@@ -19,7 +19,9 @@ module control_unit(clk, reset, fetch, execute,
                      pushbutton,
                      LOAD_SW, WRITE_SW, READ_SW, RUN_SW,
                      CONCY1, CONCY2,
-                     do_load
+                     do_load,
+                     do_read,
+                     do_write
                     );
     input clk;
     input reset;
@@ -51,7 +53,7 @@ module control_unit(clk, reset, fetch, execute,
     output EN_AC;
     
     output [1:0]MA_MUX_SEL;
-    output MD_MUX_SEL;
+    output [1:0] MD_MUX_SEL;
     output [1:0] AC_MUX_SEL;
     output ALU_MUX_A_SEL;
     output ALU_MUX_B_SEL;
@@ -74,7 +76,9 @@ module control_unit(clk, reset, fetch, execute,
     input CONCY1, CONCY2;
     
     output do_load;
-    
+    output do_read;
+    output do_write;
+  
     assign DEVADDRESS=md_out[4:0];
     assign DEVCTRL=md_out[9:5];
     
@@ -114,28 +118,30 @@ module control_unit(clk, reset, fetch, execute,
        
     wire [15:0] IODATA_BUS;
 
- reg [15:0] io_internal;
- wire [15:0] not_ac;
- wire [15:0] incoming_io_bus;
- assign incoming_io_bus = IODATA_BUS;
+    reg [15:0] io_internal;
+    wire [15:0] not_ac;
+    wire [15:0] incoming_io_bus;
+    assign incoming_io_bus = IODATA_BUS;
     assign not_ac = ~ac_out; 
     always @(OUTP)
        io_internal <= OUTP?ac_out:16'bz;
 
     assign IODATA_BUS = io_internal;
-
+wire stop_write;
     wire SETWRITE;
-    assign SETWRITE = execute & t0 & I_STA;
+    assign SETWRITE = execute & t0 & I_STA |do_write;
     wire CLRWRITE;
-    assign CLRWRITE = execute & t2 & I_STA;
-    wire WRITE;
-   
-   assign en_mem_write =WRITE;
+    assign CLRWRITE = execute & t2 & I_STA|stop_write;
+       wire button_triggered;
+    assign do_load = button_triggered & LOAD_SW;
+    assign do_read = button_triggered & READ_SW;
+    assign do_write = button_triggered & WRITE_SW;    
+
     jk_ff m_w_ff (
        .clk( clk),
        .j(SETWRITE),
        .k(CLRWRITE),
-       .q(WRITE)
+       .q(en_mem_write)
        );
     
     wire [15:0] D;
@@ -180,15 +186,17 @@ module control_unit(clk, reset, fetch, execute,
                   |do_load
                    ;
     assign EN_MD = fetch & (t0 | t2)
-                    |execute & I_LDA & t1
-                    |execute & I_ADD & t1
-                    |execute & I_STA & t0
-                    ;
-    
+                  |execute & I_LDA & t1
+                  |execute & I_ADD & t1
+                  |execute & I_STA & t0
+                  |do_write
+                ;
+
      assign EN_AC = execute & I_LDA & t2
                    |execute & I_ADD & t2
                    |execute & INPUT & t2
                    |do_load
+                   |do_write
                    ;
       assign incr_pc = fetch & t2;
     
@@ -217,26 +225,36 @@ module control_unit(clk, reset, fetch, execute,
                            do_load ? 2'b10 :
                                      2'b11
                         ; //TODO document as to why
-    assign MD_MUX_SEL = execute & I_STA & t0; //TODO document as to why
-    assign AC_MUX_SEL = execute & I_ADD & t2? 2'b01: 
-                        execute & INPUT & t2? 2'b10:
-                                     do_load? 2'b11:
+    assign MD_MUX_SEL = execute & I_STA & t0 ? 2'b01 :
+                                    do_write ? 2'b10 :
+                                               2'b00 // read from memory  
+    
+    ; //TODO document as to why
+    assign AC_MUX_SEL = execute & I_ADD & t2 ? 2'b01: 
+                        execute & INPUT & t2 ? 2'b10:
+                          do_write | do_load ? 2'b11:
                                                2'b00 
     ; //TODO document as to why
 
     assign ALU_MUX_A_SEL = incr_pc; //TODO document as to why
     assign ALU_MUX_B_SEL = incr_pc; //TODO document as to why
     
-    wire do_read;
-    wire do_write;
-    wire button_triggered;
-    assign do_load = button_triggered & LOAD_SW;
-    assign do_read = button_triggered & READ_SW;
-    assign do_write = button_triggered & WRITE_SW;    
-    pulser trigger_button(
+       pulser trigger_button(
        .pulser(pushbutton),
        .clk(clk),
        .o(button_triggered)
+    );
+    wire write_delay;
+       pulser write1(
+       .pulser(do_write),
+       .clk(clk),
+       .o(write_delay)
+    );
+       pulser write2(
+       .pulser(write_delay),
+       .clk(clk),
+       .o(stop_write),
+       .reset(reset)
     );
     
 endmodule

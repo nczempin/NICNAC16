@@ -12,7 +12,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
          AN, AZ,
          IODATA_BUS,
          SW,
-         do_load
+         do_load, do_write, do_read
          );
          
     input clk;
@@ -56,7 +56,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     output  [15:0]pc_out;
  
     input[1:0]MA_MUX_SEL;
-    input MD_MUX_SEL;
+    input [1:0] MD_MUX_SEL;
     input [1:0] AC_MUX_SEL;
     input ALU_MUX_A_SEL;
     input ALU_MUX_B_SEL;
@@ -65,7 +65,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     
     input[15:0] IODATA_BUS;
     input [15:0] SW;
-    input do_load;
+    input do_load, do_write, do_read;
  
     wire [15:0] MA_IN;
     wire [15:0] MD_IN;
@@ -80,8 +80,7 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
     assign MA_IN = MA_MUX_OUT[11:0];
     assign MD_IN = MD_MUX_OUT;
     
-    assign AC_IN = AC_MUX_OUT;//md_out; // TODO: mux with alu_out
-    
+    assign AC_IN = AC_MUX_OUT;
      
     
     wire CO;
@@ -96,10 +95,12 @@ module datapath(clk, reset, fetch, execute, incr_pc, PC_IN,
      //select1of4_16 pc_in_priority(reset_vector, JUMP_ADR, alu_out, D, reset, DO_JUMP, incr_pc, DO_RET, PC_IN);
      wire [1:0] PC_MUX_SEL;
      assign PC_MUX_SEL = reset ? 2'b00 :
-                         DO_JUMP ? 2'b01 :
-                         incr_pc ? 2'b10 :
-                         do_load ? 2'b11 : 2'bz;
-mux16_4 pcmux(reset_vector,JUMP_ADR,alu_out,SW,PC_MUX_SEL,PC_IN);
+                       DO_JUMP ? 2'b01 :
+                       incr_pc ? 2'b10 :
+                       do_load ? 2'b11 : 2'bz;
+    mux16_4 pcmux(reset_vector,JUMP_ADR,alu_out,SW,
+                  PC_MUX_SEL, PC_IN
+                 );
     FD16CE PC(
        .D(PC_IN),
        .CE(EN_PC),
@@ -119,7 +120,8 @@ mux16_4 pcmux(reset_vector,JUMP_ADR,alu_out,SW,PC_MUX_SEL,PC_IN);
        .CLR(1'b0),
        .Q(ma_out)
     );
-    mux16_2 mdmux( mem_read, ac_out, MD_MUX_SEL, MD_MUX_OUT);
+    mux16_4 mdmux( mem_read, ac_out, SW, TODO,
+     MD_MUX_SEL, MD_MUX_OUT);
     
     FD16CE MD(
        .D(MD_IN),
@@ -129,7 +131,8 @@ mux16_4 pcmux(reset_vector,JUMP_ADR,alu_out,SW,PC_MUX_SEL,PC_IN);
        .Q(md_out)
     );
     
-     mux16_4 acmux( md_out, alu_out, IODATA_BUS, SW, AC_MUX_SEL, AC_MUX_OUT);
+     mux16_4 acmux( md_out, alu_out, IODATA_BUS, SW,
+                   AC_MUX_SEL, AC_MUX_OUT);
      
     FD16CE AC(
        .D(AC_IN),

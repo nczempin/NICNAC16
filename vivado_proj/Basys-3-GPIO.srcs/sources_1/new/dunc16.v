@@ -64,7 +64,7 @@ module dunc16(
     
     wire [15:0] md_out;
     assign mem_write = md_out;
-    wire [3:0] ir_out;
+    wire [4:0] ir_out;
     wire [15:0] alu_out;
     wire incr_pc;
     
@@ -75,7 +75,7 @@ module dunc16(
     
     wire do_jump;
     wire[1:0] MA_MUX_SEL;
-    wire MD_MUX_SEL;
+    wire [1:0] MD_MUX_SEL;
     wire [1:0]  AC_MUX_SEL;
     wire ALU_MUX_A_SEL;
     wire ALU_MUX_B_SEL;
@@ -83,13 +83,10 @@ module dunc16(
     wire AZ, AN;
     
     assign led_out = ac_out;
-//    assign led_out[3:0] = pc_out[3:0];
-//    assign led_out[7:4] = ac_out[3:0];
-//    assign led_out[11:8] = md_out[3:0];
-//    assign led_out[15:12] = ma_out[3:0];
- 
+
+
     assign status =fetch;
-    wire do_load;
+    wire do_load, do_read, do_write;
     datapath dp (
        .clk(clk),
        .reset(reset),
@@ -132,7 +129,9 @@ module dunc16(
        .AZ(AZ),
        .IODATA_BUS(IODATA_BUS),
        .SW(SW),
-       .do_load(do_load)
+       .do_load(do_load),
+       .do_write(do_write),
+       .do_read(do_read)
     );
      
     
@@ -187,7 +186,9 @@ module dunc16(
         .RUN_SW(RUN_SW),
         .CONCY1(CONCY1),
         .CONCY2(CONCY2),
-        .do_load(do_load)
+        .do_load(do_load),
+        .do_write(do_write),
+        .do_read(do_read)
      );
   
 endmodule
