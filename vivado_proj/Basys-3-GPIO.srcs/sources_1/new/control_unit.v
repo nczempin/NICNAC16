@@ -198,7 +198,7 @@ wire stop_write;
                    |do_load
                    |do_write
                    ;
-      assign incr_pc = fetch & t2;
+      assign incr_pc = fetch & t2|stop_write;
     
     system_timing st (
         .reset(reset),

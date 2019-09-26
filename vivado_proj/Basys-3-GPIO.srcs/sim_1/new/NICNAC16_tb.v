@@ -36,8 +36,70 @@ initial begin
 	
 		#4
 	reset = 1'b0;
+	// reset done
+	#2
 	
-	#9
+// LOAD via console
+	SW = 16'h0000;
+    knob_setting =2'b11;
+	#3
+	pushbutton <= 1'b0;
+    #3
+    pushbutton =1'b1; 
+ 	#3
+	// WRITE via console
+	SW = 16'h4113;
+	knob_setting =2'b10;
+	#3
+	pushbutton <= 1'b0;
+	#3
+    pushbutton =1'b1; 
+    #3
+    
+    SW = 16'h6114;
+	#2
+	pushbutton <= 1'b0;
+	#2
+    pushbutton =1'b1; 
+    #3
+	
+    SW = 16'h7004;
+	#2
+	pushbutton <= 1'b0;
+	#2
+    pushbutton =1'b1; 
+    #3
+	SW = 16'h1001;
+	#2
+	pushbutton <= 1'b0;
+	#2
+    pushbutton =1'b1; 
+    #3
+    SW = 16'hfc27;
+	#2
+	pushbutton <= 1'b0;
+	#2
+    pushbutton =1'b1; 
+    #3
+    SW = 16'h1000;
+	#3
+	pushbutton <= 1'b0;
+	#3
+    pushbutton =1'b1; 
+    #3
+	
+    SW = 16'h0000;
+    knob_setting =2'b11;
+	#3
+	pushbutton <= 1'b0;
+    #3
+    pushbutton =1'b1; 
+ 	#3
+    knob_setting =2'b00;
+	
+	
+	
+	#64
 	pushbutton = 1'b0;
 	 #3
 	 pushbutton = 1'b1;
@@ -62,12 +124,11 @@ initial begin
 #6
 
 // LOAD via console
-		SW = 16'h0104;
-
-	 knob_setting =2'b11;
+	SW = 16'h0104;
+    knob_setting =2'b11;
 	#6
-	 pushbutton <= 1'b0;
-	 #3
+	pushbutton <= 1'b0;
+    #3
     pushbutton =1'b1; 
  	#6
 	
