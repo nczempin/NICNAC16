@@ -184,6 +184,7 @@ wire stop_write;
     assign EN_MA = fetch & t0 
                   |fetch & t3
                   |do_load
+                  |do_write
                    ;
     assign EN_MD = fetch & (t0 | t2)
                   |execute & I_LDA & t1
@@ -220,7 +221,7 @@ wire stop_write;
     Decoder4_16Bus instruction_decoder(D, i_decoder_in, 1'b1);
 
      
-    assign MA_MUX_SEL = fetch & t0 ? 2'b00 : 
+    assign MA_MUX_SEL = (fetch & t0)|do_write ? 2'b00 : 
                         fetch & t3 ? 2'b01 :
                            do_load ? 2'b10 :
                                      2'b11
