@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="537760416fs"></ZoomStartTime>
-      <ZoomEndTime time="1092447917fs"></ZoomEndTime>
-      <Cursor1Time time="1000000000fs"></Cursor1Time>
+      <ZoomStartTime time="1398333333fs"></ZoomStartTime>
+      <ZoomEndTime time="2120333334fs"></ZoomEndTime>
+      <Cursor1Time time="1540000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="187"></NameColumnWidth>
-      <ValueColumnWidth column_width="134"></ValueColumnWidth>
+      <ValueColumnWidth column_width="122"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="58" />
+   <WVObjectSize size="65" />
    <wvobject fp_name="/NICNAC16_tb/nn16/c/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -27,6 +27,31 @@
    <wvobject fp_name="/NICNAC16_tb/reset" type="logic">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/myconsole/ck/READ_SW" type="logic">
+      <obj_property name="ElementShortName">READ_SW</obj_property>
+      <obj_property name="ObjectShortName">READ_SW</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/myconsole/ck/WRITE_SW" type="logic">
+      <obj_property name="ElementShortName">WRITE_SW</obj_property>
+      <obj_property name="ObjectShortName">WRITE_SW</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/myconsole/ck/LOAD_SW" type="logic">
+      <obj_property name="ElementShortName">LOAD_SW</obj_property>
+      <obj_property name="ObjectShortName">LOAD_SW</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/button_triggered" type="logic">
+      <obj_property name="ElementShortName">button_triggered</obj_property>
+      <obj_property name="ObjectShortName">button_triggered</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/dp/MD_MUX_SEL" type="array">
+      <obj_property name="ElementShortName">MD_MUX_SEL[1:0]</obj_property>
+      <obj_property name="ObjectShortName">MD_MUX_SEL[1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/romram/ram_address" type="array">
+      <obj_property name="ElementShortName">ram_address[7:0]</obj_property>
+      <obj_property name="ObjectShortName">ram_address[7:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/pc_out" type="array">
       <obj_property name="ElementShortName">pc_out[15:0]</obj_property>
@@ -64,9 +89,29 @@
       <obj_property name="ElementShortName">PC_MUX_SEL[1:0]</obj_property>
       <obj_property name="ObjectShortName">PC_MUX_SEL[1:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/D" type="array">
+      <obj_property name="ElementShortName">D[15:0]</obj_property>
+      <obj_property name="ObjectShortName">D[15:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/I_JMP" type="logic">
       <obj_property name="ElementShortName">I_JMP</obj_property>
       <obj_property name="ObjectShortName">I_JMP</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/I_LDA" type="logic">
+      <obj_property name="ElementShortName">I_LDA</obj_property>
+      <obj_property name="ObjectShortName">I_LDA</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/I_ADD" type="logic">
+      <obj_property name="ElementShortName">I_ADD</obj_property>
+      <obj_property name="ObjectShortName">I_ADD</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/I_BAZ" type="logic">
+      <obj_property name="ElementShortName">I_BAZ</obj_property>
+      <obj_property name="ObjectShortName">I_BAZ</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/I_DIO" type="logic">
+      <obj_property name="ElementShortName">I_DIO</obj_property>
+      <obj_property name="ObjectShortName">I_DIO</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/dp/EN_PC" type="logic">
       <obj_property name="ElementShortName">EN_PC</obj_property>
@@ -104,17 +149,23 @@
       <obj_property name="ElementShortName">mem_write[15:0]</obj_property>
       <obj_property name="ObjectShortName">mem_write[15:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/i_decoder_in" type="array">
+      <obj_property name="ElementShortName">i_decoder_in[3:0]</obj_property>
+      <obj_property name="ObjectShortName">i_decoder_in[3:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/romram/ram_write" type="logic">
       <obj_property name="ElementShortName">ram_write</obj_property>
       <obj_property name="ObjectShortName">ram_write</obj_property>
    </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/ir_out" type="array">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">ir_out[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ir_out[4:0]</obj_property>
+      <obj_property name="label">ir_out[4:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/romram/ram_in" type="array">
       <obj_property name="ElementShortName">ram_in[15:0]</obj_property>
       <obj_property name="ObjectShortName">ram_in[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/romram/ram_address" type="array">
-      <obj_property name="ElementShortName">ram_address[7:0]</obj_property>
-      <obj_property name="ObjectShortName">ram_address[7:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/AC_MUX_SEL" type="array">
       <obj_property name="ElementShortName">AC_MUX_SEL[1:0]</obj_property>
@@ -123,10 +174,6 @@
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/t2" type="logic">
       <obj_property name="ElementShortName">t2</obj_property>
       <obj_property name="ObjectShortName">t2</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/ir_out" type="array">
-      <obj_property name="ElementShortName">ir_out[4:0]</obj_property>
-      <obj_property name="ObjectShortName">ir_out[4:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/fetch" type="logic">
       <obj_property name="ElementShortName">fetch</obj_property>
@@ -148,18 +195,6 @@
       <obj_property name="ElementShortName">RUN_SW</obj_property>
       <obj_property name="ObjectShortName">RUN_SW</obj_property>
    </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/myconsole/ck/WRITE_SW" type="logic">
-      <obj_property name="ElementShortName">WRITE_SW</obj_property>
-      <obj_property name="ObjectShortName">WRITE_SW</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/myconsole/ck/READ_SW" type="logic">
-      <obj_property name="ElementShortName">READ_SW</obj_property>
-      <obj_property name="ObjectShortName">READ_SW</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/myconsole/ck/LOAD_SW" type="logic">
-      <obj_property name="ElementShortName">LOAD_SW</obj_property>
-      <obj_property name="ObjectShortName">LOAD_SW</obj_property>
-   </wvobject>
    <wvobject fp_name="/NICNAC16_tb/pushbutton" type="logic">
       <obj_property name="ElementShortName">pushbutton</obj_property>
       <obj_property name="ObjectShortName">pushbutton</obj_property>
@@ -175,10 +210,6 @@
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/do_write" type="logic">
       <obj_property name="ElementShortName">do_write</obj_property>
       <obj_property name="ObjectShortName">do_write</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/button_triggered" type="logic">
-      <obj_property name="ElementShortName">button_triggered</obj_property>
-      <obj_property name="ObjectShortName">button_triggered</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/cu/EN_MA" type="logic">
       <obj_property name="ElementShortName">EN_MA</obj_property>

@@ -127,7 +127,8 @@ module control_unit(clk, reset, fetch, execute,
        io_internal <= OUTP?ac_out:16'bz;
 
     assign IODATA_BUS = io_internal;
-wire stop_write;
+    wire stop_write;
+    wire stop_read;
     wire SETWRITE;
     assign SETWRITE = execute & t0 & I_STA |do_write;
     wire CLRWRITE;
@@ -185,12 +186,14 @@ wire stop_write;
                   |fetch & t3
                   |do_load
                   |do_write
+                  |do_read
                    ;
     assign EN_MD = fetch & (t0 | t2)
                   |execute & I_LDA & t1
                   |execute & I_ADD & t1
                   |execute & I_STA & t0
                   |do_write
+                  |do_read
                 ;
 
      assign EN_AC = execute & I_LDA & t2
@@ -198,8 +201,9 @@ wire stop_write;
                    |execute & INPUT & t2
                    |do_load
                    |do_write
+                   |stop_read
                    ;
-      assign incr_pc = fetch & t2|stop_write;
+      assign incr_pc = fetch & t2|stop_write|stop_read;
     
     system_timing st (
         .reset(reset),
@@ -221,7 +225,7 @@ wire stop_write;
     Decoder4_16Bus instruction_decoder(D, i_decoder_in, 1'b1);
 
      
-    assign MA_MUX_SEL = (fetch & t0)|do_write ? 2'b00 : 
+    assign MA_MUX_SEL = (fetch & t0)|do_write|do_read ? 2'b00 : 
                         fetch & t3 ? 2'b01 :
                            do_load ? 2'b10 :
                                      2'b11
@@ -255,6 +259,19 @@ wire stop_write;
        .pulser(write_delay),
        .clk(clk),
        .o(stop_write),
+       .reset(reset)
+    );
+    
+       wire read_delay;
+       pulser read1(
+       .pulser(do_read),
+       .clk(clk),
+       .o(read_delay)
+    );
+       pulser read2(
+       .pulser(read_delay),
+       .clk(clk),
+       .o(stop_read),
        .reset(reset)
     );
     
