@@ -10,12 +10,13 @@ module dunc16(
     mem_read,
     mem_write,
     en_mem_write,
-    IODATA_BUS,
+    DATA_BUS_IN,
+    DATA_BUS_OUT,
     DEVADDRESS,
     DEVCTRL,
     OUTP,
     INP,
-    t3,
+    t3, //TODO
     RUN_MODE,
     RUN_CY,
     pushbutton,
@@ -41,16 +42,17 @@ module dunc16(
     output [15:0] mem_read;
     output [15:0] mem_write;
     output en_mem_write;
-    inout [15:0] IODATA_BUS;
+    input [15:0] DATA_BUS_IN;
+    input [15:0] DATA_BUS_OUT;
     
     wire t0, t1, t2;
     output t3;
-   input RUN_MODE;
-   input RUN_CY;
-   input LOAD_SW, WRITE_SW, READ_SW, RUN_SW;
-   input [15:0] SW;
-   input CONCY1;
-   input CONCY2;
+    input RUN_MODE;
+    input RUN_CY;
+    input LOAD_SW, WRITE_SW, READ_SW, RUN_SW;
+    input [15:0] SW;
+    input CONCY1;
+    input CONCY2;
 
     wire fetch;
     wire execute;
@@ -127,7 +129,8 @@ module dunc16(
        .ALU_MUX_B_SEL(ALU_MUX_B_SEL),
        .AN(AN),
        .AZ(AZ),
-       .IODATA_BUS(IODATA_BUS),
+         .DATA_BUS_IN(DATA_BUS_IN),
+        .DATA_BUS_OUT(DATA_BUS_OUT),
        .SW(SW),
        .do_load(do_load),
        .do_write(do_write),
@@ -172,7 +175,8 @@ module dunc16(
         .AN(AN),
         .AZ(AZ),
         .ac_out(ac_out),
-        .IODATA_BUS(IODATA_BUS),
+        .DATA_BUS_IN(DATA_BUS_IN),
+        .DATA_BUS_OUT(DATA_BUS_OUT),
         .DEVADDRESS(DEVADDRESS),
         .DEVCTRL(DEVCTRL) ,
         .md_out(md_out),

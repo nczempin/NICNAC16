@@ -10,7 +10,8 @@ module control_unit(clk, reset, fetch, execute,
                      en_mem_write,
                      AN, AZ,
                      ac_out,
-                     IODATA_BUS,         
+                     DATA_BUS_IN,
+                     DATA_BUS_OUT,
                      DEVADDRESS,
                      DEVCTRL,
                      md_out,
@@ -64,7 +65,8 @@ module control_unit(clk, reset, fetch, execute,
     input AZ;
     
     input [15:0] ac_out;
-    inout [15:0] IODATA_BUS; // TODO: move to datapath
+    input [15:0] DATA_BUS_IN; // TODO: move to datapath
+    output [15:0] DATA_BUS_OUT; // TODO: move to datapath
     output [4:0] DEVADDRESS;
     output [5:0] DEVCTRL;
     input [15:0] md_out;
@@ -116,17 +118,16 @@ module control_unit(clk, reset, fetch, execute,
        );
        
        
-    wire [15:0] IODATA_BUS;
-
+  
     reg [15:0] io_internal;
     wire [15:0] not_ac;
     wire [15:0] incoming_io_bus;
-    assign incoming_io_bus = IODATA_BUS;
+    assign incoming_io_bus = DATA_BUS_IN;
     assign not_ac = ~ac_out; 
     always @(OUTP)
        io_internal <= OUTP?ac_out:16'bz;
 
-    assign IODATA_BUS = io_internal;
+    assign DATA_BUS_OUT = io_internal;
     wire stop_write;
     wire stop_read;
     wire SETWRITE;

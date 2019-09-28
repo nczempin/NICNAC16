@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1398333333fs"></ZoomStartTime>
-      <ZoomEndTime time="2120333334fs"></ZoomEndTime>
-      <Cursor1Time time="1540000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="924252069fs"></ZoomEndTime>
+      <Cursor1Time time="1560000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="187"></NameColumnWidth>
-      <ValueColumnWidth column_width="122"></ValueColumnWidth>
+      <ValueColumnWidth column_width="118"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="65" />
+   <WVObjectSize size="62" />
    <wvobject fp_name="/NICNAC16_tb/nn16/c/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -27,6 +27,18 @@
    <wvobject fp_name="/NICNAC16_tb/reset" type="logic">
       <obj_property name="ElementShortName">reset</obj_property>
       <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/pc_out" type="array">
+      <obj_property name="ElementShortName">pc_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pc_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/ac_out" type="array">
+      <obj_property name="ElementShortName">ac_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">ac_out[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/myconsole/ck/RUN_SW" type="logic">
+      <obj_property name="ElementShortName">RUN_SW</obj_property>
+      <obj_property name="ObjectShortName">RUN_SW</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/myconsole/ck/READ_SW" type="logic">
       <obj_property name="ElementShortName">READ_SW</obj_property>
@@ -47,27 +59,14 @@
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/dp/MD_MUX_SEL" type="array">
       <obj_property name="ElementShortName">MD_MUX_SEL[1:0]</obj_property>
       <obj_property name="ObjectShortName">MD_MUX_SEL[1:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/romram/ram_address" type="array">
       <obj_property name="ElementShortName">ram_address[7:0]</obj_property>
       <obj_property name="ObjectShortName">ram_address[7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/pc_out" type="array">
-      <obj_property name="ElementShortName">pc_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">pc_out[15:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/NICNAC16_tb/SW" type="array">
       <obj_property name="ElementShortName">SW[15:0]</obj_property>
       <obj_property name="ObjectShortName">SW[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/LED" type="array">
-      <obj_property name="ElementShortName">LED[15:0]</obj_property>
-      <obj_property name="ObjectShortName">LED[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/ac_out" type="array">
-      <obj_property name="ElementShortName">ac_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">ac_out[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/md_out" type="array">
       <obj_property name="ElementShortName">md_out[15:0]</obj_property>
@@ -76,10 +75,6 @@
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/dp/ma_out" type="array">
       <obj_property name="ElementShortName">ma_out[15:0]</obj_property>
       <obj_property name="ObjectShortName">ma_out[15:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/dp/pc_out" type="array">
-      <obj_property name="ElementShortName">pc_out[15:0]</obj_property>
-      <obj_property name="ObjectShortName">pc_out[15:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/dp/PC_IN" type="array">
       <obj_property name="ElementShortName">PC_IN[15:0]</obj_property>
@@ -163,17 +158,9 @@
       <obj_property name="ObjectShortName">ir_out[4:0]</obj_property>
       <obj_property name="label">ir_out[4:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/romram/ram_in" type="array">
-      <obj_property name="ElementShortName">ram_in[15:0]</obj_property>
-      <obj_property name="ObjectShortName">ram_in[15:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/AC_MUX_SEL" type="array">
       <obj_property name="ElementShortName">AC_MUX_SEL[1:0]</obj_property>
       <obj_property name="ObjectShortName">AC_MUX_SEL[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/t2" type="logic">
-      <obj_property name="ElementShortName">t2</obj_property>
-      <obj_property name="ObjectShortName">t2</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/fetch" type="logic">
       <obj_property name="ElementShortName">fetch</obj_property>
@@ -187,13 +174,13 @@
       <obj_property name="ElementShortName">knob_setting[1:0]</obj_property>
       <obj_property name="ObjectShortName">knob_setting[1:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/c/mycpu/t2" type="logic">
+      <obj_property name="ElementShortName">t2</obj_property>
+      <obj_property name="ObjectShortName">t2</obj_property>
+   </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/c/RUN_CY" type="logic">
       <obj_property name="ElementShortName">RUN_CY</obj_property>
       <obj_property name="ObjectShortName">RUN_CY</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/c/myconsole/ck/RUN_SW" type="logic">
-      <obj_property name="ElementShortName">RUN_SW</obj_property>
-      <obj_property name="ObjectShortName">RUN_SW</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/pushbutton" type="logic">
       <obj_property name="ElementShortName">pushbutton</obj_property>

@@ -3,7 +3,8 @@
 module compi(
     input clk,
     input reset,
-    inout [15:0] IODATA_BUS,
+    input [15:0] DATA_BUS_IN,
+    input [15:0] DATA_BUS_OUT,
     output [4:0] DEVADDRESS,
     output [5:0] DEVCTRL,
     output OUTP,
@@ -11,7 +12,7 @@ module compi(
     input [1:0] knob_setting,
     input pushbutton,
     output [15:0] led_out,
-    input [15:0] SW,
+    input [15:0] SW, // TODO rename; at this level, it should no longer know anything about Basys 3
     input CONCY1,
     input CONCY2
 );
@@ -41,7 +42,8 @@ module compi(
         .mem_read(mem_read),
         .mem_write(mem_write),
         .mem_address(mem_address),
-        .IODATA_BUS(IODATA_BUS),
+        .DATA_BUS_IN(DATA_BUS_IN),
+        .DATA_BUS_OUT(DATA_BUS_OUT),
         .DEVADDRESS(DEVADDRESS),
          .DEVCTRL(DEVCTRL),
          .OUTP(OUTP),
@@ -58,6 +60,8 @@ module compi(
          .CONCY1(CONCY1),
          .CONCY2(CONCY2)
    );
+   
+   //TODO this is very internal; it should move up a level
    Memory romram(
     .clk(clk),
     .en_mem_write(en_mem_write),
