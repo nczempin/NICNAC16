@@ -5,12 +5,8 @@ module d_ff (
      input d,
      output reg o
 );
-always  @(clr)
-    if (!clr) begin
-         o <= 1'b0;
-      end
-   always @(posedge clk)
-      if (!clr) begin
+    always @(posedge clk or negedge clr)
+      if (~clr) begin
          o <= 1'b0;
       end else begin
          o <= d;

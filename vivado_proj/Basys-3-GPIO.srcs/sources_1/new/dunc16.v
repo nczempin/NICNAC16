@@ -43,7 +43,7 @@ module dunc16(
     output [15:0] mem_write;
     output en_mem_write;
     input [15:0] DATA_BUS_IN;
-    input [15:0] DATA_BUS_OUT;
+    output [15:0] DATA_BUS_OUT;
     
     wire t0, t1, t2;
     output t3;

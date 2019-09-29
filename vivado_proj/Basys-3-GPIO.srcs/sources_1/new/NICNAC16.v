@@ -2,12 +2,17 @@
 // Basys 3 specific implementation of NICNAC16
  
 module NICNAC16(
-    input clk_fpga,
-    input [15:0] SW,
-    input [4:0] BTN,
-    output [15:0] LED,
-    output [7:0] SSEG_CA,
-    output [3:0] SSEG_AN,
+    input clk,
+    input [15:0] sw,
+    input btnC,
+    input btnU,
+    input btnD,
+    input btnL,
+    input btnR,
+    output [15:0] led,
+    output [6:0] seg,
+    output dp,
+    output [3:0] an,
     inout [7:0] JA, //TODO change the naming in the .xdc
     inout [7:0] JB, //TODO change the naming in the .xdc
     inout [7:0] JC, //TODO change the naming in the .xdc
@@ -19,6 +24,14 @@ module NICNAC16(
      
     wire clk_cpu;
     wire [15:0] led_out;
+    wire [4:0]BTN;
+    assign BTN = {btnC, btnU, btnD, btnL, btnR};
+    wire [7:0] SSEG_CA;
+    assign SSEG_CA = {dp, seg};
+    wire [3:0] SSEG_AN;
+    assign SSEG_AN = an;
+    wire clk_fpga;
+    assign clk_fpga = clk;
     
     assign reset = BTN[4];
     
@@ -37,7 +50,7 @@ module NICNAC16(
         .sseg_an( SSEG_AN)
     );
  
-    assign LED =led_out;
+    assign led =led_out;
     wire cd_out;
     clock_divider cd(
         .clk_in(clk_fpga),
@@ -78,7 +91,8 @@ module NICNAC16(
   assign shift_knob = BTN[1];
   assign do_knob = BTN[3];
   // rotate knob setting when releasing do_knob while shift_knob is pressed
-  always @(negedge do_knob) begin
+  always @(posedge clk_fpga) begin
+       //TODO edge detect do_knob, debounce buttons
       if (shift_knob) 
          if (knob_setting == 2'b11) 
              knob_setting = 2'b00;
@@ -98,7 +112,7 @@ module NICNAC16(
     .knob_setting(knob_setting),
     .pushbutton(pushbutton),
     .led_out(led_out),
-    .SW(SW)
+    .SW(sw)
    );
    
     

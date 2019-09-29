@@ -124,7 +124,7 @@ module control_unit(clk, reset, fetch, execute,
     wire [15:0] incoming_io_bus;
     assign incoming_io_bus = DATA_BUS_IN;
     assign not_ac = ~ac_out; 
-    always @(OUTP)
+    always @(*)
        io_internal <= OUTP?ac_out:16'bz;
 
     assign DATA_BUS_OUT = io_internal;
