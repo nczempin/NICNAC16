@@ -1,27 +1,31 @@
 `timescale 10ns / 1ps
 
 module NICNAC16_tb ();
-reg clk, reset;
+    reg clk, reset;
 
-reg [15:0] SW;
-wire [4:0] BTN;
-assign BTN = {reset,4'b0000};
-wire [15:0] LED;
-wire [7:0]SSEG_CA;
-wire [3:0]SSEG_AN;
+    reg [15:0] SW;
+    wire [4:0] BTN;
+//assign BTN = {reset,4'b0000};
+    wire [15:0] LED;
+    wire [7:0]SSEG_CA;
+    wire [3:0]SSEG_AN;
 
     reg [1:0] knob_setting;
     reg pushbutton;
-
+wire btnC, btnU, btnL, btnR, btnD;
+assign btnC = reset;
+assign BTN={btnC, btnU, btnL, btnR, btnD};
 NICNAC16 nn16 (
-    .clk_fpga(clk),
-    .SW(SW),
-    .BTN(BTN),
-    .LED(LED),
-    .SSEG_CA(SSEG_CA),
-    .SSEG_AN(SSEG_AN),
-    .knob_setting(knob_setting) ,
-    .pushbutton(pushbutton)
+    .clk(clk),
+    .sw(SW),
+    .btnC(btnC),
+    .btnU(btnU),
+    .btnL(btnL),
+    .btnR(btnR),
+    .btnD(btnD),
+    .knob_setting(knob_setting), //TODO map to buttons
+    .pushbutton(pushbutton), //TODO map to buttons
+    .led(LED)
 );
 
 initial begin

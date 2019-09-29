@@ -9,6 +9,8 @@ module NICNAC16(
     input btnD,
     input btnL,
     input btnR,
+    input [1:0] knob_setting,
+    input pushbutton,
     output [15:0] led,
     output [6:0] seg,
     output dp,
@@ -35,7 +37,7 @@ module NICNAC16(
     
     assign reset = BTN[4];
     
-    wire pushbutton = BTN[0];
+   // wire pushbutton = BTN[0];
     wire [4:0] DEVADDRESS;
     wire [5:0] DEVCTRL;
  
@@ -85,20 +87,20 @@ module NICNAC16(
       
    
     wire [15:0] latched_data;
-  reg [1:0] knob_setting;
+  //reg [1:0] knob_setting;
   wire shift_knob;
   wire do_knob;
   assign shift_knob = BTN[1];
   assign do_knob = BTN[3];
   // rotate knob setting when releasing do_knob while shift_knob is pressed
-  always @(posedge clk_fpga) begin
-       //TODO edge detect do_knob, debounce buttons
-      if (shift_knob) 
-         if (knob_setting == 2'b11) 
-             knob_setting = 2'b00;
-         else
-             knob_setting <= knob_setting + 1;
-  end
+//  always @(posedge clk_fpga) begin
+//       //TODO edge detect do_knob, debounce buttons
+//      if (shift_knob) 
+//         if (knob_setting == 2'b11) 
+//             knob_setting = 2'b00;
+//         else
+//             knob_setting <= knob_setting + 1;
+//  end
   
    compi cnn16(
     .clk(clk_cpu),
