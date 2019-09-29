@@ -39,15 +39,15 @@ use IEEE.std_logic_unsigned.all;
 USE IEEE.NUMERIC_STD.ALL;
 use IEEE.math_real.all;
 
-entity debouncer is
+entity debouncer_vhdl is
     Generic ( DEBNC_CLOCKS : INTEGER range 2 to (INTEGER'high) := 2**16;
               PORT_WIDTH : INTEGER range 1 to (INTEGER'high) := 5);
     Port ( SIGNAL_I : in  STD_LOGIC_VECTOR ((PORT_WIDTH - 1) downto 0);
            CLK_I : in  STD_LOGIC;
            SIGNAL_O : out  STD_LOGIC_VECTOR ((PORT_WIDTH - 1) downto 0));
-end debouncer;
+end debouncer_vhdl;
 
-architecture Behavioral of debouncer is
+architecture Behavioral of debouncer_vhdl is
 
 constant CNTR_WIDTH : integer := natural(ceil(LOG2(real(DEBNC_CLOCKS))));
 constant CNTR_MAX : std_logic_vector((CNTR_WIDTH - 1) downto 0) := std_logic_vector(to_unsigned((DEBNC_CLOCKS - 1), CNTR_WIDTH));

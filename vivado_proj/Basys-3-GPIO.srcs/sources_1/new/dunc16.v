@@ -5,6 +5,7 @@ module dunc16(
     clk,
     reset,
     led_out,
+    sseg_out,
     status,
     mem_address,
     mem_read,
@@ -37,6 +38,7 @@ module dunc16(
     //
     
     output [15:0] led_out;
+    output [15:0] sseg_out;
     output status;
     output [15:0] mem_address;
     output [15:0] mem_read;
@@ -85,7 +87,7 @@ module dunc16(
     wire AZ, AN;
     
     assign led_out = ac_out;
-
+    assign sseg_out = pc_out;
 
     assign status =fetch;
     wire do_load, do_read, do_write;

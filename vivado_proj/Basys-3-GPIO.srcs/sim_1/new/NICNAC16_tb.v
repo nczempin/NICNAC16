@@ -8,13 +8,23 @@ module NICNAC16_tb ();
 //assign BTN = {reset,4'b0000};
     wire [15:0] LED;
     wire [7:0]SSEG_CA;
+    wire dp;
+    wire [6:0] seg;
+    assign SSEG_CA = {dp, seg};
     wire [3:0]SSEG_AN;
+    wire [3:0] an;
+    assign SSEG_AN = an;
 
-    reg [1:0] knob_setting;
+   // reg [1:0] knob_setting;
     reg pushbutton;
 wire btnC, btnU, btnL, btnR, btnD;
 assign btnC = reset;
 assign BTN={btnC, btnU, btnL, btnR, btnD};
+
+    wire [7:0] JA;
+    wire [7:0] JB;
+    wire [7:0] JC;
+    wire [7:0] JXADC;
 NICNAC16 nn16 (
     .clk(clk),
     .sw(SW),
@@ -23,9 +33,15 @@ NICNAC16 nn16 (
     .btnL(btnL),
     .btnR(btnR),
     .btnD(btnD),
-    .knob_setting(knob_setting), //TODO map to buttons
-    .pushbutton(pushbutton), //TODO map to buttons
-    .led(LED)
+     .led(LED),
+    .seg(seg),
+    .dp(dp),
+    .an(an),
+    .JA(JA),
+    .JB(JB),
+    .JC(JC),
+    .JXADC(JXADC)
+    
 );
 
 initial begin

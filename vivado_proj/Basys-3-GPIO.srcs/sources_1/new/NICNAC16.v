@@ -9,8 +9,8 @@ module NICNAC16(
     input btnD,
     input btnL,
     input btnR,
-    input [1:0] knob_setting,
-    input pushbutton,
+   // input [1:0] knob_setting,
+   // input pushbutton,
     output [15:0] led,
     output [6:0] seg,
     output dp,
@@ -21,6 +21,8 @@ module NICNAC16(
     inout [7:0] JXADC //TODO change the naming in the .xdc
     
 );
+
+
     wire reset; //POR "circuit"
     wire status;
      
@@ -35,18 +37,26 @@ module NICNAC16(
     wire clk_fpga;
     assign clk_fpga = clk;
     
-    assign reset = BTN[4];
+      wire [4:0] btn_debounced;
+    debouncer_vhdl debi (
+        .CLK_I(clk),
+        .SIGNAL_I(BTN),
+        .SIGNAL_O(btn_debounced)
+    );
+    assign reset = btn_debounced[4];
     
-   // wire pushbutton = BTN[0];
+  
+    wire pushbutton = btn_debounced[0];
     wire [4:0] DEVADDRESS;
     wire [5:0] DEVCTRL;
  
     wire [3:0] sseg_dp;
-    assign sseg_dp ={clk_cpu, status, 2'b11}; //TODO find uses for remaning dps
-
+   reg [1:0] knob_setting;
+  assign sseg_dp ={~pushbutton, status, ~knob_setting};
+wire [15:0] sseg_out;
     sseg_interface16b si16(
         .clk(clk_fpga),
-        .data(led_out), //TODO
+        .data(sseg_out), //TODO
         .decimal_points(sseg_dp),
         .sseg_ca( SSEG_CA),
         .sseg_an( SSEG_AN)
@@ -87,20 +97,21 @@ module NICNAC16(
       
    
     wire [15:0] latched_data;
-  //reg [1:0] knob_setting;
-  wire shift_knob;
+   wire shift_knob;
   wire do_knob;
-  assign shift_knob = BTN[1];
-  assign do_knob = BTN[3];
+  assign shift_knob = btn_debounced[1];
+  assign do_knob = btn_debounced[3];
   // rotate knob setting when releasing do_knob while shift_knob is pressed
-//  always @(posedge clk_fpga) begin
-//       //TODO edge detect do_knob, debounce buttons
-//      if (shift_knob) 
-//         if (knob_setting == 2'b11) 
-//             knob_setting = 2'b00;
-//         else
-//             knob_setting <= knob_setting + 1;
-//  end
+  always @(posedge clk_fpga) begin
+      if (reset)
+          knob_setting <= 2'b00;
+       //TODO edge detect do_knob
+      if (shift_knob) 
+         if (knob_setting == 2'b11) 
+             knob_setting <= 2'b00;
+         else
+             knob_setting <= knob_setting + 1;
+  end
   
    compi cnn16(
     .clk(clk_cpu),
@@ -113,7 +124,8 @@ module NICNAC16(
     .INP(INP),
     .knob_setting(knob_setting),
     .pushbutton(pushbutton),
-    .led_out(led_out),
+    .led_out(led_out),  // TODO these are Basys 3 specific
+    .sseg_out(sseg_out),  // TODO these are Basys 3 specific
     .SW(sw)
    );
    

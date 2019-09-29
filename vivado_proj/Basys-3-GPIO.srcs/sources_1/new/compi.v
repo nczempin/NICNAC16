@@ -12,6 +12,7 @@ module compi(
     input [1:0] knob_setting,
     input pushbutton,
     output [15:0] led_out,
+    output [15:0] sseg_out,
     input [15:0] SW, // TODO rename; at this level, it should no longer know anything about Basys 3
     input CONCY1,
     input CONCY2
@@ -36,7 +37,8 @@ module compi(
     dunc16 mycpu (
         .clk(clk), 
         .reset(reset),
-         .led_out(led_out),
+        .led_out(led_out),
+        .sseg_out(sseg_out),
         .status(status),
         .en_mem_write(en_mem_write),
         .mem_read(mem_read),
@@ -81,9 +83,9 @@ module compi(
     .RUN_CY(RUN_CY),
     .LOAD_SW(LOAD_SW),
     .WRITE_SW(WRITE_SW),
-     .READ_SW(READ_SW),
-      .RUN_SW(RUN_SW),
-      .CONCY1(CONCY1),
+    .READ_SW(READ_SW),
+    .RUN_SW(RUN_SW),
+    .CONCY1(CONCY1),
     .CONCY2(CONCY2)
 
     ); 
