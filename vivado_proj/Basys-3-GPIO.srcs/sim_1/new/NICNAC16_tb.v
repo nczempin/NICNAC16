@@ -25,7 +25,10 @@ assign BTN={btnC, btnU, btnL, btnR, btnD};
     wire [7:0] JB;
     wire [7:0] JC;
     wire [7:0] JXADC;
-NICNAC16 nn16 (
+NICNAC16 #( 
+  	.DEBNC_CLOCKS(2), 
+  	.DEBNC_PORT_WIDTH(5)
+ )  nn16 (
     .clk(clk),
     .sw(SW),
     .btnC(btnC),
@@ -202,7 +205,7 @@ initial begin
 	// knob_setting =2'b00;
 	 
 #32
-	SW = 16'hffff;
+	SW = 16'h0000;
 	
  repeat(3) begin
     #3 advance_knobs <= 1'b1;
@@ -217,7 +220,12 @@ initial begin
      #3 advance_knobs <= 1'b1;
 	#3 advance_knobs <= 1'b0;
 	//knob_setting =2'b00;
-	
+	#6
+	 pushbutton <= 1'b0;
+	 #3
+    pushbutton =1'b1; 
+    #20
+ pushbutton <= 1'b0;
 	
 end
 always #0.5 clk =~clk;

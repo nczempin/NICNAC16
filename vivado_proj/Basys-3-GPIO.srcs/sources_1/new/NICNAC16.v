@@ -1,7 +1,9 @@
 `timescale 1ns / 1ps
 // Basys 3 specific implementation of NICNAC16
  
-module NICNAC16(
+module NICNAC16
+#(parameter DEBNC_CLOCKS=2**16, 
+    parameter DEBNC_PORT_WIDTH=5) (
     input clk,
     input [15:0] sw,
     input btnC,
@@ -40,8 +42,8 @@ assign BTN={btnC, btnU, btnL, btnR, btnD};
       wire [4:0] btn_debounced;
     debouncer_vhdl 
     #( 
-  	.DEBNC_CLOCKS(2), 
-  	.PORT_WIDTH(5)
+  	.DEBNC_CLOCKS(DEBNC_CLOCKS), 
+  	.PORT_WIDTH(DEBNC_PORT_WIDTH)
  )  debi (
         .CLK_I(clk),
         .SIGNAL_I(BTN),
