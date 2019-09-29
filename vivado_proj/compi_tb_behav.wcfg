@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="995695735fs"></ZoomEndTime>
-      <Cursor1Time time="130000000fs"></Cursor1Time>
+      <ZoomEndTime time="2000000000fs"></ZoomEndTime>
+      <Cursor1Time time="2000000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="187"></NameColumnWidth>
-      <ValueColumnWidth column_width="106"></ValueColumnWidth>
+      <ValueColumnWidth column_width="86"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="33" />
+   <WVObjectSize size="39" />
    <wvobject fp_name="/NICNAC16_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -48,13 +48,43 @@
       <obj_property name="ElementShortName">SSEG_AN[3:0]</obj_property>
       <obj_property name="ObjectShortName">SSEG_AN[3:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/knob_setting" type="array">
+   <wvobject fp_name="/NICNAC16_tb/advance_knobs" type="logic">
+      <obj_property name="ElementShortName">advance_knobs</obj_property>
+      <obj_property name="ObjectShortName">advance_knobs</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/shift_knob" type="logic">
+      <obj_property name="ElementShortName">shift_knob</obj_property>
+      <obj_property name="ObjectShortName">shift_knob</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/do_knob" type="logic">
+      <obj_property name="ElementShortName">do_knob</obj_property>
+      <obj_property name="ObjectShortName">do_knob</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/btn_debounced" type="array">
+      <obj_property name="ElementShortName">btn_debounced[4:0]</obj_property>
+      <obj_property name="ObjectShortName">btn_debounced[4:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/nn16/knob_setting" type="array">
       <obj_property name="ElementShortName">knob_setting[1:0]</obj_property>
       <obj_property name="ObjectShortName">knob_setting[1:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/pushbutton" type="logic">
       <obj_property name="ElementShortName">pushbutton</obj_property>
       <obj_property name="ObjectShortName">pushbutton</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/btnC" type="logic">
+      <obj_property name="ElementShortName">btnC</obj_property>
+      <obj_property name="ObjectShortName">btnC</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/btnL" type="logic">
+      <obj_property name="ElementShortName">btnL</obj_property>
+      <obj_property name="ObjectShortName">btnL</obj_property>
+   </wvobject>
+   <wvobject fp_name="/NICNAC16_tb/btnD" type="logic">
+      <obj_property name="ElementShortName">btnD</obj_property>
+      <obj_property name="ObjectShortName">btnD</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/cnn16/t3" type="logic">
       <obj_property name="ElementShortName">t3</obj_property>
@@ -107,10 +137,6 @@
    <wvobject fp_name="/NICNAC16_tb/nn16/cnn16/INP" type="logic">
       <obj_property name="ElementShortName">INP</obj_property>
       <obj_property name="ObjectShortName">INP</obj_property>
-   </wvobject>
-   <wvobject fp_name="/NICNAC16_tb/nn16/cnn16/knob_setting" type="array">
-      <obj_property name="ElementShortName">knob_setting[1:0]</obj_property>
-      <obj_property name="ObjectShortName">knob_setting[1:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/NICNAC16_tb/nn16/cnn16/pushbutton" type="logic">
       <obj_property name="ElementShortName">pushbutton</obj_property>

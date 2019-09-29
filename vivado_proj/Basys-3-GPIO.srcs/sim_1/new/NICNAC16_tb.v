@@ -43,12 +43,14 @@ NICNAC16 nn16 (
     .JXADC(JXADC)
     
 );
-
+reg advance_knobs;
+assign btnL = advance_knobs;
+assign btnD = pushbutton;
 initial begin
     clk=1;
 
     pushbutton =1'b1; 
-   knob_setting =2'b00;
+   //knob_setting =2'b00;
    reset =1'b0;
    #1
 	reset = 1'b1;
@@ -61,15 +63,25 @@ initial begin
 	
 // LOAD via console
 	SW = 16'h0000;
-    knob_setting =2'b11;
+    //knob_setting =2'b11;
+    repeat(3) begin
+    #3 advance_knobs <= 1'b1;
+	#3 advance_knobs <= 1'b0;
+	end
 	#3
+	
 	pushbutton <= 1'b0;
-    #3
+    #6
     pushbutton =1'b1; 
- 	#3
+ 	#6
 	// WRITE via console
 	SW = 16'h4113;
-	knob_setting =2'b10;
+	
+	 repeat(3) begin
+    #3 advance_knobs <= 1'b1;
+	#3 advance_knobs <= 1'b0;
+	end
+	//knob_setting =2'b10;
 	#3
 	pushbutton <= 1'b0;
 	#3
@@ -109,20 +121,30 @@ initial begin
     #3
 	
     SW = 16'h0000;
-    knob_setting =2'b11;
+    #3 advance_knobs <= 1'b1;
+	#3 advance_knobs <= 1'b0;
+	
+    //knob_setting =2'b11;
 	#3
 	pushbutton <= 1'b0;
     #3
     pushbutton =1'b1; 
  	#3
-    knob_setting =2'b00;
+    #3 advance_knobs <= 1'b1;
+	#3 advance_knobs <= 1'b0;
+	
+    //  knob_setting =2'b00;
 	
 	
 	
-	#6
+	#16
 // LOAD via console
 	SW = 16'h0000;
-    knob_setting =2'b11;
+   repeat(3) begin
+    #3 advance_knobs <= 1'b1;
+	#3 advance_knobs <= 1'b0;
+	end
+	//  knob_setting =2'b11;
 	#3
 	pushbutton <= 1'b0;
     #3
@@ -130,7 +152,11 @@ initial begin
  	#3
 
 	// READ on console
-	 knob_setting =2'b01;
+	 repeat(2) begin
+    #3 advance_knobs <= 1'b1;
+	#3 advance_knobs <= 1'b0;
+	end
+	// knob_setting =2'b01;
 	 #6
 	 pushbutton = 1'b0;
 	 #3
@@ -138,25 +164,18 @@ initial begin
 	#6
 	
 	// READ on console
-	knob_setting =2'b01;
-	 #6
 	 pushbutton = 1'b0;
 	 #3
 	 pushbutton = 1'b1;
 	#6
 	
 	// READ on console
-	 knob_setting =2'b01;
-	 #6
 	 pushbutton = 1'b0;
 	 #3
 	 pushbutton = 1'b1;
 	#6
 	
 	// READ on console
-	SW = 16'h0000;
-	 knob_setting =2'b01;
-	 #6
 	 pushbutton = 1'b0;
 	 #3
 	 pushbutton = 1'b1;
@@ -165,7 +184,11 @@ initial begin
 	
 // LOAD via console
 	SW = 16'h0000;
-    knob_setting =2'b11;
+    repeat(2) begin
+    #3 advance_knobs <= 1'b1;
+	#3 advance_knobs <= 1'b0;
+	end
+	// knob_setting =2'b11;
 	#6
 	pushbutton <= 1'b0;
     #3
@@ -174,18 +197,28 @@ initial begin
 	
 	
 	// RUN MODE
-	 knob_setting =2'b00;
+    #3 advance_knobs <= 1'b1;
+	#3 advance_knobs <= 1'b0;
+	// knob_setting =2'b00;
 	 
 #32
 	SW = 16'hffff;
 	
-	 knob_setting =2'b11;
+ repeat(3) begin
+    #3 advance_knobs <= 1'b1;
+	#3 advance_knobs <= 1'b0;
+	end
+	//	 knob_setting =2'b11;
 	#6
 	 pushbutton <= 1'b0;
 	 #3
     pushbutton =1'b1; 
     #2
- knob_setting =2'b00;
+     #3 advance_knobs <= 1'b1;
+	#3 advance_knobs <= 1'b0;
+	//knob_setting =2'b00;
+	
+	
 end
 always #0.5 clk =~clk;
 

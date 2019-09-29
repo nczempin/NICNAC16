@@ -29,8 +29,8 @@ module NICNAC16(
     wire clk_cpu;
     wire [15:0] led_out;
     wire [4:0]BTN;
-    assign BTN = {btnC, btnU, btnD, btnL, btnR};
-    wire [7:0] SSEG_CA;
+assign BTN={btnC, btnU, btnL, btnR, btnD};
+  wire [7:0] SSEG_CA;
     assign SSEG_CA = {dp, seg};
     wire [3:0] SSEG_AN;
     assign SSEG_AN = an;
@@ -38,12 +38,16 @@ module NICNAC16(
     assign clk_fpga = clk;
     
       wire [4:0] btn_debounced;
-    debouncer_vhdl debi (
+    debouncer_vhdl 
+    #( 
+  	.DEBNC_CLOCKS(2), 
+  	.PORT_WIDTH(5)
+ )  debi (
         .CLK_I(clk),
         .SIGNAL_I(BTN),
         .SIGNAL_O(btn_debounced)
     );
-    assign reset = btn_debounced[4];
+    assign reset = BTN[4];
     
   
     wire pushbutton = btn_debounced[0];
@@ -99,14 +103,17 @@ wire [15:0] sseg_out;
     wire [15:0] latched_data;
    wire shift_knob;
   wire do_knob;
-  assign shift_knob = btn_debounced[1];
+  assign shift_knob = btn_debounced[2];
   assign do_knob = btn_debounced[3];
   // rotate knob setting when releasing do_knob while shift_knob is pressed
-  always @(posedge clk_fpga) begin
-      if (reset)
+  
+  always @(*)
+        if (reset)
           knob_setting <= 2'b00;
+  always @(negedge shift_knob) begin
+
        //TODO edge detect do_knob
-      if (shift_knob) 
+      //if (shift_knob) 
          if (knob_setting == 2'b11) 
              knob_setting <= 2'b00;
          else
