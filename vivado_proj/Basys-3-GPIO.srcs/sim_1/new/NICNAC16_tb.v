@@ -23,8 +23,8 @@ NICNAC16 nn16 (
     .btnL(btnL),
     .btnR(btnR),
     .btnD(btnD),
-    .knob_setting(knob_setting), //TODO map to buttons
-    .pushbutton(pushbutton), //TODO map to buttons
+//    .knob_setting(knob_setting), //TODO map to buttons
+//    .pushbutton(pushbutton), //TODO map to buttons
     .led(LED)
 );
 
