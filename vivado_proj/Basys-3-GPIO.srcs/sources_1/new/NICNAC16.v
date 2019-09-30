@@ -18,9 +18,9 @@ module NICNAC16
     output dp,
     output [3:0] an,
     output reg [7:0] JA, //TODO change the naming in the .xdc
-    inout [7:0] JB, //TODO change the naming in the .xdc
-    inout [7:0] JC, //TODO change the naming in the .xdc
-    inout [7:0] JXADC //TODO change the naming in the .xdc
+    output reg [7:0] JB, //TODO change the naming in the .xdc
+    output reg [7:0] JC, //TODO change the naming in the .xdc
+    output reg [7:0] JXADC //TODO change the naming in the .xdc
     
 );
 
@@ -78,8 +78,12 @@ wire [15:0] sseg_out;
     assign clk_cpu = clk_fpga;
     wire [15:0] device_out;
     reg [7:0] test;
-    always @(posedge clk)
-     JA =sw[7:0];//test;
+    always @(posedge clk)begin
+     JA <=sw[7:0];//test;
+    JXADC <=sw[15:8];//test;
+    JB <=sw[7:0];//test;
+    JC <=sw[15:8];//test;
+    end
     //assign device_out = {JA, JB};
     wire device_active; // TODO dp?
 
