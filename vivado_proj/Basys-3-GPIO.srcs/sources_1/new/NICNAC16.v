@@ -27,7 +27,8 @@ module NICNAC16
 
     wire reset; //POR "circuit"
     wire status;
-     
+   wire [7:0] count;
+    
     wire clk_cpu;
     wire [15:0] led_out;
     wire [4:0]BTN;
@@ -37,6 +38,8 @@ assign BTN={btnC, btnU, btnL, btnR, btnD};
     wire [3:0] SSEG_AN;
     assign SSEG_AN = an;
     wire clk_fpga;
+    wire clk_external;
+    assign clk_external = JA[0];
     assign clk_fpga = clk;
     
       wire [4:0] btn_debounced;
@@ -57,8 +60,8 @@ assign BTN={btnC, btnU, btnL, btnR, btnD};
     wire [5:0] DEVCTRL;
  
     wire [3:0] sseg_dp;
-//   reg [1:0] knob_setting;
-  assign sseg_dp ={~pushbutton, status, 2'b11/*~knob_setting*/};
+  wire [1:0] knob_setting;
+  assign sseg_dp ={~pushbutton, status, knob_setting};
 wire [15:0] sseg_out;
     sseg_interface16b si16(
         .clk(clk_fpga),
@@ -68,7 +71,7 @@ wire [15:0] sseg_out;
         .sseg_an( SSEG_AN)
     );
  
-    assign led ={sw[15:8],JA};
+    assign led ={JA,led_out[7:0]};
     wire cd_out;
     clock_divider cd(
         .clk_in(clk_fpga),
@@ -112,7 +115,7 @@ wire [15:0] sseg_out;
     wire [15:0] latched_data;
    wire shift_knob;
   wire do_knob;
-  assign shift_knob = btn_debounced[2];
+  //assign shift_knob = btn_debounced[2];
   assign do_knob = btn_debounced[3];
   // rotate knob setting when releasing do_knob while shift_knob is pressed
   
@@ -128,7 +131,18 @@ wire [15:0] sseg_out;
 //         else
 //             knob_setting <= knob_setting + 1;
 //  end
-  
+  // rotate knob setting when moving rotary encoder
+ // assign knob_setting =count;
+wire rotA,rotB;
+assign rotA = ~JA[0];
+assign rotB = ~JA[1];
+quadrature_decoder qd (
+ .clk(clk),
+ .reset(reset),
+ .quadA(rotA),
+ .quadB(rotB),
+ .count(count)
+ );
    compi cnn16(
     .clk(clk_cpu),
     .reset(reset),
