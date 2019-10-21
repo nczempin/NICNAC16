@@ -84,7 +84,7 @@ module dunc16(
     
     wire AZ, AN;
     
-    assign led_out = ac_out;
+    assign led_out ={reset,fetch, execute,clk, pc_out[11:0]};
 
 
     assign status =fetch;

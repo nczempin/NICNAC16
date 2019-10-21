@@ -12,9 +12,13 @@ module NICNAC16_tb ();
 
     reg [1:0] knob_setting;
     reg pushbutton;
+    reg [7:0] JA;
 wire btnC, btnU, btnL, btnR, btnD;
 assign btnC = reset;
 assign BTN={btnC, btnU, btnL, btnR, btnD};
+
+wire clk_external;
+assign clk_external = JA[0];
 NICNAC16 nn16 (
     .clk(clk),
     .sw(SW),
@@ -25,12 +29,13 @@ NICNAC16 nn16 (
     .btnD(btnD),
     .knob_setting(knob_setting), //TODO map to buttons
     .pushbutton(pushbutton), //TODO map to buttons
-    .led(LED)
+    .led(LED),
+    .JA(JA)
 );
 
 initial begin
     clk=1;
-
+ JA= 8'b00000000;
     pushbutton =1'b1; 
    knob_setting =2'b00;
    reset =1'b0;
@@ -38,11 +43,10 @@ initial begin
 	reset = 1'b1;
 	SW = 16'haced;
 	
-		#4
+		#20
 	reset = 1'b0;
 	// reset done
-	#2
-
+	
 	#3
 	pushbutton <= 1'b0;
 	#3
@@ -60,6 +64,7 @@ initial begin
  knob_setting =2'b00;
 end
 always #0.5 clk =~clk;
+always #20 JA[0] = ~JA[0];
 
 //always #700 enable =~ enable; 
 

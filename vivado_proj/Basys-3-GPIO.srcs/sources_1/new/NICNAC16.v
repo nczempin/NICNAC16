@@ -55,12 +55,12 @@ assign BTN={btnC, btnU, btnL, btnR, btnD};
     assign reset = BTN[4];
     
   
-    wire pushbutton = btn_debounced[0];
+    //wire pushbutton = btn_debounced[0];
     wire [4:0] DEVADDRESS;
     wire [5:0] DEVCTRL;
  
     wire [3:0] sseg_dp;
-  wire [1:0] knob_setting;
+  //wire [1:0] knob_setting;
   assign sseg_dp ={~pushbutton, status, knob_setting};
 wire [15:0] sseg_out;
     sseg_interface16b si16(
@@ -71,14 +71,14 @@ wire [15:0] sseg_out;
         .sseg_an( SSEG_AN)
     );
  
-    assign led ={JA,led_out[7:0]};
+    assign led ={led_out};
     wire cd_out;
     clock_divider cd(
         .clk_in(clk_fpga),
         .reset(reset),
         .clk_out(cd_out)
      );
-    assign clk_cpu = clk_fpga;
+    assign clk_cpu = clk_external;
     wire [15:0] device_out;
     reg [7:0] test;
     always @(posedge clk)begin
