@@ -13,11 +13,12 @@ module two_bit_ring_counter (
  
     always @(posedge clock)
       if (reset)
-        a = 4'b00;
+        a <= 4'b01;
  
       else
       if (enable)
       //TODO this can be simplified by using d as a bit in the assignments
+      //if (1'b1) //TODO d
       if (d)
           case (a)
            2'b00: a <= 2'b01; // happens only on reset
@@ -49,7 +50,7 @@ module Stages(CLK, RESET, NEW_CYCLE, FETCH, EXECUTE, RUN_MODE, RUN_CY);
     input RUN_CY;
     
     wire fetch_in;
-    assign fetch_in = RUN_CY | (RUN_MODE & EXECUTE);
+    assign fetch_in = RUN_CY | (RUN_MODE & ~FETCH);
     
     two_bit_ring_counter tbrc (
     .q({EXECUTE, FETCH}),
