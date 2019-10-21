@@ -23,8 +23,8 @@ NICNAC16 nn16 (
     .btnL(btnL),
     .btnR(btnR),
     .btnD(btnD),
-//    .knob_setting(knob_setting), //TODO map to buttons
-//    .pushbutton(pushbutton), //TODO map to buttons
+    .knob_setting(knob_setting), //TODO map to buttons
+    .pushbutton(pushbutton), //TODO map to buttons
     .led(LED)
 );
 
@@ -42,133 +42,21 @@ initial begin
 	reset = 1'b0;
 	// reset done
 	#2
-	
-// LOAD via console
-	SW = 16'h0000;
-    knob_setting =2'b11;
-	#3
-	pushbutton <= 1'b0;
-    #3
-    pushbutton =1'b1; 
- 	#3
-	// WRITE via console
-	SW = 16'h4113;
-	knob_setting =2'b10;
+
 	#3
 	pushbutton <= 1'b0;
 	#3
     pushbutton =1'b1; 
     #3
     
-    SW = 16'h6114;
-	#2
-	pushbutton <= 1'b0;
-	#2
-    pushbutton =1'b1; 
-    #3
-	
-    SW = 16'h7004;
-	#2
-	pushbutton <= 1'b0;
-	#2
-    pushbutton =1'b1; 
-    #3
-	SW = 16'h1001;
-	#2
-	pushbutton <= 1'b0;
-	#2
-    pushbutton =1'b1; 
-    #3
-    SW = 16'hfc27;
-	#2
-	pushbutton <= 1'b0;
-	#2
-    pushbutton =1'b1; 
-    #3
-    SW = 16'h1000;
-	#3
-	pushbutton <= 1'b0;
-	#3
-    pushbutton =1'b1; 
-    #3
-	
-    SW = 16'h0000;
-    knob_setting =2'b11;
-	#3
-	pushbutton <= 1'b0;
-    #3
-    pushbutton =1'b1; 
- 	#3
-    knob_setting =2'b00;
-	
-	
-	
-	#6
-// LOAD via console
-	SW = 16'h0000;
-    knob_setting =2'b11;
-	#3
-	pushbutton <= 1'b0;
-    #3
-    pushbutton =1'b1; 
- 	#3
-
-	// READ on console
-	 knob_setting =2'b01;
-	 #6
-	 pushbutton = 1'b0;
-	 #3
-	 pushbutton = 1'b1;
-	#6
-	
-	// READ on console
-	knob_setting =2'b01;
-	 #6
-	 pushbutton = 1'b0;
-	 #3
-	 pushbutton = 1'b1;
-	#6
-	
-	// READ on console
-	 knob_setting =2'b01;
-	 #6
-	 pushbutton = 1'b0;
-	 #3
-	 pushbutton = 1'b1;
-	#6
-	
-	// READ on console
-	SW = 16'h0000;
-	 knob_setting =2'b01;
-	 #6
-	 pushbutton = 1'b0;
-	 #3
-	 pushbutton = 1'b1;
-	#6
-	
-	
-// LOAD via console
-	SW = 16'h0000;
-    knob_setting =2'b11;
-	#6
-	pushbutton <= 1'b0;
-    #3
-    pushbutton =1'b1; 
- 	#6
+  
 	
 	
 	// RUN MODE
 	 knob_setting =2'b00;
 	 
 #32
-	SW = 16'hffff;
-	
-	 knob_setting =2'b11;
-	#6
-	 pushbutton <= 1'b0;
-	 #3
-    pushbutton =1'b1; 
-    #2
+
  knob_setting =2'b00;
 end
 always #0.5 clk =~clk;
