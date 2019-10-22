@@ -320,3 +320,5 @@ set_property SLEW SLOW [get_ports {JA[3]}]
 set_property SLEW SLOW [get_ports {JA[2]}]
 set_property SLEW SLOW [get_ports {JA[1]}]
 set_property SLEW SLOW [get_ports {JA[0]}]
+
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets led_OBUF[12]]

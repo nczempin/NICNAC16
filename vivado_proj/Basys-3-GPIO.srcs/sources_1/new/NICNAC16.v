@@ -11,8 +11,8 @@ module NICNAC16
     input btnD,
     input btnL,
     input btnR,
-    input [1:0] knob_setting,
-    input pushbutton,
+    //input [1:0] knob_setting,
+    //input pushbutton,
     output [15:0] led,
     output [6:0] seg,
     output dp,
@@ -41,7 +41,8 @@ assign BTN={btnC, btnU, btnL, btnR, btnD};
     wire clk_external;
     assign clk_external = JA[0];
     assign clk_fpga = clk;
-    
+    wire [1:0] knob_setting;
+    wire pushbutton;
       wire [4:0] btn_debounced;
 //    debouncer_vhdl 
 //    #( 
